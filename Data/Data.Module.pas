@@ -12,9 +12,7 @@ type
   Tdm = class(TDataModule)
     imageList32_32: TcxImageList;
     imageList16_16: TcxImageList;
-    FDGUIxErrorDialog: TFDGUIxErrorDialog;
     FDGUIxWaitCursor: TFDGUIxWaitCursor;
-    FDGUIxLoginDialog: TFDGUIxLoginDialog;
     FDConnectionMySQL: TFDConnection;
     FDPhysMySQLDriverLink: TFDPhysMySQLDriverLink;
     procedure FDConnectionMySQLAfterConnect(Sender: TObject);

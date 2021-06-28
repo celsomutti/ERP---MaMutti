@@ -36,6 +36,7 @@ type
 
     function  CreateUser(sPassword: string; iDaysExpire: integer): boolean;
     function  Privilages(sPrivileges: string): boolean;
+    function  AlterPwd(sUsuario, sSenha: string): boolean;
     function  Gravar(): boolean;
     function  Search(aParam : array of variant): boolean;
     function  GetField(sField : String; sKey : String; sKeyValue : String) : String;
@@ -63,6 +64,30 @@ CONST
 
 { TUsuarios }
 
+function TUsuarios.AlterPwd(sUsuario, sSenha: string): boolean;
+var
+  sSQL, sServer: string;
+  fdQuery: TFDQuery;
+begin
+  try
+    Result := False;
+    sServer := '%';
+    sSQL := 'set password for ' + FUserName + '@' + sServer + ' = PASSWORD(' + sSenha + ');';
+    fdQuery := FConexao.ReturnQuery;
+    fdQuery.ExecSQL(sSQL);
+    fdQuery.Connection.Connected := False;
+    fdQuery.Free;
+    Result := True;
+  except on e : Exception do
+    begin
+       ShowMessageFmt('Ocorreu o seguinte erro: %s', [e.Message]);
+       if Assigned(fdQuery) then
+         fdQuery.Free;
+    end;
+  end;
+
+end;
+
 procedure TUsuarios.ClearSelf;
 begin
   FCodigo := 0;
@@ -86,11 +111,13 @@ begin
   try
     Result := False;
     sServer := '%';
-    sSQL := 'create user ' + FUserName + '@' + sServer + ' identified with sha256_password by ' + sPassword +
-    ' password expire interval ' + iDaysExpire.ToString + ' day;';
+    sSQL := 'create user ' + FUserName + '@' + sServer + ' identified by ' + sPassword + ';';
+    if iDaysExpire > 0 then
+      sSQL := sSQL + ' password expire interval ' + iDaysExpire.ToString + ' day;';
     fdQuery := FConexao.ReturnQuery;
     fdQuery.ExecSQL(sSQL);
-    fdQuery.Active := False;
+    sSQL := 'alter user '  + FUserName + '@' + sServer + ' password expire;';
+    fdQuery.ExecSQL(sSQL);
     fdQuery.Connection.Connected := False;
     fdQuery.Free;
     Result := True;

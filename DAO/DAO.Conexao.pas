@@ -5,7 +5,7 @@ interface
 uses
   FireDAC.Stan.Intf, FireDAC.Stan.Option, FireDAC.Stan.Error, FireDAC.UI.Intf, FireDAC.Phys.Intf, FireDAC.Stan.Def,
   FireDAC.Stan.Pool, FireDAC.Stan.Async, FireDAC.Phys, Data.DB, FireDAC.Comp.Client, FireDAC.Phys.MySQLDef,
-  FireDAC.Phys.FB, System.SysUtils, FireDAC.DApt, FireDAC.VCLUI.Wait, Global.Parametros;
+  FireDAC.Phys.FB, System.SysUtils, FireDAC.DApt, FireDAC.VCLUI.Wait, Global.Parametros, VCL.Dialogs;
 
   type
     TConexao = class
@@ -17,11 +17,17 @@ uses
       destructor Destroy; override;
       function GetConn: TFDConnection;
       function ReturnQuery: TFDQuery;
+      procedure ActiveDectiveConn(bFlag: boolean);
     end;
 
 implementation
 
 { TConexao }
+
+procedure TConexao.ActiveDectiveConn(bFlag: boolean);
+begin
+  FConn.Connected := bFlag;
+end;
 
 constructor TConexao.Create;
 begin

@@ -161,7 +161,7 @@ implementation
 
 {$R *.dfm}
 
-uses Data.Module, View.Login;
+uses Data.Module, View.Login, Global.Parametros;
 
 { Tview_Main }
 
@@ -230,7 +230,17 @@ procedure Tview_Main.FormShow(Sender: TObject);
 begin
   ResizeMainForm;
   if not Login() then
-    Application.Terminate;
+    Application.Terminate
+  else
+  begin
+    with dm do
+    begin
+      FDConnectionMySQL.Params.DriverID := Global.Parametros.pDriverID;
+      FDConnectionMySQL.Params.Database := Global.Parametros.pDatabase;
+      FDConnectionMySQL.Params.UserName := Global.Parametros.pUser_Name;
+      FDConnectionMySQL.ParamS.Password := Global.Parametros.pPassword;
+    end;
+  end;
 end;
 
 function Tview_Main.Login: Boolean;
