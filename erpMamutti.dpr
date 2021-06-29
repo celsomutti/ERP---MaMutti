@@ -11,7 +11,11 @@ uses
   Common.ENum in 'Common\Common.ENum.pas',
   Global.Parametros in 'Global\Global.Parametros.pas',
   Controller.Usuarios in 'Controller\Controller.Usuarios.pas',
-  View.Login in 'View\View.Login.pas' {view_Login};
+  View.Login in 'View\View.Login.pas' {view_Login},
+  Common.Utils in 'Common\Common.Utils.pas',
+  View.CadastroUsuarios in 'View\View.CadastroUsuarios.pas' {view_Cadastro_Usuarios},
+  View.PesquisaPessoasUsuarios in 'View\View.PesquisaPessoasUsuarios.pas' {view_PesquisaPessoasUsuarios},
+  View.ConfirmaSenha in 'View\View.ConfirmaSenha.pas' {view_ConfirmaSenha};
 
 {$R *.res}
 
@@ -22,7 +26,5 @@ begin
   Application.Title := 'ERP - MaMutti';
   Application.CreateForm(Tview_Main, view_Main);
   Application.CreateForm(Tdm, dm);
-  Application.CreateForm(Tview_Login, view_Login);
-  Application.CreateForm(Tview_Login, view_Login);
   Application.Run;
 end.

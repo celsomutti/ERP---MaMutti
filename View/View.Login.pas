@@ -7,7 +7,7 @@ uses
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, cxGraphics, cxControls, cxLookAndFeels, cxLookAndFeelPainters, cxContainer,
   cxEdit, dxSkinsCore, dxSkinsDefaultPainters, cxImage, dxGDIPlusClasses, cxClasses, dxLayoutContainer, dxLayoutControl,
   dxLayoutcxEditAdapters, cxTextEdit, System.Actions, Vcl.ActnList, dxLayoutControlAdapters, Vcl.Menus, Vcl.StdCtrls, cxButtons,
-  FireDAC.Stan.Error, DAO.Conexao, cxMaskEdit, cxButtonEdit, Controller.Usuarios;
+  FireDAC.Stan.Error, DAO.Conexao, cxMaskEdit, cxButtonEdit, Controller.Usuarios, cxLabel;
 
 type
   Tview_Login = class(TForm)
@@ -41,12 +41,19 @@ type
     dxLayoutItem6: TdxLayoutItem;
     actionVisualizarNovaSenha: TAction;
     actionVisualizarConfirmacao: TAction;
+    dxLayoutGroup6: TdxLayoutGroup;
+    Panel1: TPanel;
+    dxLayoutItem7: TdxLayoutItem;
+    cxImage1: TcxImage;
+    labelVersion: TcxLabel;
     procedure actionLoginCancelarExecute(Sender: TObject);
     procedure actionLoginLogarExecute(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure actionVisualizarNovaSenhaExecute(Sender: TObject);
     procedure actionVisualizarConfirmacaoExecute(Sender: TObject);
     procedure actionLoginCancelaNovaSenhaExecute(Sender: TObject);
+    procedure actionLoginNovaSenhaExecute(Sender: TObject);
+    procedure FormKeyPress(Sender: TObject; var Key: Char);
   private
     { Private declarations }
     function Logar(): boolean;
@@ -106,16 +113,22 @@ begin
   end;
 end;
 
+procedure Tview_Login.actionLoginNovaSenhaExecute(Sender: TObject);
+begin
+  if not SavePwd() then
+    ModalResult := mrCancel;
+end;
+
 procedure Tview_Login.actionVisualizarConfirmacaoExecute(Sender: TObject);
 begin
   if confirmaSenha.Properties.EchoMode = eemNormal then
   begin
-    confirmaSenha.Properties.EchoMode = eemPassword;
+    confirmaSenha.Properties.EchoMode := eemPassword;
     confirmaSenha.Properties.Buttons[0].ImageIndex := 2;
   end
   else
   begin
-    confirmaSenha.Properties.EchoMode = eemNormal;
+    confirmaSenha.Properties.EchoMode := eemNormal;
     confirmaSenha.Properties.Buttons[0].ImageIndex := 3;
   end;
 end;
@@ -124,12 +137,12 @@ procedure Tview_Login.actionVisualizarNovaSenhaExecute(Sender: TObject);
 begin
   if novaSenha.Properties.EchoMode = eemNormal then
   begin
-    novaSenha.Properties.EchoMode = eemPassword;
+    novaSenha.Properties.EchoMode := eemPassword;
     novaSenha.Properties.Buttons[0].ImageIndex := 2;
   end
   else
   begin
-    novaSenha.Properties.EchoMode = eemNormal;
+    novaSenha.Properties.EchoMode := eemNormal;
     novaSenha.Properties.Buttons[0].ImageIndex := 3;
   end;
 end;
@@ -140,8 +153,18 @@ begin
   novaSenha.SetFocus;
 end;
 
+procedure Tview_Login.FormKeyPress(Sender: TObject; var Key: Char);
+begin
+  If Key = #13 then
+  begin
+    Key := #0;
+    Perform(Wm_NextDlgCtl, 0, 0);
+  end;
+end;
+
 procedure Tview_Login.FormShow(Sender: TObject);
 begin
+  Self.Caption := Application.Title + ' - Login';
   iTimes := 1;
   novaSenha.Clear;
   novaSenha.Properties.EchoMode := eemPassword;
@@ -171,15 +194,16 @@ begin
         begin
           Application.MessageBox('Sua senha expirou. Clique em OK para alterá-la!', 'Atenção', MB_OK + MB_ICONWARNING);
           ChangePwd;
+          Abort;
         end
         else if E.Kind = ekUserPwdInvalid then
         begin
           Application.MessageBox('Usuário e/ou senha inválidos!', 'Atenção', MB_ICONWARNING + MB_OK);
           iErrNumber := E.ErrorCode;
         end
-        else
+        else if E.Kind = ekOther then
         begin
-          Application.MessageBox(PChar('Ocorreu o seguinte erro : ' + E.Message), 'Erro', MB_OK + MB_ICONERROR);
+          Application.MessageBox(PChar('Ocorreu o seguinte erro : ' + E.Message + ' (' + e.ErrorCode.ToString + ')'), 'Erro', MB_OK + MB_ICONERROR);
           iErrNumber := -1;
         end;
       end;

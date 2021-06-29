@@ -124,6 +124,19 @@
             <Form>view_Login</Form>
             <FormType>dfm</FormType>
         </DCCReference>
+        <DCCReference Include="Common\Common.Utils.pas"/>
+        <DCCReference Include="View\View.CadastroUsuarios.pas">
+            <Form>view_Cadastro_Usuarios</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="View\View.PesquisaPessoasUsuarios.pas">
+            <Form>view_PesquisaPessoasUsuarios</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="View\View.ConfirmaSenha.pas">
+            <Form>view_ConfirmaSenha</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
         <None Include="ModelSupport_erpMamutti\default.txaPackage"/>
         <None Include="ModelSupport_erpMamutti\default.txvpck"/>
         <None Include="ModelSupport_erpMamutti\erpMamutti\default.txvpck"/>

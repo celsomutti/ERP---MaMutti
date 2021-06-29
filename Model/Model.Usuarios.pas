@@ -15,6 +15,7 @@ type
     FNome     : String;
     FUserName : string;
     FGrupo    : Integer;
+    FAtivo    : Boolean;
     FQuery    : TFDQuery;
     FConexao  : TConexao;
 
@@ -31,12 +32,14 @@ type
     property EMail    : String    read  FEMail    write FEMail;
     property Grupo    : Integer   read  FGrupo    write FGrupo;
     property Nivel    : Integer   read  FNivel    write FNivel;
+    property Ativo    : Boolean   read  FAtivo    write FAtivo;
     property Acao     : TAcao     read  FAcao     write FAcao;
     property Query    : TFDQuery  read  FQuery    write FQuery;
 
     function  CreateUser(sPassword: string; iDaysExpire: integer): boolean;
     function  Privilages(sPrivileges: string): boolean;
     function  AlterPwd(sUsuario, sSenha: string): boolean;
+    function  LockUnLockUser(bFlag: boolean): boolean;
     function  Gravar(): boolean;
     function  Search(aParam : array of variant): boolean;
     function  GetField(sField : String; sKey : String; sKeyValue : String) : String;
@@ -50,14 +53,14 @@ uses Global.Parametros;
 
 CONST
   TABLENAME   = 'sistema_usuarios';
-  SQLINCLUDE  = 'insert into ' + TABLENAME + '(id_usuario, nom_usuario, des_login, des_email, cod_grupo, cod_nivel) ' +
+  SQLINCLUDE  = 'insert into ' + TABLENAME + ' (id_usuario, nom_usuario, des_login, des_email, cod_grupo, cod_nivel, dom_ativo) ' +
                 'values ' +
-                '(:id_usuario, :nom_usuario, :des_login, :des_email, :cod_grupo, :cod_nivel);';
+                '(:id_usuario, :nom_usuario, :des_login, :des_email, :cod_grupo, :cod_nivel, :dom_ativo);';
   SQLUPDATE   = 'update ' + TABLENAME + ' set ' +
                 'nom_usuario = :nom_usuario, des_login = :des_login, des_email = :des_email, ' +
-                'cod_grupo = :cod_grupo, cod_nivel = :cod_nivel ' +
+                'cod_grupo = :cod_grupo, cod_nivel = :cod_nivel, dom_ativo = :dom_ativo ' +
                 'where id_usuario = :idusuario;';
-  SQLSELECT   = 'select id_usuario, nom_usuario, des_login, des_email, cod_grupo, cod_nivel ' +
+  SQLSELECT   = 'select id_usuario, nom_usuario, des_login, des_email, cod_grupo, cod_nivel, dom_ativo ' +
                 'from ' + TABLENAME;
   SQLDELETE   = 'delete from ' + TABLENAME +
                 ' where id_usuario = :idusuario;';
@@ -67,22 +70,24 @@ CONST
 function TUsuarios.AlterPwd(sUsuario, sSenha: string): boolean;
 var
   sSQL, sServer: string;
-  fdQuery: TFDQuery;
+  FConn : TFDConnection;
 begin
   try
     Result := False;
-    sServer := '%';
-    sSQL := 'set password for ' + FUserName + '@' + sServer + ' = PASSWORD(' + sSenha + ');';
-    fdQuery := FConexao.ReturnQuery;
-    fdQuery.ExecSQL(sSQL);
-    fdQuery.Connection.Connected := False;
-    fdQuery.Free;
+    FConn := FConexao.GetConn;
+    FConn.Params.UserName := 'sys.user';
+    FConn.Params.Password := 'mast3rk3y';
+    sServer := 'localhost';
+    sSQL := 'alter user ''' + sUsuario + '''@''' + sServer + ''' identified by ''' + sSenha + ''' password expire interval 90 day;';
+    Fconn.ExecSQL(sSQL);
+    sSQL := 'flush privileges';
+    Fconn.ExecSQL(sSQL);
+    Fconn.Connected := False;
     Result := True;
   except on e : Exception do
     begin
        ShowMessageFmt('Ocorreu o seguinte erro: %s', [e.Message]);
-       if Assigned(fdQuery) then
-         fdQuery.Free;
+       FConn.Connected := False;
     end;
   end;
 
@@ -106,26 +111,24 @@ end;
 function TUsuarios.CreateUser(sPassword: string; iDaysExpire: integer): boolean;
 var
   sSQL, sServer: string;
-  fdQuery: TFDQuery;
+  FConn : TFDConnection;
 begin
   try
     Result := False;
-    sServer := '%';
-    sSQL := 'create user ' + FUserName + '@' + sServer + ' identified by ' + sPassword + ';';
+    FConn := FConexao.GetConn;
+    sServer := 'localhost';
+    sSQL := 'create user ''' + FUserName + '''@''' + sServer + ''' identified by ''' + sPassword + ''' ';
     if iDaysExpire > 0 then
       sSQL := sSQL + ' password expire interval ' + iDaysExpire.ToString + ' day;';
-    fdQuery := FConexao.ReturnQuery;
-    fdQuery.ExecSQL(sSQL);
-    sSQL := 'alter user '  + FUserName + '@' + sServer + ' password expire;';
-    fdQuery.ExecSQL(sSQL);
-    fdQuery.Connection.Connected := False;
-    fdQuery.Free;
+    FConn.ExecSQL(sSQL);
+    sSQL := 'alter user '''  + FUserName + '''@''' + sServer + ''' password expire;';
+    Fconn.ExecSQL(sSQL);
+    FConn.Connected := False;
     Result := True;
   except on e : Exception do
     begin
        ShowMessageFmt('Ocorreu o seguinte erro: %s', [e.Message]);
-       if Assigned(fdQuery) then
-         fdQuery.Free;
+       FConn.Connected := False;
     end;
   end;
 end;
@@ -180,7 +183,7 @@ begin
   try
     Result := False;
     FDQuery := FConexao.ReturnQuery();
-    FDQuery.ExecSQL(SQLINCLUDE, [FNome, FUserName, FEMail, FGrupo, FNivel]);
+    FDQuery.ExecSQL(SQLINCLUDE, [FCodigo, FNome, FUserName, FEMail, FGrupo, FNivel, FAtivo]);
     Result := True;
   finally
     FDQuery.Connection.Close;
@@ -188,24 +191,50 @@ begin
   end;
 end;
 
-function TUsuarios.Privilages(sPrivileges: string): Boolean;
+function TUsuarios.LockUnLockUser(bFlag: boolean): boolean;
 var
   sSQL, sServer: string;
-  fdQuery: TFDQuery;
+  FConn : TFDConnection;
 begin
   try
     Result := false;
-    sServer := '%';
-    sSQL := 'grant all privileges on ' + sPrivileges + ' TO ' + FUsername + '@' + sServer + ';';
-    fdQuery.ExecSQL(sSQL);
-    sSQL := 'flush privileges;';
-    fdQuery.ExecSQL(sSQL);
+    FConn := FConexao.GetConn;
+    sServer := 'localhost';
+    if bFlag then
+      sSQL := 'alter user ''' + FUsername + '''@''' + sServer + ''' account unlock;'
+    else
+      sSQL := 'alter user ''' + FUsername + '''@''' + sServer + ''' account lock;';
+    FConn.ExecSQL(sSQL);
+    FConn.Connected := False;
     Result := True;
   except on e : Exception do
     begin
        ShowMessageFmt('Ocorreu o seguinte erro: %s', [e.Message]);
-       if Assigned(fdQuery) then
-         fdQuery.Free;
+       FConn.Connected := False;
+    end;
+  end;
+
+end;
+
+function TUsuarios.Privilages(sPrivileges: string): Boolean;
+var
+  sSQL, sServer: string;
+  FConn : TFDConnection;
+begin
+  try
+    Result := false;
+    FConn := FConexao.GetConn;
+    sServer := 'localhost';
+    sSQL := 'grant ' + sPrivileges + ' on *.*  to ''' + FUsername + '''@''' + sServer + ''';';
+    FConn.ExecSQL(sSQL);
+    sSQL := 'flush privileges;';
+    FConn.ExecSQL(sSQL);
+    FConn.Connected := False;
+    Result := True;
+  except on e : Exception do
+    begin
+       ShowMessageFmt('Ocorreu o seguinte erro: %s', [e.Message]);
+       FConn.Connected := False;
     end;
   end;
 end;
@@ -260,6 +289,7 @@ begin
   FEMail := fdQuery.FieldByName('des_email').AsString;
   FGrupo := fdQuery.FieldByName('cod_grupo').AsInteger;
   FNivel := fdQuery.FieldByName('cod_nivel').AsInteger;
+  FAtivo := fdQuery.FieldByName('dom_ativo').AsBoolean;
 end;
 
 function TUsuarios.UpdateData: boolean;
@@ -269,7 +299,7 @@ begin
   try
     Result := False;
     FDQuery := FConexao.ReturnQuery();
-    FDQuery.ExecSQL(SQLUPDATE, [FNome, FUserName, FEMail, FGrupo, FNivel, FCodigo]);
+    FDQuery.ExecSQL(SQLUPDATE, [FNome, FUserName, FEMail, FGrupo, FNivel, FAtivo, FCodigo]);
     Result := True;
   finally
     FDQuery.Connection.Close;

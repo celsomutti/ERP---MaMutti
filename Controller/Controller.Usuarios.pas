@@ -20,6 +20,7 @@ type
     function  CreateUser(sPassword: string; iDaysExpire: integer): boolean;
     function  Privilages(sPrivileges: string): boolean;
     function  AlterPwd(sUsuario, sSenha: string): boolean;
+    function  LockUnLockUser(bFlag: boolean): boolean;
     function  Gravar(): boolean;
     function  Search(aParam : array of variant): boolean;
     function  GetField(sField : String; sKey : String; sKeyValue : String) : String;
@@ -66,6 +67,11 @@ end;
 function TUsuariosController.Gravar: boolean;
 begin
   Result := FUsuarios.Gravar();
+end;
+
+function TUsuariosController.LockUnLockUser(bFlag: boolean): boolean;
+begin
+  Result := FUsuarios.LockUnLockUser(bFlag);
 end;
 
 function TUsuariosController.Privilages(sPrivileges: string): boolean;

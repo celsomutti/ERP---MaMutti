@@ -426,6 +426,7 @@ object view_Main: Tview_Main
       Category = 'Sistema'
       Caption = '&Usu'#225'rios'
       Hint = 'Cadastro de usu'#225'rios'
+      OnExecute = actionSistemaUsuariosExecute
     end
     object actionSistemaSenha: TAction
       Category = 'Sistema'

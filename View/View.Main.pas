@@ -6,7 +6,8 @@ uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, Vcl.WinXPanels, Vcl.WinXCtrls, Vcl.CategoryButtons, cxGraphics,
   cxLookAndFeels, cxLookAndFeelPainters, Vcl.Menus, dxSkinsCore, dxSkinsDefaultPainters, Vcl.StdCtrls, cxButtons, Vcl.ToolWin,
-  Vcl.ActnMan, Vcl.ActnCtrls, System.Actions, Vcl.ActnList, Vcl.ButtonGroup, Vcl.Buttons, System.ImageList, Vcl.ImgList, cxImageList;
+  Vcl.ActnMan, Vcl.ActnCtrls, System.Actions, Vcl.ActnList, Vcl.ButtonGroup, Vcl.Buttons, System.ImageList, Vcl.ImgList, cxImageList,
+  cxPC, dxBarBuiltInMenu, cxClasses, dxTabbedMDI;
 
 type
   Tview_Main = class(TForm)
@@ -145,6 +146,7 @@ type
     procedure actionFinanceiroExecute(Sender: TObject);
     procedure actionConfiguracoesExecute(Sender: TObject);
     procedure FormActivate(Sender: TObject);
+    procedure actionSistemaUsuariosExecute(Sender: TObject);
   private
     { Private declarations }
     procedure ResizeMainForm;
@@ -156,12 +158,13 @@ type
 
 var
   view_Main: Tview_Main;
+  sVersion : String;
 
 implementation
 
 {$R *.dfm}
 
-uses Data.Module, View.Login, Global.Parametros;
+uses Data.Module, View.Login, Global.Parametros, Common.Utils, View.CadastroUsuarios;
 
 { Tview_Main }
 
@@ -198,6 +201,15 @@ end;
 procedure Tview_Main.actionServicosExecute(Sender: TObject);
 begin
   popupMenuServicos.Popup(splitViewMain.Width, buttonMenu.Height * 5);
+end;
+
+procedure Tview_Main.actionSistemaUsuariosExecute(Sender: TObject);
+begin
+if not Assigned(view_Cadastro_Usuarios) then
+  begin
+    view_Cadastro_Usuarios := Tview_Cadastro_Usuarios.Create(Application);
+  end;
+  view_Cadastro_Usuarios.Show;
 end;
 
 procedure Tview_Main.actionConfiguracoesExecute(Sender: TObject);
@@ -240,6 +252,7 @@ begin
       FDConnectionMySQL.Params.UserName := Global.Parametros.pUser_Name;
       FDConnectionMySQL.ParamS.Password := Global.Parametros.pPassword;
     end;
+    Self.Caption := Application.Title + ' - Versão ' + sVersion + ' - [' + Global.Parametros.pUser_Name + ']';
   end;
 end;
 
@@ -250,6 +263,7 @@ begin
   begin
     view_Login := Tview_Login.Create(Application);
   end;
+  view_Login.labelVersion.Caption := sVersion;
   if view_Login.ShowModal = mrOk Then
   begin
     Result := True;
@@ -272,12 +286,20 @@ begin
 end;
 
 procedure Tview_Main.ResizeMainForm;
+var
+  funcUtils : Common.Utils.TUtils;
 begin
-  Self.Top := 0;
-  Self.Left := 0;
-  Self.Width := Screen.WorkAreaWidth;
-  Self.Height := Screen.WorkAreaHeight;
-  Self.Caption := Application.Title;
+  try
+    funcUtils := Common.Utils.TUtils.Create;
+    Self.Top := 0;
+    Self.Left := 0;
+    Self.Width := Screen.WorkAreaWidth;
+    Self.Height := Screen.WorkAreaHeight;
+    Self.Caption := Application.Title;
+    sVersion := funcUtils.VersaoExe;
+  finally
+    funcUtils.Free;
+  end;
 end;
 
 end.
