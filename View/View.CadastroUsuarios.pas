@@ -9,7 +9,8 @@ uses
   dxLayoutcxEditAdapters, cxTextEdit, cxMaskEdit, cxDBEdit, FireDAC.Stan.Intf, FireDAC.Stan.Option, FireDAC.Stan.Param,
   FireDAC.Stan.Error, FireDAC.DatS, FireDAC.Phys.Intf, FireDAC.DApt.Intf, Data.DB, FireDAC.Comp.DataSet, FireDAC.Comp.Client,
   cxDropDownEdit, cxImageComboBox, cxCheckBox, System.Actions, Vcl.ActnList, dxLayoutControlAdapters, Vcl.Menus, Vcl.StdCtrls,
-  cxButtons, Controller.Usuarios, Common.ENum;
+  cxButtons, Controller.Usuarios, Common.ENum, cxCustomData, cxStyles, cxTL, cxTLdxBarBuiltInMenu,
+  cxDataControllerConditionalFormattingRulesManagerDialog, cxInplaceContainer, cxTLData, cxDBTL, Vcl.ComCtrls, dxtree, dxdbtree;
 
 type
   Tview_Cadastro_Usuarios = class(TForm)
@@ -34,7 +35,6 @@ type
     dxLayoutGroup3: TdxLayoutGroup;
     email: TcxDBTextEdit;
     dxLayoutItem4: TdxLayoutItem;
-    memTableUsuariosdom_ativo: TBooleanField;
     nivelUsuario: TcxDBImageComboBox;
     dxLayoutItem5: TdxLayoutItem;
     ativo: TcxDBCheckBox;
@@ -63,6 +63,9 @@ type
     cxButton7: TcxButton;
     dxLayoutItem13: TdxLayoutItem;
     dxLayoutGroup5: TdxLayoutGroup;
+    memTableUsuariosdom_ativo: TSmallintField;
+    dxDBTreeView1: TdxDBTreeView;
+    dxLayoutItem14: TdxLayoutItem;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure actionNovoExecute(Sender: TObject);
     procedure actionGravarExecute(Sender: TObject);
@@ -70,8 +73,11 @@ type
     procedure memTableUsuariosAfterEdit(DataSet: TDataSet);
     procedure memTableUsuariosAfterCancel(DataSet: TDataSet);
     procedure memTableUsuariosAfterPost(DataSet: TDataSet);
+    procedure actionLocalizarExecute(Sender: TObject);
+    procedure ativoPropertiesChange(Sender: TObject);
   private
     { Private declarations }
+    procedure SearchUser;
     function Saveuser(): boolean;
     function AlterPwd(): string;
   public
@@ -95,6 +101,11 @@ begin
   memTableUsuarios.Post;
 end;
 
+procedure Tview_Cadastro_Usuarios.actionLocalizarExecute(Sender: TObject);
+begin
+  SearchUser;
+end;
+
 procedure Tview_Cadastro_Usuarios.actionNovoExecute(Sender: TObject);
 begin
   if not memTableUsuarios.Active then
@@ -113,6 +124,20 @@ begin
   if view_ConfirmaSenha.ShowModal = mrOk then
   begin
     Result := view_ConfirmaSenha.senha.Text;
+  end;
+end;
+
+procedure Tview_Cadastro_Usuarios.ativoPropertiesChange(Sender: TObject);
+begin
+  if ativo.Checked then
+  begin
+    ativo.Caption := 'Usuário ATIVO';
+    ativo.Style.TextColor := clWindowText;
+  end
+  else
+  begin
+    ativo.Caption := 'Usuário INATIVO';
+    ativo.Style.TextColor := clRed;
   end;
 end;
 
@@ -163,7 +188,7 @@ begin
     usuarios.Usuarios.EMail := memTableUsuariosdes_email.AsString;
     usuarios.Usuarios.Grupo := 0;
     usuarios.Usuarios.Nivel := memTableUsuarioscod_nivel.AsInteger;
-    usuarios.Usuarios.Ativo := memTableUsuariosdom_ativo.AsBoolean;
+    usuarios.Usuarios.Ativo := memTableUsuariosdom_ativo.AsInteger;
     if FAcao = tacIncluir then
     begin
       sSenha := AlterPwd;
@@ -215,6 +240,37 @@ begin
   finally
     usuarios.Free;
   end;
+end;
+
+procedure Tview_Cadastro_Usuarios.SearchUser;
+var
+  aParam : array of variant;
+  usuarios : TUsuariosController;
+begin
+  if not Assigned(view_PesquisaPessoasUsuarios) then
+  begin
+    view_PesquisaPessoasUsuarios := Tview_PesquisaPessoasUsuarios.Create(Application);
+  end;
+  if view_PesquisaPessoasUsuarios.ShowModal = mrOK then
+  begin
+    SetLength(aParam, 2);
+    usuarios := TUsuariosController.Create;
+    aParam := ['ID', view_PesquisaPessoasUsuarios.iID];
+    if not usuarios.Search(aParam) then
+    begin
+      Application.MessageBox('Usuário não localizado!', 'Atenção', MB_OK + MB_ICONEXCLAMATION);
+    end
+    else
+    begin
+      memTableUsuarios.Active := False;
+      memTableUsuarios.Data := usuarios.Usuarios.Query.Data;
+      usuarios.Usuarios.Query.Active := False;
+      usuarios.Usuarios.Query.Connection.Connected := False;
+    end;
+    Finalize(aParam);
+    usuarios.Free;
+  end;
+  FreeAndNil(view_PesquisaPessoasUsuarios);
 end;
 
 end.

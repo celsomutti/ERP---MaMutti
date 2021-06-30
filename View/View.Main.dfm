@@ -41,7 +41,6 @@ object view_Main: Tview_Main
       Align = alTop
       Action = actionMenu
       OptionsImage.Margin = 0
-      PaintStyle = bpsGlyph
       SpeedButtonOptions.CanBeFocused = False
       SpeedButtonOptions.Flat = True
       SpeedButtonOptions.Transparent = True

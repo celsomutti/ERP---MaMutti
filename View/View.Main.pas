@@ -7,7 +7,7 @@ uses
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, Vcl.WinXPanels, Vcl.WinXCtrls, Vcl.CategoryButtons, cxGraphics,
   cxLookAndFeels, cxLookAndFeelPainters, Vcl.Menus, dxSkinsCore, dxSkinsDefaultPainters, Vcl.StdCtrls, cxButtons, Vcl.ToolWin,
   Vcl.ActnMan, Vcl.ActnCtrls, System.Actions, Vcl.ActnList, Vcl.ButtonGroup, Vcl.Buttons, System.ImageList, Vcl.ImgList, cxImageList,
-  cxPC, dxBarBuiltInMenu, cxClasses, dxTabbedMDI;
+  cxPC, dxBarBuiltInMenu, cxClasses, dxTabbedMDI, WinInet;
 
 type
   Tview_Main = class(TForm)
@@ -149,9 +149,12 @@ type
     procedure actionSistemaUsuariosExecute(Sender: TObject);
   private
     { Private declarations }
+    procedure InitForm;
     procedure ResizeMainForm;
     procedure OpenCloseMenu;
-    function Login(): Boolean;
+    function  Login(): Boolean;
+    function  VerificarExisteConexaoComInternet: boolean;
+    function  VerifyParamsConnection(): Boolean;
   public
     { Public declarations }
   end;
@@ -164,7 +167,7 @@ implementation
 
 {$R *.dfm}
 
-uses Data.Module, View.Login, Global.Parametros, Common.Utils, View.CadastroUsuarios;
+uses Data.Module, View.Login, Global.Parametros, Common.Utils, View.CadastroUsuarios, View.SetupConnDB;
 
 { Tview_Main }
 
@@ -205,7 +208,7 @@ end;
 
 procedure Tview_Main.actionSistemaUsuariosExecute(Sender: TObject);
 begin
-if not Assigned(view_Cadastro_Usuarios) then
+  if not Assigned(view_Cadastro_Usuarios) then
   begin
     view_Cadastro_Usuarios := Tview_Cadastro_Usuarios.Create(Application);
   end;
@@ -240,19 +243,61 @@ end;
 
 procedure Tview_Main.FormShow(Sender: TObject);
 begin
-  ResizeMainForm;
-  if not Login() then
-    Application.Terminate
-  else
-  begin
-    with dm do
+  InitForm;
+end;
+
+procedure Tview_Main.InitForm;
+var
+  funcUtils : Common.Utils.TUtils;
+begin
+  try
+
+    funcUtils := Common.Utils.TUtils.Create;
+
+    if not FileExists(ExtractFilePath(Application.ExeName) + 'db.ini') then
     begin
-      FDConnectionMySQL.Params.DriverID := Global.Parametros.pDriverID;
-      FDConnectionMySQL.Params.Database := Global.Parametros.pDatabase;
-      FDConnectionMySQL.Params.UserName := Global.Parametros.pUser_Name;
-      FDConnectionMySQL.ParamS.Password := Global.Parametros.pPassword;
+      Application.MessageBox('Parâmetros de conexão não foram encontrados!', 'Atenção', MB_OK + MB_ICONWARNING);
+      if not VerifyParamsConnection() then
+        Application.Terminate;
     end;
-    Self.Caption := Application.Title + ' - Versão ' + sVersion + ' - [' + Global.Parametros.pUser_Name + ']';
+
+    Global.Parametros.pDriverID := funcUtils.LeIni(ExtractFilePath(Application.ExeName) +  'db.ini','Database','DriverID');
+    Global.Parametros.pServer := funcUtils.LeIni(ExtractFilePath(Application.ExeName) +  'db.ini','Database','HostName');
+    Global.Parametros.pServer := funcUtils.DesCriptografa(Global.Parametros.pServer,3);
+    Global.Parametros.pPort := funcUtils.LeIni(ExtractFilePath(Application.ExeName) +  'db.ini','Database','Port');
+    Global.Parametros.pPort := funcUtils.DesCriptografa(Global.Parametros.pPort,3);
+    Global.Parametros.pServer := funcUtils.LeIni(ExtractFilePath(Application.ExeName) +  'db.ini','Database','Database');
+    Global.Parametros.pServer := funcUtils.DesCriptografa(Global.Parametros.pServer,3);
+    Global.Parametros.pDatabase := funcUtils.DesCriptografa(Global.Parametros.pDatabase,3);
+
+    if Global.Parametros.pServer <> 'localhost' then
+    begin
+      if not VerificarExisteConexaoComInternet then
+      begin
+        Application.MessageBox('Não foi encontrada conexão com a internet! O sistema será encerrado', 'Erro', MB_OK + MB_ICONERROR);
+        Application.Terminate;
+      end;
+    end;
+
+    ResizeMainForm;
+    Self.Caption := Application.Title;
+
+    sVersion := funcUtils.VersaoExe;
+    if not Login() then
+      Application.Terminate
+    else
+    begin
+      with dm do
+      begin
+        FDConnectionMySQL.Params.DriverID := Global.Parametros.pDriverID;
+        FDConnectionMySQL.Params.Database := Global.Parametros.pDatabase;
+        FDConnectionMySQL.Params.UserName := Global.Parametros.pUser_Name;
+        FDConnectionMySQL.ParamS.Password := Global.Parametros.pPassword;
+      end;
+      Self.Caption := Application.Title + ' - Versão ' + sVersion + ' - [' + Global.Parametros.pUser_Name + ']';
+    end;
+  finally
+    funcUtils.Free;
   end;
 end;
 
@@ -286,20 +331,34 @@ begin
 end;
 
 procedure Tview_Main.ResizeMainForm;
-var
-  funcUtils : Common.Utils.TUtils;
 begin
-  try
-    funcUtils := Common.Utils.TUtils.Create;
-    Self.Top := 0;
-    Self.Left := 0;
-    Self.Width := Screen.WorkAreaWidth;
-    Self.Height := Screen.WorkAreaHeight;
-    Self.Caption := Application.Title;
-    sVersion := funcUtils.VersaoExe;
-  finally
-    funcUtils.Free;
+  Self.Top := 0;
+  Self.Left := 0;
+  Self.Width := Screen.WorkAreaWidth;
+  Self.Height := Screen.WorkAreaHeight;
+end;
+
+
+function Tview_Main.VerificarExisteConexaoComInternet: boolean;
+var
+  nFlags: Cardinal;
+begin
+  result := InternetGetConnectedState(@nFlags, 0);
+end;
+
+function Tview_Main.VerifyParamsConnection: Boolean;
+begin
+  Result := False;
+  if not Assigned(view_SetupConnDB) then
+  begin
+    view_SetupConnDB := Tview_SetupConnDB.Create(Application);
   end;
+  if view_SetupConnDB.ShowModal = mrCancel then
+  begin
+    Exit;
+  end;
+  FreeAndNil(view_SetupConnDB);
+  Result := True;
 end;
 
 end.

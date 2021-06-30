@@ -43,14 +43,14 @@ type
     comboBoxOutrosCampos: TcxComboBox;
     layoutItemTipoPesquisa: TdxLayoutItem;
     dxLayoutAutoCreatedGroup1: TdxLayoutAutoCreatedGroup;
-    fdPesquisaID: TFDAutoIncField;
-    fdPesquisaNome: TStringField;
-    fdPesquisaLogin: TStringField;
-    fdPesquisaEMail: TStringField;
-    gridPesquisaDBTableView1ID: TcxGridDBColumn;
-    gridPesquisaDBTableView1Nome: TcxGridDBColumn;
-    gridPesquisaDBTableView1Login: TcxGridDBColumn;
-    gridPesquisaDBTableView1EMail: TcxGridDBColumn;
+    fdPesquisaid_usuario: TIntegerField;
+    fdPesquisanom_usuario: TStringField;
+    fdPesquisades_login: TStringField;
+    fdPesquisades_email: TStringField;
+    gridPesquisaDBTableView1id_usuario: TcxGridDBColumn;
+    gridPesquisaDBTableView1nom_usuario: TcxGridDBColumn;
+    gridPesquisaDBTableView1des_login: TcxGridDBColumn;
+    gridPesquisaDBTableView1des_email: TcxGridDBColumn;
     procedure FormShow(Sender: TObject);
     procedure actionExpandirGridExecute(Sender: TObject);
     procedure actionRetrairGridExecute(Sender: TObject);
@@ -111,8 +111,8 @@ end;
 
 procedure Tview_PesquisaPessoasUsuarios.actionOKExecute(Sender: TObject);
 begin
-  iId := fdPesquisaID.AsInteger;
-  sNome := fdPesquisaNome.AsString;
+  iId := fdPesquisaid_usuario.AsInteger;
+  sNome := fdPesquisanom_usuario.AsString;
   fdpesquisa.Filtered := False;
   ModalResult := mrOk;
 end;

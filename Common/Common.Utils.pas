@@ -412,11 +412,12 @@ begin
   Result := False;
   Ini := TIniFile.Create(sFile);
   try
-    Ini.WriteString('Database', 'Catalog', '');
-    Ini.WriteString('Database', 'Database', '.\Database\DBSGE2.FDB');
+    Ini.WriteString('Database', 'DriverID', '');
     Ini.WriteString('Database', 'HostName', '');
-    Ini.WriteString('Database', 'Port', '0');
-    Ini.WriteString('Database', 'Protocol', 'firebird-2.1');
+    Ini.WriteString('Database', 'Port', '');
+    Ini.WriteString('Database', 'Database', '');
+    Ini.WriteString('Database', 'Catalog', '');
+    Ini.WriteString('Database', 'Protocol', '');
     Ini.Free;
     Result := True;
   except

@@ -137,6 +137,10 @@
             <Form>view_ConfirmaSenha</Form>
             <FormType>dfm</FormType>
         </DCCReference>
+        <DCCReference Include="View\View.SetupConnDB.pas">
+            <Form>view_SetupConnDB</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
         <None Include="ModelSupport_erpMamutti\default.txaPackage"/>
         <None Include="ModelSupport_erpMamutti\default.txvpck"/>
         <None Include="ModelSupport_erpMamutti\erpMamutti\default.txvpck"/>

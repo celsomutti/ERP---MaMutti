@@ -224,8 +224,9 @@ begin
       Exit;
     if usuarios.AlterPwd(textEditUsuario.Text, novaSenha.Text) then
     begin
-      textEditSenha.Text := novaSenha.Text;
+      textEditSenha.Text := '';
       dxLayoutGroup2.MakeVisible;
+      textEditSenha.SetFocus;
       Result := True;
     end;
   finally

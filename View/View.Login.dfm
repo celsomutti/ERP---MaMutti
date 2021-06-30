@@ -579,7 +579,6 @@ object view_Login: Tview_Login
     ParentBackground = True
     TabOrder = 0
     Transparent = True
-    ExplicitWidth = 424
     object textEditUsuario: TcxTextEdit
       Left = 144
       Top = 53

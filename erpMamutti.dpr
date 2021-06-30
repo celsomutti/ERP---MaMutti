@@ -15,7 +15,8 @@ uses
   Common.Utils in 'Common\Common.Utils.pas',
   View.CadastroUsuarios in 'View\View.CadastroUsuarios.pas' {view_Cadastro_Usuarios},
   View.PesquisaPessoasUsuarios in 'View\View.PesquisaPessoasUsuarios.pas' {view_PesquisaPessoasUsuarios},
-  View.ConfirmaSenha in 'View\View.ConfirmaSenha.pas' {view_ConfirmaSenha};
+  View.ConfirmaSenha in 'View\View.ConfirmaSenha.pas' {view_ConfirmaSenha},
+  View.SetupConnDB in 'View\View.SetupConnDB.pas' {view_SetupConnDB};
 
 {$R *.res}
 

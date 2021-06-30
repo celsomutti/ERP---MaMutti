@@ -15,7 +15,7 @@ type
     FNome     : String;
     FUserName : string;
     FGrupo    : Integer;
-    FAtivo    : Boolean;
+    FAtivo    : SmallInt;
     FQuery    : TFDQuery;
     FConexao  : TConexao;
 
@@ -32,7 +32,7 @@ type
     property EMail    : String    read  FEMail    write FEMail;
     property Grupo    : Integer   read  FGrupo    write FGrupo;
     property Nivel    : Integer   read  FNivel    write FNivel;
-    property Ativo    : Boolean   read  FAtivo    write FAtivo;
+    property Ativo    : SmallInt   read  FAtivo    write FAtivo;
     property Acao     : TAcao     read  FAcao     write FAcao;
     property Query    : TFDQuery  read  FQuery    write FQuery;
 
@@ -119,7 +119,7 @@ begin
     sServer := 'localhost';
     sSQL := 'create user ''' + FUserName + '''@''' + sServer + ''' identified by ''' + sPassword + ''' ';
     if iDaysExpire > 0 then
-      sSQL := sSQL + ' password expire interval ' + iDaysExpire.ToString + ' day;';
+      sSQL := sSQL + 'password expire interval ' + iDaysExpire.ToString + ' day;';
     FConn.ExecSQL(sSQL);
     sSQL := 'alter user '''  + FUserName + '''@''' + sServer + ''' password expire;';
     Fconn.ExecSQL(sSQL);
@@ -225,7 +225,7 @@ begin
     Result := false;
     FConn := FConexao.GetConn;
     sServer := 'localhost';
-    sSQL := 'grant ' + sPrivileges + ' on *.*  to ''' + FUsername + '''@''' + sServer + ''';';
+    sSQL := 'grant ' + sPrivileges + ' on *.*  to ''' + FUsername + '''@''' + sServer + ''' with grant option;';
     FConn.ExecSQL(sSQL);
     sSQL := 'flush privileges;';
     FConn.ExecSQL(sSQL);
@@ -289,7 +289,7 @@ begin
   FEMail := fdQuery.FieldByName('des_email').AsString;
   FGrupo := fdQuery.FieldByName('cod_grupo').AsInteger;
   FNivel := fdQuery.FieldByName('cod_nivel').AsInteger;
-  FAtivo := fdQuery.FieldByName('dom_ativo').AsBoolean;
+  FAtivo := fdQuery.FieldByName('dom_ativo').AsInteger;
 end;
 
 function TUsuarios.UpdateData: boolean;

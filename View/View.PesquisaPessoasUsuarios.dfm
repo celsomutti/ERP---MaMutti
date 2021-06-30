@@ -107,17 +107,17 @@ object view_PesquisaPessoasUsuarios: Tview_PesquisaPessoasUsuarios
         OptionsData.Editing = False
         OptionsData.Inserting = False
         OptionsView.Indicator = True
-        object gridPesquisaDBTableView1ID: TcxGridDBColumn
-          DataBinding.FieldName = 'ID'
+        object gridPesquisaDBTableView1id_usuario: TcxGridDBColumn
+          DataBinding.FieldName = 'id_usuario'
         end
-        object gridPesquisaDBTableView1Nome: TcxGridDBColumn
-          DataBinding.FieldName = 'Nome'
+        object gridPesquisaDBTableView1nom_usuario: TcxGridDBColumn
+          DataBinding.FieldName = 'nom_usuario'
         end
-        object gridPesquisaDBTableView1Login: TcxGridDBColumn
-          DataBinding.FieldName = 'Login'
+        object gridPesquisaDBTableView1des_login: TcxGridDBColumn
+          DataBinding.FieldName = 'des_login'
         end
-        object gridPesquisaDBTableView1EMail: TcxGridDBColumn
-          DataBinding.FieldName = 'E-Mail'
+        object gridPesquisaDBTableView1des_email: TcxGridDBColumn
+          DataBinding.FieldName = 'des_email'
         end
       end
       object gridPesquisaLevel1: TcxGridLevel
@@ -217,7 +217,7 @@ object view_PesquisaPessoasUsuarios: Tview_PesquisaPessoasUsuarios
       CaptionOptions.Text = 'Texto a Pesquisar:'
       CaptionOptions.Layout = clTop
       Control = buttonEditTextoPesquisar
-      ControlOptions.OriginalHeight = 21
+      ControlOptions.OriginalHeight = 23
       ControlOptions.OriginalWidth = 412
       ControlOptions.ShowBorder = False
       Index = 0
@@ -272,7 +272,7 @@ object view_PesquisaPessoasUsuarios: Tview_PesquisaPessoasUsuarios
       CaptionOptions.Text = 'Outros Campos:'
       CaptionOptions.Layout = clTop
       Control = comboBoxOutrosCampos
-      ControlOptions.OriginalHeight = 21
+      ControlOptions.OriginalHeight = 23
       ControlOptions.OriginalWidth = 121
       ControlOptions.ShowBorder = False
       Index = 1
@@ -347,30 +347,27 @@ object view_PesquisaPessoasUsuarios: Tview_PesquisaPessoasUsuarios
     FetchOptions.AssignedValues = [evMode, evRowsetSize]
     FetchOptions.Mode = fmAll
     SQL.Strings = (
-      
-        'select id_usuario as ID, nom_usuario as Nome, des_login as Login' +
-        ', '
-      'des_email as "E-Mail"'
+      'select id_usuario, nom_usuario, des_login, des_email'
       'from sistema_usuarios')
     Left = 264
     Top = 56
-    object fdPesquisaID: TFDAutoIncField
-      FieldName = 'ID'
-      ReadOnly = True
+    object fdPesquisaid_usuario: TIntegerField
+      DisplayLabel = 'ID'
+      FieldName = 'id_usuario'
     end
-    object fdPesquisaNome: TStringField
-      FieldName = 'Nome'
-      Required = True
+    object fdPesquisanom_usuario: TStringField
+      DisplayLabel = 'Nome'
+      FieldName = 'nom_usuario'
       Size = 70
     end
-    object fdPesquisaLogin: TStringField
-      FieldName = 'Login'
-      Required = True
+    object fdPesquisades_login: TStringField
+      DisplayLabel = 'Login'
+      FieldName = 'des_login'
       Size = 70
     end
-    object fdPesquisaEMail: TStringField
-      FieldName = 'E-Mail'
-      Required = True
+    object fdPesquisades_email: TStringField
+      DisplayLabel = 'E-Mail'
+      FieldName = 'des_email'
       Size = 125
     end
   end

@@ -37,7 +37,6 @@ procedure Tdm.FDConnectionMySQLAfterConnect(Sender: TObject);
 begin
   Global.Parametros.pUser_Name := FDConnectionMySQL.Params.UserName;
   Global.Parametros.pPassword := FDConnectionMySQL.Params.Password;
-  Global.Parametros.pPort := '3306';
 end;
 
 end.

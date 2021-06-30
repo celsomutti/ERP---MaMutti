@@ -626,14 +626,15 @@ object view_Cadastro_Usuarios: Tview_Cadastro_Usuarios
       Style.BorderStyle = ebs3D
       Style.HotTrack = False
       TabOrder = 3
-      Width = 638
+      Width = 618
     end
     object nivelUsuario: TcxDBImageComboBox
-      Left = 755
+      Left = 735
       Top = 63
       Hint = 'N'#237'vel do usu'#225'rio'
       DataBinding.DataField = 'cod_nivel'
       DataBinding.DataSource = dsUsuarios
+      Properties.Alignment.Horz = taRightJustify
       Properties.Images = dm.imageList16_16
       Properties.Items = <
         item
@@ -649,24 +650,29 @@ object view_Cadastro_Usuarios: Tview_Cadastro_Usuarios
       Style.BorderColor = clWindowFrame
       Style.BorderStyle = ebs3D
       Style.HotTrack = False
+      Style.TransparentBorder = True
       Style.ButtonStyle = bts3D
       Style.PopupBorderStyle = epbsFrame3D
       TabOrder = 4
       Width = 139
     end
     object ativo: TcxDBCheckBox
-      Left = 901
+      Left = 881
       Top = 63
       Cursor = crHandPoint
       Hint = 'Usu'#225'rio ativo'
-      Caption = 'Usu'#225'rio Ativo'
+      Caption = 'Usu'#225'rio INATIVO'
       DataBinding.DataField = 'dom_ativo'
       DataBinding.DataSource = dsUsuarios
+      Properties.Alignment = taRightJustify
       Properties.NullStyle = nssUnchecked
-      Properties.ReadOnly = False
+      Properties.ValueChecked = '1'
+      Properties.ValueUnchecked = '0'
+      Properties.OnChange = ativoPropertiesChange
       Style.BorderColor = clWindowFrame
       Style.BorderStyle = ebs3D
       Style.HotTrack = False
+      Style.TextColor = clRed
       TabOrder = 5
       Transparent = True
     end
@@ -677,7 +683,7 @@ object view_Cadastro_Usuarios: Tview_Cadastro_Usuarios
       Height = 25
       Cursor = crHandPoint
       Action = actionNovo
-      TabOrder = 6
+      TabOrder = 7
     end
     object cxButton2: TcxButton
       Left = 106
@@ -686,7 +692,7 @@ object view_Cadastro_Usuarios: Tview_Cadastro_Usuarios
       Height = 25
       Cursor = crHandPoint
       Action = actionLocalizar
-      TabOrder = 7
+      TabOrder = 8
     end
     object cxButton3: TcxButton
       Left = 198
@@ -695,7 +701,7 @@ object view_Cadastro_Usuarios: Tview_Cadastro_Usuarios
       Height = 25
       Cursor = crHandPoint
       Action = actionEditar
-      TabOrder = 8
+      TabOrder = 9
     end
     object cxButton4: TcxButton
       Left = 290
@@ -704,7 +710,7 @@ object view_Cadastro_Usuarios: Tview_Cadastro_Usuarios
       Height = 25
       Cursor = crHandPoint
       Action = actionExcluir
-      TabOrder = 9
+      TabOrder = 10
     end
     object cxButton5: TcxButton
       Left = 386
@@ -713,7 +719,7 @@ object view_Cadastro_Usuarios: Tview_Cadastro_Usuarios
       Height = 25
       Cursor = crHandPoint
       Action = actionCancelar
-      TabOrder = 10
+      TabOrder = 11
     end
     object cxButton6: TcxButton
       Left = 482
@@ -722,7 +728,7 @@ object view_Cadastro_Usuarios: Tview_Cadastro_Usuarios
       Height = 25
       Cursor = crHandPoint
       Action = actionGravar
-      TabOrder = 11
+      TabOrder = 12
     end
     object cxButton7: TcxButton
       Left = 903
@@ -730,14 +736,30 @@ object view_Cadastro_Usuarios: Tview_Cadastro_Usuarios
       Width = 111
       Height = 25
       Action = actionAlterarSenha
-      TabOrder = 12
+      TabOrder = 13
+    end
+    object dxDBTreeView1: TdxDBTreeView
+      Left = 14
+      Top = 130
+      Width = 998
+      Height = 93
+      ShowNodeHint = True
+      RootValue = Null
+      SeparatedSt = ' - '
+      RaiseOnError = True
+      BorderStyle = bsNone
+      Indent = 19
+      ParentColor = False
+      Options = [trDBCanDelete, trDBConfirmDelete, trCanDBNavigate, trSmartRecordCopy, trCheckHasChildren]
+      SelectedIndex = -1
+      TabOrder = 6
     end
     object dxLayoutControl1Group_Root: TdxLayoutGroup
       AlignHorz = ahClient
       AlignVert = avClient
       ButtonOptions.Buttons = <>
       Hidden = True
-      ItemIndex = 1
+      ItemIndex = 2
       ShowBorder = False
       Index = -1
     end
@@ -826,7 +848,7 @@ object view_Cadastro_Usuarios: Tview_Cadastro_Usuarios
       CaptionOptions.Visible = False
       Control = ativo
       ControlOptions.OriginalHeight = 23
-      ControlOptions.OriginalWidth = 99
+      ControlOptions.OriginalWidth = 119
       ControlOptions.ShowBorder = False
       Index = 2
     end
@@ -916,7 +938,17 @@ object view_Cadastro_Usuarios: Tview_Cadastro_Usuarios
       Parent = dxLayoutControl1Group_Root
       CaptionOptions.Text = 'New Group'
       ButtonOptions.Buttons = <>
+      ShowBorder = False
       Index = 1
+    end
+    object dxLayoutItem14: TdxLayoutItem
+      Parent = dxLayoutGroup5
+      CaptionOptions.Text = 'Acessos:'
+      CaptionOptions.Layout = clTop
+      Control = dxDBTreeView1
+      ControlOptions.OriginalHeight = 93
+      ControlOptions.OriginalWidth = 121
+      Index = 0
     end
   end
   object memTableUsuarios: TFDMemTable
@@ -931,8 +963,8 @@ object view_Cadastro_Usuarios: Tview_Cadastro_Usuarios
     UpdateOptions.AssignedValues = [uvCheckRequired, uvAutoCommitUpdates]
     UpdateOptions.CheckRequired = False
     UpdateOptions.AutoCommitUpdates = True
-    Left = 536
-    Top = 232
+    Left = 416
+    Top = 96
     object memTableUsuariosid_usuario: TIntegerField
       FieldName = 'id_usuario'
     end
@@ -954,19 +986,19 @@ object view_Cadastro_Usuarios: Tview_Cadastro_Usuarios
     object memTableUsuarioscod_nivel: TIntegerField
       FieldName = 'cod_nivel'
     end
-    object memTableUsuariosdom_ativo: TBooleanField
+    object memTableUsuariosdom_ativo: TSmallintField
       FieldName = 'dom_ativo'
     end
   end
   object dsUsuarios: TDataSource
     AutoEdit = False
     DataSet = memTableUsuarios
-    Left = 584
-    Top = 232
+    Left = 456
+    Top = 96
   end
   object actionList: TActionList
     Images = dm.imageList16_16
-    Left = 704
+    Left = 960
     Top = 96
     object actionNovo: TAction
       Caption = '&Novo'
@@ -978,6 +1010,7 @@ object view_Cadastro_Usuarios: Tview_Cadastro_Usuarios
       Caption = '&Localizar'
       Hint = 'Localizar usuario'
       ImageIndex = 11
+      OnExecute = actionLocalizarExecute
     end
     object actionEditar: TAction
       Caption = '&Editar'
