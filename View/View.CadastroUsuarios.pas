@@ -10,7 +10,8 @@ uses
   FireDAC.Stan.Error, FireDAC.DatS, FireDAC.Phys.Intf, FireDAC.DApt.Intf, Data.DB, FireDAC.Comp.DataSet, FireDAC.Comp.Client,
   cxDropDownEdit, cxImageComboBox, cxCheckBox, System.Actions, Vcl.ActnList, dxLayoutControlAdapters, Vcl.Menus, Vcl.StdCtrls,
   cxButtons, Controller.Usuarios, Common.ENum, cxCustomData, cxStyles, cxTL, cxTLdxBarBuiltInMenu,
-  cxDataControllerConditionalFormattingRulesManagerDialog, cxInplaceContainer, cxTLData, cxDBTL, Vcl.ComCtrls, dxtree, dxdbtree;
+  cxDataControllerConditionalFormattingRulesManagerDialog, cxInplaceContainer, cxTLData, cxDBTL, Vcl.ComCtrls, dxtree, dxdbtree,
+  DAO.Conexao, Vcl.Grids, Vcl.DBGrids;
 
 type
   Tview_Cadastro_Usuarios = class(TForm)
@@ -62,10 +63,18 @@ type
     actionAlterarSenha: TAction;
     cxButton7: TcxButton;
     dxLayoutItem13: TdxLayoutItem;
-    dxLayoutGroup5: TdxLayoutGroup;
     memTableUsuariosdom_ativo: TSmallintField;
-    dxDBTreeView1: TdxDBTreeView;
+    memTableAcessos: TFDMemTable;
+    dsAcessos: TDataSource;
+    memTableAcessosdom_flag: TIntegerField;
+    memTableAcessosdes_sistema: TStringField;
+    memTableAcessosdes_podulo: TStringField;
+    memTableAcessosdes_menu: TStringField;
+    memTableAcessoscod_menu: TIntegerField;
+    cxDBTreeList1: TcxDBTreeList;
     dxLayoutItem14: TdxLayoutItem;
+    DBGrid1: TDBGrid;
+    dxLayoutItem15: TdxLayoutItem;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure actionNovoExecute(Sender: TObject);
     procedure actionGravarExecute(Sender: TObject);
@@ -80,6 +89,7 @@ type
     procedure SearchUser;
     function Saveuser(): boolean;
     function AlterPwd(): string;
+    procedure PopulateMenus;
   public
     { Public declarations }
   end;
@@ -168,6 +178,28 @@ begin
     Application.MessageBox('Usuário gravado com sucesso.', 'Gravar', MB_OK + MB_ICONINFORMATION)
   else
     Application.MessageBox('Usuário não foi gravado!', 'Atenção', MB_OK + MB_ICONWARNING);
+end;
+
+procedure Tview_Cadastro_Usuarios.PopulateMenus;
+var
+  FDQuery : TFDQuery;
+  FConexao : TConexao;
+begin
+  try
+    FConexao := TConexao.Create;
+    FDQuery := FConexao.ReturnQuery;
+    FDQuery.SQL.Text := 'select * from view_SistemaMenus';
+    FDQuery.Open();
+    if FDQuery.IsEmpty then
+      Exit;
+    memTableAcessos.CopyDataSet(FDQuery,[coAppend]);
+    memTableAcessos.Active := True;
+  finally
+    FDQuery.Active := False;
+    FDQuery.Connection.Connected := False;
+    FDQuery.Free;
+    FConexao.Free;
+  end;
 end;
 
 function Tview_Cadastro_Usuarios.Saveuser: boolean;
@@ -266,6 +298,7 @@ begin
       memTableUsuarios.Data := usuarios.Usuarios.Query.Data;
       usuarios.Usuarios.Query.Active := False;
       usuarios.Usuarios.Query.Connection.Connected := False;
+      PopulateMenus;
     end;
     Finalize(aParam);
     usuarios.Free;

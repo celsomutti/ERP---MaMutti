@@ -683,7 +683,7 @@ object view_Cadastro_Usuarios: Tview_Cadastro_Usuarios
       Height = 25
       Cursor = crHandPoint
       Action = actionNovo
-      TabOrder = 7
+      TabOrder = 8
     end
     object cxButton2: TcxButton
       Left = 106
@@ -692,7 +692,7 @@ object view_Cadastro_Usuarios: Tview_Cadastro_Usuarios
       Height = 25
       Cursor = crHandPoint
       Action = actionLocalizar
-      TabOrder = 8
+      TabOrder = 9
     end
     object cxButton3: TcxButton
       Left = 198
@@ -701,7 +701,7 @@ object view_Cadastro_Usuarios: Tview_Cadastro_Usuarios
       Height = 25
       Cursor = crHandPoint
       Action = actionEditar
-      TabOrder = 9
+      TabOrder = 10
     end
     object cxButton4: TcxButton
       Left = 290
@@ -710,7 +710,7 @@ object view_Cadastro_Usuarios: Tview_Cadastro_Usuarios
       Height = 25
       Cursor = crHandPoint
       Action = actionExcluir
-      TabOrder = 10
+      TabOrder = 11
     end
     object cxButton5: TcxButton
       Left = 386
@@ -719,7 +719,7 @@ object view_Cadastro_Usuarios: Tview_Cadastro_Usuarios
       Height = 25
       Cursor = crHandPoint
       Action = actionCancelar
-      TabOrder = 11
+      TabOrder = 12
     end
     object cxButton6: TcxButton
       Left = 482
@@ -728,7 +728,7 @@ object view_Cadastro_Usuarios: Tview_Cadastro_Usuarios
       Height = 25
       Cursor = crHandPoint
       Action = actionGravar
-      TabOrder = 12
+      TabOrder = 13
     end
     object cxButton7: TcxButton
       Left = 903
@@ -736,30 +736,45 @@ object view_Cadastro_Usuarios: Tview_Cadastro_Usuarios
       Width = 111
       Height = 25
       Action = actionAlterarSenha
-      TabOrder = 13
+      TabOrder = 14
     end
-    object dxDBTreeView1: TdxDBTreeView
-      Left = 14
-      Top = 130
-      Width = 998
-      Height = 93
-      ShowNodeHint = True
-      RootValue = Null
-      SeparatedSt = ' - '
-      RaiseOnError = True
-      BorderStyle = bsNone
-      Indent = 19
-      ParentColor = False
-      Options = [trDBCanDelete, trDBConfirmDelete, trCanDBNavigate, trSmartRecordCopy, trCheckHasChildren]
-      SelectedIndex = -1
+    object cxDBTreeList1: TcxDBTreeList
+      Left = 96
+      Top = 107
+      Width = 918
+      Height = 150
+      Bands = <>
+      DataController.DataSource = dsAcessos
+      DataController.ImageIndexField = 'dom_flag'
+      DataController.ParentField = 'des_modulo'
+      DataController.KeyField = 'cod_menu'
+      Images = dm.imageList16_16
+      Navigator.Buttons.CustomButtons = <>
+      OptionsData.Editing = False
+      OptionsData.Deleting = False
+      RootValue = -1
       TabOrder = 6
+    end
+    object DBGrid1: TDBGrid
+      Left = 98
+      Top = 266
+      Width = 914
+      Height = 116
+      BorderStyle = bsNone
+      DataSource = dsAcessos
+      TabOrder = 7
+      TitleFont.Charset = ANSI_CHARSET
+      TitleFont.Color = clWindowText
+      TitleFont.Height = -12
+      TitleFont.Name = 'Microsoft JhengHei UI'
+      TitleFont.Style = []
     end
     object dxLayoutControl1Group_Root: TdxLayoutGroup
       AlignHorz = ahClient
       AlignVert = avClient
       ButtonOptions.Buttons = <>
       Hidden = True
-      ItemIndex = 2
+      ItemIndex = 1
       ShowBorder = False
       Index = -1
     end
@@ -860,7 +875,7 @@ object view_Cadastro_Usuarios: Tview_Cadastro_Usuarios
       ButtonOptions.Buttons = <>
       LayoutDirection = ldHorizontal
       ShowBorder = False
-      Index = 2
+      Index = 3
     end
     object dxLayoutItem7: TdxLayoutItem
       Parent = dxLayoutGroup4
@@ -934,21 +949,22 @@ object view_Cadastro_Usuarios: Tview_Cadastro_Usuarios
       ControlOptions.ShowBorder = False
       Index = 6
     end
-    object dxLayoutGroup5: TdxLayoutGroup
+    object dxLayoutItem14: TdxLayoutItem
       Parent = dxLayoutControl1Group_Root
-      CaptionOptions.Text = 'New Group'
-      ButtonOptions.Buttons = <>
-      ShowBorder = False
+      CaptionOptions.Text = 'cxDBTreeList1'
+      Control = cxDBTreeList1
+      ControlOptions.OriginalHeight = 150
+      ControlOptions.OriginalWidth = 250
+      ControlOptions.ShowBorder = False
       Index = 1
     end
-    object dxLayoutItem14: TdxLayoutItem
-      Parent = dxLayoutGroup5
-      CaptionOptions.Text = 'Acessos:'
-      CaptionOptions.Layout = clTop
-      Control = dxDBTreeView1
-      ControlOptions.OriginalHeight = 93
-      ControlOptions.OriginalWidth = 121
-      Index = 0
+    object dxLayoutItem15: TdxLayoutItem
+      Parent = dxLayoutControl1Group_Root
+      CaptionOptions.Text = 'DBGrid1'
+      Control = DBGrid1
+      ControlOptions.OriginalHeight = 116
+      ControlOptions.OriginalWidth = 320
+      Index = 2
     end
   end
   object memTableUsuarios: TFDMemTable
@@ -1038,5 +1054,43 @@ object view_Cadastro_Usuarios: Tview_Cadastro_Usuarios
       Hint = 'Alterar a senha'
       ImageIndex = 16
     end
+  end
+  object memTableAcessos: TFDMemTable
+    FieldDefs = <>
+    IndexDefs = <>
+    FetchOptions.AssignedValues = [evMode]
+    FetchOptions.Mode = fmAll
+    ResourceOptions.AssignedValues = [rvSilentMode]
+    ResourceOptions.SilentMode = True
+    UpdateOptions.AssignedValues = [uvCheckRequired, uvAutoCommitUpdates]
+    UpdateOptions.CheckRequired = False
+    UpdateOptions.AutoCommitUpdates = True
+    StoreDefs = True
+    Left = 616
+    Top = 96
+    object memTableAcessosdom_flag: TIntegerField
+      FieldName = 'dom_flag'
+    end
+    object memTableAcessoscod_menu: TIntegerField
+      FieldName = 'cod_menu'
+    end
+    object memTableAcessosdes_sistema: TStringField
+      FieldName = 'des_sistema'
+      Size = 50
+    end
+    object memTableAcessosdes_podulo: TStringField
+      FieldName = 'des_modulo'
+      Size = 150
+    end
+    object memTableAcessosdes_menu: TStringField
+      FieldName = 'des_menu'
+      Size = 150
+    end
+  end
+  object dsAcessos: TDataSource
+    AutoEdit = False
+    DataSet = memTableAcessos
+    Left = 696
+    Top = 96
   end
 end

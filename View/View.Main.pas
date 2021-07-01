@@ -23,10 +23,8 @@ type
     buttonExpressas: TcxButton;
     actionExpressas: TAction;
     popupMenuExpressas: TPopupMenu;
-    actionExpressasImportacaoPedidos: TAction;
-    actionExpressasImportacaoBaixas: TAction;
+    actionExpressasImportacaoEDI: TAction;
     menuExpressasImportaodePedidos: TMenuItem;
-    menuExpressasImportaodeBaixas: TMenuItem;
     buttonPeriodico: TcxButton;
     actionPeriodicos: TAction;
     actionServicos: TAction;
@@ -42,11 +40,11 @@ type
     imageListMain32_32: TcxImageList;
     actionCadastroClientes: TAction;
     actionCadastroFornecedores: TAction;
-    actionCadastroContratados: TAction;
+    actionCadastroPessoas: TAction;
     actionCadastroCandidatos: TAction;
     actionCadastroFuncionarios: TAction;
     actionCadastroEmbarcadores: TAction;
-    actionCadastroBases: TAction;
+    actionCadastroDistribuidores: TAction;
     actionCadastroEntregadores: TAction;
     actionCadastroVeiculos: TAction;
     menuCadastroClientes: TMenuItem;

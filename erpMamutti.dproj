@@ -141,6 +141,14 @@
             <Form>view_SetupConnDB</Form>
             <FormType>dfm</FormType>
         </DCCReference>
+        <DCCReference Include="Model\Model.Sistemas.pas"/>
+        <DCCReference Include="Model\Model.Modulos.pas"/>
+        <DCCReference Include="Controller\Controller.Sistemas.pas"/>
+        <DCCReference Include="Controller\Controller.Modulos.pas"/>
+        <DCCReference Include="Model\Model.Menus.pas"/>
+        <DCCReference Include="Controller\Controller.Menus.pas"/>
+        <DCCReference Include="Model\Model.Acessos.pas"/>
+        <DCCReference Include="Controller\Controller.Acessos.pas"/>
         <None Include="ModelSupport_erpMamutti\default.txaPackage"/>
         <None Include="ModelSupport_erpMamutti\default.txvpck"/>
         <None Include="ModelSupport_erpMamutti\erpMamutti\default.txvpck"/>

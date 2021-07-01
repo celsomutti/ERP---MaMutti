@@ -16,7 +16,15 @@ uses
   View.CadastroUsuarios in 'View\View.CadastroUsuarios.pas' {view_Cadastro_Usuarios},
   View.PesquisaPessoasUsuarios in 'View\View.PesquisaPessoasUsuarios.pas' {view_PesquisaPessoasUsuarios},
   View.ConfirmaSenha in 'View\View.ConfirmaSenha.pas' {view_ConfirmaSenha},
-  View.SetupConnDB in 'View\View.SetupConnDB.pas' {view_SetupConnDB};
+  View.SetupConnDB in 'View\View.SetupConnDB.pas' {view_SetupConnDB},
+  Model.Sistemas in 'Model\Model.Sistemas.pas',
+  Model.Modulos in 'Model\Model.Modulos.pas',
+  Controller.Sistemas in 'Controller\Controller.Sistemas.pas',
+  Controller.Modulos in 'Controller\Controller.Modulos.pas',
+  Model.Menus in 'Model\Model.Menus.pas',
+  Controller.Menus in 'Controller\Controller.Menus.pas',
+  Model.Acessos in 'Model\Model.Acessos.pas',
+  Controller.Acessos in 'Controller\Controller.Acessos.pas';
 
 {$R *.res}
 

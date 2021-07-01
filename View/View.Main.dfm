@@ -172,6 +172,7 @@ object view_Main: Tview_Main
       OnExecute = actionMenuExecute
     end
     object actionCadastro: TAction
+      Tag = 10
       Category = 'Main'
       Caption = '&Cadastro'
       Hint = 'Cadastro'
@@ -179,27 +180,26 @@ object view_Main: Tview_Main
       OnExecute = actionCadastroExecute
     end
     object actionCadastroEmpresas: TAction
+      Tag = 101010
       Category = 'Cadastro'
       Caption = '&Empresas'
     end
     object actionExpressas: TAction
+      Tag = 20
       Category = 'Main'
       Caption = '&Expressas'
       Hint = 'Expressas'
       ImageIndex = 2
       OnExecute = actionExpressasExecute
     end
-    object actionExpressasImportacaoPedidos: TAction
+    object actionExpressasImportacaoEDI: TAction
+      Tag = 201010
       Category = 'Expressas'
-      Caption = 'Importa'#231#227'o de &Pedidos'
-      Hint = 'Importa'#231#227'o de pedidos'
-    end
-    object actionExpressasImportacaoBaixas: TAction
-      Category = 'Expressas'
-      Caption = 'Importa'#231#227'o de Bai&xas'
-      Hint = 'Importa'#231#227'o de Baixas de Pedidos'
+      Caption = 'Importa'#231#227'o de &EDI'
+      Hint = 'Importa'#231#227'o de pedidos e baixas'
     end
     object actionPeriodicos: TAction
+      Tag = 30
       Category = 'Main'
       Caption = '&Peri'#243'dicos'
       Hint = 'Peri'#243'dicos'
@@ -207,6 +207,7 @@ object view_Main: Tview_Main
       OnExecute = actionPeriodicosExecute
     end
     object actionServicos: TAction
+      Tag = 40
       Category = 'Main'
       Caption = '&Servi'#231'os'
       Hint = 'Servi'#231'os'
@@ -214,6 +215,7 @@ object view_Main: Tview_Main
       OnExecute = actionServicosExecute
     end
     object actionTransporte: TAction
+      Tag = 50
       Category = 'Main'
       Caption = '&Transporte'
       Hint = 'Transportes'
@@ -221,6 +223,7 @@ object view_Main: Tview_Main
       OnExecute = actionTransporteExecute
     end
     object actionFinanceiro: TAction
+      Tag = 60
       Category = 'Main'
       Caption = '&Financeiro'
       Hint = 'Financeiro'
@@ -228,6 +231,7 @@ object view_Main: Tview_Main
       OnExecute = actionFinanceiroExecute
     end
     object actionConfiguracoes: TAction
+      Tag = 70
       Category = 'Main'
       Caption = 'Configura'#231#245'es'
       Hint = 'Sistema'
@@ -242,192 +246,230 @@ object view_Main: Tview_Main
       OnExecute = actionSairExecute
     end
     object actionCadastroClientes: TAction
+      Tag = 101040
       Category = 'Cadastro'
       Caption = 'C&lientes'
       Hint = 'Caastro de Clientes'
     end
     object actionCadastroFornecedores: TAction
+      Tag = 601020
       Category = 'Cadastro'
       Caption = '&Fornecedores'
       Hint = 'Cadastro de Fornecedores'
     end
-    object actionCadastroContratados: TAction
+    object actionCadastroPessoas: TAction
+      Tag = 101030
       Category = 'Cadastro'
-      Caption = 'C&ontratados'
-      Hint = 'Cadastro de Contratados'
+      Caption = '&Pessoas'
+      Hint = 'Cadastro de pessoas'
     end
     object actionCadastroCandidatos: TAction
+      Tag = 101060
       Category = 'Cadastro'
       Caption = 'Ca&ndidatos'
       Hint = 'Cadastro de Candidatos'
     end
     object actionCadastroFuncionarios: TAction
+      Tag = 101070
       Category = 'Cadastro'
       Caption = 'F&uncion'#225'rios'
       Hint = 'Cadastro de Funcion'#225'rios'
     end
     object actionCadastroEmbarcadores: TAction
+      Tag = 202050
       Category = 'Cadastro'
       Caption = 'E&mbarcadores'
       Hint = 'Cadastro de Embarcadores'
     end
-    object actionCadastroBases: TAction
+    object actionCadastroDistribuidores: TAction
+      Tag = 101020
       Category = 'Cadastro'
-      Caption = '&Bases'
-      Hint = 'Cadastro de Bases'
+      Caption = 'Distri&buidores'
+      Hint = 'Cadastro de Distribuidores (Bases)'
     end
     object actionCadastroEntregadores: TAction
+      Tag = 101050
       Category = 'Cadastro'
       Caption = 'Entre&gadores'
       Hint = 'Cadastro de Entergadores'
     end
     object actionCadastroVeiculos: TAction
+      Tag = 501040
       Category = 'Cadastro'
       Caption = '&Ve'#237'culos'
       Hint = 'Cadastro de Ve'#237'culos'
     end
     object actionExpressasBIPedidos: TAction
+      Tag = 201040
       Category = 'Expressas'
       Caption = '&BI de Pedidos'
       Hint = 'Consulta de pedidos importados'
     end
     object actionExpressasAcareacoes: TAction
+      Tag = 201050
       Category = 'Expressas'
       Caption = '&Acarea'#231#245'es'
       Hint = 'Cadastro e controle de Acarea'#231#245'es'
     end
     object actionExpressasExtravios: TAction
+      Tag = 201060
       Category = 'Expressas'
       Caption = 'Ex&travios'
       Hint = 'Cadastro e controle de Extravios'
     end
     object actionExpressasRecepcaoPedidos: TAction
+      Tag = 202060
       Category = 'Expressas'
       Caption = 'Recep'#231#227'&o de Pedidos'
       Hint = 'Controle de Rep'#231#227'o de pedidos'
     end
     object actionExpressasControleExpressas: TAction
+      Tag = 202040
       Category = 'Expressas'
       Caption = 'Controle de Expre&ssas'
       Hint = 'Controle de Expressas'
     end
     object actionExpressasExpedicao: TAction
+      Tag = 202070
       Category = 'Expressas'
       Caption = 'Exped&i'#231#227'o'
       Hint = 'Expedi'#231#227'o de expressas'
     end
     object actionExpressasRoteiros: TAction
+      Tag = 202080
       Category = 'Expressas'
       Caption = 'R&oteiros'
       Hint = 'Cadastro de roteiros'
     end
     object actionExpressasExtratos: TAction
+      Tag = 203010
       Category = 'Expressas'
       Caption = 'Ext&ratos'
       Hint = 'Extratos de Expressas'
     end
     object actionExpressasVerbas: TAction
+      Tag = 204010
       Category = 'Expressas'
       Caption = '&Verbas'
       Hint = 'Cadastro de verbas de expressas'
     end
     object actionPeriodicosImportacaoTiragem: TAction
+      Tag = 301010
       Category = 'Peri'#243'dicos'
       Caption = '&Tiragem'
       Hint = 'Importa'#231#227'o de tiragem de jornal'
     end
     object actionPeriodicosImportacaoEtiquetas: TAction
+      Tag = 302010
       Category = 'Peri'#243'dicos'
       Caption = 'E&tiquetas'
       Hint = 'Importa'#231#227'o e impress'#227'o de etiquetas de revistas'
     end
     object actionPeriodicosOcorrencias: TAction
+      Tag = 301030
       Category = 'Peri'#243'dicos'
       Caption = '&Ocorr'#234'ncias'
       Hint = 'Registro e controle de Ocorr'#234'ncias de jornal'
     end
     object actionPeriodicosRecados: TAction
+      Tag = 303020
       Category = 'Peri'#243'dicos'
       Caption = '&Recados'
       Hint = 'Emiss'#227'o de recados aos entregadores'
     end
     object actionPeriodicosAtribuicao: TAction
+      Tag = 303040
       Category = 'Peri'#243'dicos'
       Caption = '&Atribui'#231#245'es'
       Hint = 'Gera'#231#227'o de impress'#227'o de atribui'#231#245'es de entregas de revistas'
     end
     object actionServicosCadastroServicos: TAction
+      Tag = 401010
       Category = 'Servi'#231'os'
       Caption = '&Servi'#231'os'
       Hint = 'Cadastro de tipos de servi'#231'os'
     end
     object actionServicosOS: TAction
+      Tag = 401020
       Category = 'Servi'#231'os'
       Caption = '&Ordens de Servi'#231'os'
       Hint = 'Cadastro de Ordens de Servi'#231'os'
     end
     object actionTransportesViagens: TAction
+      Tag = 501020
       Category = 'Transportes'
       Caption = '&Viagens'
       Hint = 'Controle de Viagens'
     end
     object actionTransportesManutencao: TAction
+      Tag = 501030
       Category = 'Transportes'
       Caption = '&Manuten'#231#227'o'
       Hint = 'Controle e registro de manuten'#231#245'es de ve'#237'culos'
     end
     object actionTransportesInsumos: TAction
+      Tag = 502010
       Category = 'Transportes'
       Caption = '&Insumos'
       Hint = 'Cadastro de tipos de insumos de transportes'
     end
     object actionTransportesAbastecimentos: TAction
+      Tag = 502020
       Category = 'Transportes'
       Caption = '&Abastecimentos'
       Hint = 'Controle de abastecimentos'
     end
     object actionTransportesEstoquesInsumos: TAction
+      Tag = 502030
       Category = 'Transportes'
       Caption = '&Estoques'
       Hint = 'Estoques de insumos de transportes'
     end
     object actionFinanceiroCentroCusto: TAction
+      Tag = 601030
       Category = 'Financeiro'
       Caption = '&Centro de Custo'
       Hint = 'Cadastro de centros de custo'
     end
     object actionFinanceiroCreditoDebito: TAction
+      Tag = 601040
       Category = 'Financeiro'
       Caption = 'Cr'#233'ditos e D'#233'bitos'
       Hint = 'Cadastro de cr'#233'ditos e d'#233'b]itos'
     end
     object actionFinanceiroContasReceber: TAction
+      Tag = 601050
       Category = 'Financeiro'
       Caption = 'Contas a &Receber'
       Hint = 'Controle de contas a receber'
     end
     object actionFinanceiroContasPagar: TAction
+      Tag = 601060
       Category = 'Financeiro'
       Caption = 'Contas a &Pagar'
       Hint = 'Controle de contas a pagar'
     end
     object actionFinanceiroCaixaPequeno: TAction
+      Tag = 601070
       Category = 'Financeiro'
       Caption = 'Cai&xa Pequeno'
       Hint = 'Controle de caixa pequeno'
     end
     object actionFinanceiroPlanilhaFinanceira: TAction
+      Tag = 601080
       Category = 'Financeiro'
       Caption = 'P&lanilha de Financeira'
       Hint = 'Emiss'#231#227'o de planilha financeira'
     end
     object actionSistemaUsuarios: TAction
+      Tag = 701010
       Category = 'Sistema'
       Caption = '&Usu'#225'rios'
       Hint = 'Cadastro de usu'#225'rios'
       OnExecute = actionSistemaUsuariosExecute
     end
     object actionSistemaSenha: TAction
+      Tag = 701020
       Category = 'Sistema'
       Caption = 'Senh&a'
       Hint = 'Alterar a senha'
@@ -449,7 +491,7 @@ object view_Main: Tview_Main
       Action = actionCadastroFornecedores
     end
     object menuCadastroContratados: TMenuItem
-      Action = actionCadastroContratados
+      Action = actionCadastroPessoas
     end
     object N1: TMenuItem
       Caption = '-'
@@ -467,7 +509,7 @@ object view_Main: Tview_Main
       Action = actionCadastroEmbarcadores
     end
     object menuCadastroBases: TMenuItem
-      Action = actionCadastroBases
+      Action = actionCadastroDistribuidores
     end
     object menuCadastroEntregadores: TMenuItem
       Action = actionCadastroEntregadores
@@ -484,10 +526,7 @@ object view_Main: Tview_Main
     Left = 456
     Top = 16
     object menuExpressasImportaodePedidos: TMenuItem
-      Action = actionExpressasImportacaoPedidos
-    end
-    object menuExpressasImportaodeBaixas: TMenuItem
-      Action = actionExpressasImportacaoBaixas
+      Action = actionExpressasImportacaoEDI
     end
     object menuExpressasBIdePedidos: TMenuItem
       Action = actionExpressasBIPedidos
