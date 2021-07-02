@@ -59,9 +59,9 @@ object view_PesquisaPessoasUsuarios: Tview_PesquisaPessoasUsuarios
     Transparent = True
     object gridPesquisa: TcxGrid
       Left = 12
-      Top = 63
+      Top = 64
       Width = 746
-      Height = 392
+      Height = 391
       TabOrder = 2
       OnEnter = gridPesquisaEnter
       object gridPesquisaDBTableView1: TcxGridDBTableView
@@ -133,6 +133,7 @@ object view_PesquisaPessoasUsuarios: Tview_PesquisaPessoasUsuarios
           Action = actionLimpar
           Kind = bkGlyph
         end>
+      Properties.Images = dm.imageList16_16
       Properties.OnChange = buttonEditTextoPesquisarPropertiesChange
       Style.BorderColor = clWindowFrame
       Style.BorderStyle = ebs3D
@@ -217,7 +218,7 @@ object view_PesquisaPessoasUsuarios: Tview_PesquisaPessoasUsuarios
       CaptionOptions.Text = 'Texto a Pesquisar:'
       CaptionOptions.Layout = clTop
       Control = buttonEditTextoPesquisar
-      ControlOptions.OriginalHeight = 23
+      ControlOptions.OriginalHeight = 24
       ControlOptions.OriginalWidth = 412
       ControlOptions.ShowBorder = False
       Index = 0
@@ -286,20 +287,21 @@ object view_PesquisaPessoasUsuarios: Tview_PesquisaPessoasUsuarios
     end
   end
   object actionListPesquisa: TActionList
+    Images = dm.imageList16_16
     Left = 360
     Top = 65528
     object actionExpandirGrid: TAction
       Category = 'Op'#231#245'es'
       Caption = 'Expandir'
       Hint = 'Expandir os detalhes do Grid'
-      ImageIndex = 38
+      ImageIndex = 15
       OnExecute = actionExpandirGridExecute
     end
     object actionRetrairGrid: TAction
       Category = 'Op'#231#245'es'
       Caption = 'Retrair'
       Hint = 'Retrair detalhes do Grid'
-      ImageIndex = 37
+      ImageIndex = 14
       OnExecute = actionRetrairGridExecute
     end
     object actionPesquisar: TAction
@@ -307,7 +309,7 @@ object view_PesquisaPessoasUsuarios: Tview_PesquisaPessoasUsuarios
       AutoCheck = True
       Caption = 'Localizar'
       Hint = 'Realizar pesquisa'
-      ImageIndex = 12
+      ImageIndex = 11
       OnExecute = actionPesquisarExecute
     end
     object actionLimpar: TAction
@@ -315,7 +317,7 @@ object view_PesquisaPessoasUsuarios: Tview_PesquisaPessoasUsuarios
       Caption = 'Limpar'
       Enabled = False
       Hint = 'Limpar o campo de texto a pesquisar'
-      ImageIndex = 9
+      ImageIndex = 6
       OnExecute = actionLimparExecute
     end
     object actionExportar: TAction
@@ -329,14 +331,14 @@ object view_PesquisaPessoasUsuarios: Tview_PesquisaPessoasUsuarios
       Category = 'Op'#231#245'es'
       Caption = 'Fechar'
       Hint = 'Fechar a tela'
-      ImageIndex = 17
+      ImageIndex = 1
       OnExecute = actionFecharExecute
     end
     object actionOK: TAction
       Category = 'Op'#231#245'es'
       Caption = 'OK'
       Hint = 'Selecionar o registro'
-      ImageIndex = 1
+      ImageIndex = 0
       OnExecute = actionOKExecute
     end
   end

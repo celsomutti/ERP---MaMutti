@@ -11,7 +11,8 @@ uses
   cxDropDownEdit, cxImageComboBox, cxCheckBox, System.Actions, Vcl.ActnList, dxLayoutControlAdapters, Vcl.Menus, Vcl.StdCtrls,
   cxButtons, Controller.Usuarios, Common.ENum, cxCustomData, cxStyles, cxTL, cxTLdxBarBuiltInMenu,
   cxDataControllerConditionalFormattingRulesManagerDialog, cxInplaceContainer, cxTLData, cxDBTL, Vcl.ComCtrls, dxtree, dxdbtree,
-  DAO.Conexao, Vcl.Grids, Vcl.DBGrids;
+  DAO.Conexao, Vcl.Grids, Vcl.DBGrids, cxTreeView, cxFilter, cxData, cxDataStorage, cxNavigator, dxDateRanges, cxDBData,
+  cxGridLevel, cxGridCustomView, cxGridCustomTableView, cxGridTableView, cxGridDBTableView, cxGrid, Controller.Acessos;
 
 type
   Tview_Cadastro_Usuarios = class(TForm)
@@ -54,8 +55,6 @@ type
     dxLayoutItem8: TdxLayoutItem;
     cxButton3: TcxButton;
     dxLayoutItem9: TdxLayoutItem;
-    cxButton4: TcxButton;
-    dxLayoutItem10: TdxLayoutItem;
     cxButton5: TcxButton;
     dxLayoutItem11: TdxLayoutItem;
     cxButton6: TcxButton;
@@ -65,16 +64,33 @@ type
     dxLayoutItem13: TdxLayoutItem;
     memTableUsuariosdom_ativo: TSmallintField;
     memTableAcessos: TFDMemTable;
-    dsAcessos: TDataSource;
-    memTableAcessosdom_flag: TIntegerField;
+    memTableAcessosdes_flag: TIntegerField;
     memTableAcessosdes_sistema: TStringField;
-    memTableAcessosdes_podulo: TStringField;
+    memTableAcessosdes_modulo: TStringField;
     memTableAcessosdes_menu: TStringField;
-    memTableAcessoscod_menu: TIntegerField;
-    cxDBTreeList1: TcxDBTreeList;
+    dsAcessos: TDataSource;
+    dxLayoutGroup5: TdxLayoutGroup;
+    gridAcessosDBTableView1: TcxGridDBTableView;
+    gridAcessosLevel1: TcxGridLevel;
+    gridAcessos: TcxGrid;
     dxLayoutItem14: TdxLayoutItem;
-    DBGrid1: TDBGrid;
+    gridAcessosDBTableView1dom_check: TcxGridDBColumn;
+    gridAcessosDBTableView1des_sistema: TcxGridDBColumn;
+    gridAcessosDBTableView1des_modulo: TcxGridDBColumn;
+    gridAcessosDBTableView1des_menu: TcxGridDBColumn;
+    memTableAcessoscod_menu: TIntegerField;
+    primeiroAcesso: TcxDBCheckBox;
     dxLayoutItem15: TdxLayoutItem;
+    memTableUsuariosdom_PrimeiroAcesso: TIntegerField;
+    PopupMenuGrid: TPopupMenu;
+    actionExpandir: TAction;
+    actionOcultar: TAction;
+    actionMarcarTodos: TAction;
+    actionDesmarcarTodos: TAction;
+    Expandir1: TMenuItem;
+    Ocultar1: TMenuItem;
+    MarcarTodos1: TMenuItem;
+    Novo1: TMenuItem;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure actionNovoExecute(Sender: TObject);
     procedure actionGravarExecute(Sender: TObject);
@@ -84,12 +100,25 @@ type
     procedure memTableUsuariosAfterPost(DataSet: TDataSet);
     procedure actionLocalizarExecute(Sender: TObject);
     procedure ativoPropertiesChange(Sender: TObject);
+    procedure FormKeyPress(Sender: TObject; var Key: Char);
+    procedure actionEditarExecute(Sender: TObject);
+    procedure actionCancelarExecute(Sender: TObject);
+    procedure actionAlterarSenhaExecute(Sender: TObject);
+    procedure dsUsuariosStateChange(Sender: TObject);
+    procedure actionExpandirExecute(Sender: TObject);
+    procedure actionOcultarExecute(Sender: TObject);
+    procedure actionMarcarTodosExecute(Sender: TObject);
+    procedure actionDesmarcarTodosExecute(Sender: TObject);
+    procedure dsAcessosStateChange(Sender: TObject);
   private
     { Private declarations }
     procedure SearchUser;
     function Saveuser(): boolean;
-    function AlterPwd(): string;
+    function AlterPwd(): boolean;
+    function ReturAccessMeunu(iUsuario, iMenu: integer): boolean;
+    function SaveAccess(): boolean;
     procedure PopulateMenus;
+    procedure MarkAllAccess(iflag: integer);
   public
     { Public declarations }
   end;
@@ -98,13 +127,46 @@ var
   view_Cadastro_Usuarios: Tview_Cadastro_Usuarios;
   fAcao : TAcao;
   sSenha: String;
-
+  bAcesso: boolean;
 
 implementation
 
 {$R *.dfm}
 
 uses Data.Module, View.PesquisaPessoasUsuarios, View.ConfirmaSenha;
+
+procedure Tview_Cadastro_Usuarios.actionAlterarSenhaExecute(Sender: TObject);
+begin
+  if not AlterPwd() then
+  begin
+    Application.MessageBox('Erro ao definir a nova senha do usuário!', 'Erro', MB_OK + MB_ICONERROR);
+    Exit;
+  end;
+end;
+
+procedure Tview_Cadastro_Usuarios.actionCancelarExecute(Sender: TObject);
+begin
+  memTableUsuarios.Active := False;
+  memTableAcessos.Active := False;
+  dxLayoutItem15.Visible := False;
+end;
+
+procedure Tview_Cadastro_Usuarios.actionDesmarcarTodosExecute(Sender: TObject);
+begin
+  MarkAllAccess(0);
+end;
+
+procedure Tview_Cadastro_Usuarios.actionEditarExecute(Sender: TObject);
+begin
+  login.Properties.ReadOnly := True;
+  memTableUsuarios.Edit;
+  nomeCompleto.SetFocus;
+end;
+
+procedure Tview_Cadastro_Usuarios.actionExpandirExecute(Sender: TObject);
+begin
+  gridAcessosDBTableView1.ViewData.Expand(True);
+end;
 
 procedure Tview_Cadastro_Usuarios.actionGravarExecute(Sender: TObject);
 begin
@@ -116,25 +178,48 @@ begin
   SearchUser;
 end;
 
+procedure Tview_Cadastro_Usuarios.actionMarcarTodosExecute(Sender: TObject);
+begin
+  MarkAllAccess(1);
+end;
+
 procedure Tview_Cadastro_Usuarios.actionNovoExecute(Sender: TObject);
 begin
   if not memTableUsuarios.Active then
     memTableUsuarios.Active := True;
+  dxLayoutItem15.Visible := True;
+  login.Properties.ReadOnly := False;
   memTableUsuarios.Insert;
+  memTableUsuariosdom_ativo.AsInteger := 1;
+  memTableUsuariosdom_PrimeiroAcesso.AsInteger := 1;
+  PopulateMenus;
   nomeCompleto.SetFocus;
 end;
 
-function Tview_Cadastro_Usuarios.AlterPwd: string;
+procedure Tview_Cadastro_Usuarios.actionOcultarExecute(Sender: TObject);
 begin
-  Result := '';
+  gridAcessosDBTableView1.ViewData.Collapse(True);
+end;
+
+function Tview_Cadastro_Usuarios.AlterPwd: boolean;
+begin
+  Result := False;
   if not Assigned(view_ConfirmaSenha) then
   begin
     view_ConfirmaSenha := Tview_ConfirmaSenha.Create(Application);
   end;
-  if view_ConfirmaSenha.ShowModal = mrOk then
+  view_ConfirmaSenha.dxLayoutItem5.Visible := True;
+  if view_ConfirmaSenha.ShowModal = mrCancel then
   begin
-    Result := view_ConfirmaSenha.senha.Text;
+    Exit;
+  end
+  else
+  begin
+    sSenha := view_ConfirmaSenha.senha.Text;
+    bAcesso := view_ConfirmaSenha.primeiroAcesso.Checked;
   end;
+  Result := True;
+  FreeAndNil(view_ConfirmaSenha);
 end;
 
 procedure Tview_Cadastro_Usuarios.ativoPropertiesChange(Sender: TObject);
@@ -151,10 +236,97 @@ begin
   end;
 end;
 
+procedure Tview_Cadastro_Usuarios.dsAcessosStateChange(Sender: TObject);
+begin
+  if TDataSource(Sender).DataSet.State = dsbrowse then
+  begin
+    actionExpandir.Enabled := True;
+    actionOcultar.Enabled := True;
+    actionMarcarTodos.Enabled := True;
+    actionDesmarcarTodos.Enabled := True;
+  end
+  else
+  begin
+    actionExpandir.Enabled := False;
+    actionOcultar.Enabled := False;
+    actionMarcarTodos.Enabled := False;
+    actionDesmarcarTodos.Enabled := False;
+  end;
+end;
+
+procedure Tview_Cadastro_Usuarios.dsUsuariosStateChange(Sender: TObject);
+begin
+  if TDataSource(Sender).DataSet.State = dsbrowse then
+  begin
+    actionNovo.Enabled := True;
+    actionLocalizar.Enabled := True;
+    actionEditar.Enabled := False;
+    actionCancelar.Enabled := False;
+    actionGravar.Enabled := False;
+    actionAlterarSenha.Enabled := True;
+  end
+  else if TDataSource(Sender).DataSet.State = dsInsert then
+  begin
+    actionNovo.Enabled := False;
+    actionLocalizar.Enabled := False;
+    actionEditar.Enabled := False;
+    actionCancelar.Enabled := True;
+    actionGravar.Enabled := True;
+    actionAlterarSenha.Enabled := False;
+  end
+  else if TDataSource(Sender).DataSet.State = dsEdit then
+  begin
+    actionNovo.Enabled := False;
+    actionLocalizar.Enabled := False;
+    actionEditar.Enabled := False;
+    actionCancelar.Enabled := True;
+    actionGravar.Enabled := True;
+    actionAlterarSenha.Enabled := False;
+  end
+  else if TDataSource(Sender).DataSet.State = dsInactive then
+  begin
+    actionNovo.Enabled := True;
+    actionLocalizar.Enabled := True;
+    actionEditar.Enabled := False;
+    actionCancelar.Enabled := False;
+    actionGravar.Enabled := False;
+    actionAlterarSenha.Enabled := False;
+  end;
+
+
+end;
+
 procedure Tview_Cadastro_Usuarios.FormClose(Sender: TObject; var Action: TCloseAction);
 begin
   Action := caFree;
   view_Cadastro_Usuarios := nil;
+end;
+
+procedure Tview_Cadastro_Usuarios.FormKeyPress(Sender: TObject; var Key: Char);
+begin
+  if gridAcessos.Focused then
+  begin
+    Exit;
+  end;
+  If Key = #13 then
+  begin
+    Key := #0;
+    Perform(Wm_NextDlgCtl, 0, 0);
+  end;
+end;
+
+procedure Tview_Cadastro_Usuarios.MarkAllAccess(iflag: integer);
+begin
+  if memTableAcessos.IsEmpty then Exit;
+  memTableAcessos.First;
+  while not memTableAcessos.Eof do
+  begin
+    memTableAcessos.Edit;
+    memTableAcessosdes_flag.AsInteger := iFlag;
+    memTableAcessos.Post;
+    memTableAcessos.Next;
+  end;
+  memTableAcessos.First;
 end;
 
 procedure Tview_Cadastro_Usuarios.memTableUsuariosAfterCancel(DataSet: TDataSet);
@@ -184,6 +356,7 @@ procedure Tview_Cadastro_Usuarios.PopulateMenus;
 var
   FDQuery : TFDQuery;
   FConexao : TConexao;
+  iAcesso: integer;
 begin
   try
     FConexao := TConexao.Create;
@@ -192,13 +365,102 @@ begin
     FDQuery.Open();
     if FDQuery.IsEmpty then
       Exit;
-    memTableAcessos.CopyDataSet(FDQuery,[coAppend]);
+    memTableAcessos.Active := False;
     memTableAcessos.Active := True;
+    iAcesso := 0;
+
+    while not FDQuery.Eof do
+    begin
+      if FAcao = tacIncluir then
+      begin
+        gridAcessosDBTableView1.OptionsView.NoDataToDisplayInfoText := 'Populando os acessos disponíveis. Aguarde ...';
+        iAcesso := 0
+      end
+      else
+      begin
+        gridAcessosDBTableView1.OptionsView.NoDataToDisplayInfoText := 'Verificando os acessos deste usuário. Aguarde ...';
+        if ReturAccessMeunu(memTableUsuariosid_usuario.AsInteger, FDQuery.FieldByName('cod_menu').AsInteger) then
+          iAcesso := 1
+        else
+          iAcesso := 0;
+      end;
+
+      memTableAcessos.Insert;
+      memTableAcessosdes_flag.AsInteger := iAcesso;
+      memTableAcessosdes_sistema.AsString := FDQuery.FieldByName('des_sistema').AsString;
+      memTableAcessosdes_modulo.AsString := FDQuery.FieldByName('des_modulo').AsString;
+      memTableAcessosdes_menu.AsString := FDQuery.FieldByName('des_menu').AsString;
+      memTableAcessoscod_menu.AsInteger := FDQuery.FieldByName('cod_menu').AsInteger;
+      memTableAcessos.Post;
+      FDQuery.Next;
+    end;
+    if not memTableAcessos.IsEmpty then
+      memTableAcessos.First;
+    gridAcessosDBTableView1.ViewData.Expand(True);
   finally
     FDQuery.Active := False;
     FDQuery.Connection.Connected := False;
     FDQuery.Free;
     FConexao.Free;
+  end;
+end;
+
+function Tview_Cadastro_Usuarios.ReturAccessMeunu(iUsuario, iMenu: integer): boolean;
+var
+  acessos : TAcessosController;
+  aParam : array of variant;
+begin
+  try
+    Result := False;
+    acessos := TAcessosController.Create;
+    SetLength(aParam, 3);
+    aParam := ['MENU', iMenu, iUsuario];
+    if not acessos.Localizar(aParam) then
+      Exit;
+    Result := True;
+  finally
+    acessos.Free;
+  end;
+end;
+
+function Tview_Cadastro_Usuarios.SaveAccess: boolean;
+var
+  acessos : TAcessosController;
+  iSistema, iModulo: integer;
+begin
+  try
+    Result := False;
+    acessos := TAcessosController.Create;
+    if FAcao <> tacIncluir then
+    begin
+      acessos.Acessos.Sistema := -1;
+      acessos.Acessos.Usuario := memTableUsuariosid_usuario.AsInteger;
+      acessos.Acessos.Acao := tacExcluir;
+      if not acessos.Gravar then
+      begin
+        Application.MessageBox('Erro ao excluir os acessos deste usuário! Alteração cancelada', 'Aenção', MB_OK + MB_ICONERROR);
+        Exit;
+      end;
+      while not memTableAcessos.Eof do
+      begin
+        iSistema := StrToInt(memTableAcessoscod_menu.AsString,1,2);
+        iModulo := StrToInt(memTableAcessoscod_menu.AsString,3,2);
+        acessos.Acessos.Acao := tacIncluir;
+        acessos.Acessos.Sistema := iSistema;
+        acessos.Acessos.Modulo := iModulo;
+        acessos.Acessos.Menu := memTableAcessoscod_menu.AsInteger;
+        acessos.Acessos.Usuario := memTableUsuariosid_usuario.AsInteger;
+        if not acessos.Gravar() then
+        begin
+          Application.MessageBox('Erro ao incluir os acessos deste usuário! Alteração cancelada', 'Aenção', MB_OK + MB_ICONERROR);
+          Exit;
+        end;
+        memTableAcessos.Next;
+      end;
+    end;
+    Result := True;
+  finally
+    acessos.Free;
   end;
 end;
 
@@ -223,13 +485,12 @@ begin
     usuarios.Usuarios.Ativo := memTableUsuariosdom_ativo.AsInteger;
     if FAcao = tacIncluir then
     begin
-      sSenha := AlterPwd;
-      if sSenha.IsEmpty then
+      if not AlterPwd() then
       begin
         Application.MessageBox('Erro ao definir a nova senha do usuário!', 'Erro', MB_OK + MB_ICONERROR);
         Exit;
       end;
-      if usuarios.CreateUser(sSenha,90) then
+      if usuarios.CreateUser(sSenha, 90, primeiroAcesso.Checked) then
       begin
         if usuarios.Usuarios.Nivel = 1 then
         begin
@@ -294,6 +555,8 @@ begin
     end
     else
     begin
+      dxLayoutItem15.Visible := False;
+      login.Properties.ReadOnly := True;
       memTableUsuarios.Active := False;
       memTableUsuarios.Data := usuarios.Usuarios.Query.Data;
       usuarios.Usuarios.Query.Active := False;

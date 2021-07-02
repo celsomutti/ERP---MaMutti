@@ -3,7 +3,7 @@ object view_ConfirmaSenha: Tview_ConfirmaSenha
   Top = 0
   BorderStyle = bsToolWindow
   Caption = 'Senha'
-  ClientHeight = 181
+  ClientHeight = 183
   ClientWidth = 351
   Color = clBtnFace
   Font.Charset = ANSI_CHARSET
@@ -20,15 +20,12 @@ object view_ConfirmaSenha: Tview_ConfirmaSenha
     Left = 0
     Top = 0
     Width = 351
-    Height = 181
+    Height = 183
     Align = alClient
     ParentBackground = True
     TabOrder = 0
     Transparent = True
-    ExplicitLeft = 64
-    ExplicitTop = 32
-    ExplicitWidth = 300
-    ExplicitHeight = 250
+    ExplicitHeight = 181
     object senha: TcxButtonEdit
       Left = 12
       Top = 33
@@ -74,21 +71,31 @@ object view_ConfirmaSenha: Tview_ConfirmaSenha
     end
     object cxButton1: TcxButton
       Left = 12
-      Top = 144
+      Top = 146
       Width = 85
       Height = 25
       Cursor = crHandPoint
       Action = actionOk
-      TabOrder = 2
+      TabOrder = 3
     end
     object cxButton2: TcxButton
       Left = 250
-      Top = 144
+      Top = 146
       Width = 89
       Height = 25
       Cursor = crHandPoint
       Action = actionCancelar
-      TabOrder = 3
+      TabOrder = 4
+    end
+    object primeiroAcesso: TcxCheckBox
+      Left = 12
+      Top = 116
+      Caption = 'Altera a Senha no Primeiro Acesso'
+      Properties.Alignment = taRightJustify
+      Style.BorderColor = clWindowFrame
+      Style.BorderStyle = ebs3D
+      Style.HotTrack = False
+      TabOrder = 2
     end
     object dxLayoutControl1Group_Root: TdxLayoutGroup
       AlignHorz = ahClient
@@ -131,7 +138,7 @@ object view_ConfirmaSenha: Tview_ConfirmaSenha
       ButtonOptions.Buttons = <>
       LayoutDirection = ldHorizontal
       ShowBorder = False
-      Index = 2
+      Index = 3
     end
     object dxLayoutItem3: TdxLayoutItem
       Parent = dxLayoutGroup1
@@ -156,6 +163,17 @@ object view_ConfirmaSenha: Tview_ConfirmaSenha
       ControlOptions.OriginalWidth = 89
       ControlOptions.ShowBorder = False
       Index = 1
+    end
+    object dxLayoutItem5: TdxLayoutItem
+      Parent = dxLayoutControl1Group_Root
+      CaptionOptions.Text = 'cxCheckBox1'
+      CaptionOptions.Visible = False
+      Visible = False
+      Control = primeiroAcesso
+      ControlOptions.OriginalHeight = 23
+      ControlOptions.OriginalWidth = 98
+      ControlOptions.ShowBorder = False
+      Index = 2
     end
   end
   object actionList: TActionList

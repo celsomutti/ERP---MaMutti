@@ -17,7 +17,7 @@ type
     constructor Create;
     destructor  Destroy; override;
 
-    function  CreateUser(sPassword: string; iDaysExpire: integer): boolean;
+    function  CreateUser(sPassword: string; iDaysExpire: integer; bAcesso: boolean): boolean;
     function  Privilages(sPrivileges: string): boolean;
     function  AlterPwd(sUsuario, sSenha: string): boolean;
     function  LockUnLockUser(bFlag: boolean): boolean;
@@ -48,9 +48,9 @@ begin
   FUsuarios := TUsuarios.Create;
 end;
 
-function TUsuariosController.CreateUser(sPassword: string; iDaysExpire: integer): boolean;
+function TUsuariosController.CreateUser(sPassword: string; iDaysExpire: integer; bAcesso: boolean): boolean;
 begin
-  Result := FUsuarios.CreateUser(sPassword, iDaysExpire);
+  Result := FUsuarios.CreateUser(sPassword, iDaysExpire, bAcesso);
 end;
 
 destructor TUsuariosController.Destroy;

@@ -6,7 +6,7 @@ uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, cxGraphics, cxControls, cxLookAndFeels, cxLookAndFeelPainters, dxSkinsCore,
   dxSkinsDefaultPainters, cxClasses, dxLayoutContainer, dxLayoutControl, cxContainer, cxEdit, dxLayoutcxEditAdapters, cxTextEdit,
-  cxMaskEdit, cxButtonEdit, System.Actions, Vcl.ActnList, dxLayoutControlAdapters, Vcl.Menus, Vcl.StdCtrls, cxButtons;
+  cxMaskEdit, cxButtonEdit, System.Actions, Vcl.ActnList, dxLayoutControlAdapters, Vcl.Menus, Vcl.StdCtrls, cxButtons, cxCheckBox;
 
 type
   Tview_ConfirmaSenha = class(TForm)
@@ -26,6 +26,8 @@ type
     dxLayoutItem3: TdxLayoutItem;
     cxButton2: TcxButton;
     dxLayoutItem4: TdxLayoutItem;
+    primeiroAcesso: TcxCheckBox;
+    dxLayoutItem5: TdxLayoutItem;
     procedure actionVisualizarSenhaExecute(Sender: TObject);
     procedure actionVisualizarConfirmacaoExecute(Sender: TObject);
     procedure actionOkExecute(Sender: TObject);

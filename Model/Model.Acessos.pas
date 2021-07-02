@@ -26,7 +26,7 @@ type
     property Menu: Integer read FMenu write FMenu;
     property Usuario: Integer read FUsuario write FUsuario;
     property Administrador: String read FAdministrador write FAdministrador;
-    property Qyery : TFDQuery read FQuery write FQuery;
+    property Query : TFDQuery read FQuery write FQuery;
     property Acao: TAcao read FAcao write FAcao;
 
     function Localizar(aParam: array of variant): boolean;
