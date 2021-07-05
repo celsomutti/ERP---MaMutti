@@ -7,7 +7,7 @@ uses
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, Vcl.WinXPanels, Vcl.WinXCtrls, Vcl.CategoryButtons, cxGraphics,
   cxLookAndFeels, cxLookAndFeelPainters, Vcl.Menus, dxSkinsCore, dxSkinsDefaultPainters, Vcl.StdCtrls, cxButtons, Vcl.ToolWin,
   Vcl.ActnMan, Vcl.ActnCtrls, System.Actions, Vcl.ActnList, Vcl.ButtonGroup, Vcl.Buttons, System.ImageList, Vcl.ImgList, cxImageList,
-  cxPC, dxBarBuiltInMenu, cxClasses, dxTabbedMDI, WinInet;
+  cxPC, dxBarBuiltInMenu, cxClasses, dxTabbedMDI, WinInet, Controller.Usuarios, Controller.Acessos;
 
 type
   Tview_Main = class(TForm)
@@ -143,16 +143,18 @@ type
     procedure actionTransporteExecute(Sender: TObject);
     procedure actionFinanceiroExecute(Sender: TObject);
     procedure actionConfiguracoesExecute(Sender: TObject);
-    procedure FormActivate(Sender: TObject);
     procedure actionSistemaUsuariosExecute(Sender: TObject);
+    procedure actionSistemaSenhaExecute(Sender: TObject);
   private
     { Private declarations }
     procedure InitForm;
     procedure ResizeMainForm;
     procedure OpenCloseMenu;
+    procedure Acessos;
     function  Login(): Boolean;
     function  VerificarExisteConexaoComInternet: boolean;
     function  VerifyParamsConnection(): Boolean;
+    function AlterPwd(): boolean;
   public
     { Public declarations }
   end;
@@ -165,9 +167,67 @@ implementation
 
 {$R *.dfm}
 
-uses Data.Module, View.Login, Global.Parametros, Common.Utils, View.CadastroUsuarios, View.SetupConnDB;
+uses Data.Module, View.Login, Global.Parametros, Common.Utils, View.CadastroUsuarios, View.SetupConnDB, View.ConfirmaSenha;
 
 { Tview_Main }
+
+procedure Tview_Main.Acessos;
+var
+  usuarios : TUsuariosController;
+  acessos : TAcessosController;
+  i, iMenu, iSistema: integer;
+  sMenu: String;
+  aParam : Array of variant;
+begin
+  try
+    usuarios := TUsuariosController.Create;
+    acessos := TAcessosController.Create;
+    if Global.Parametros.pUser_Name = 'root' then
+      Exit;
+    SetLength(aParam,2);
+    aParam := ['LOGIN',  Global.Parametros.pUser_Name];
+    if usuarios.Search(aParam) then
+    begin
+      usuarios.SetupSelf(usuarios.Usuarios.Query);
+      Global.Parametros.pUser_ID := usuarios.Usuarios.Codigo;
+      usuarios.Usuarios.Query.Active := False;
+      usuarios.Usuarios.Query.Connection.Connected := False;
+    end
+    else
+    begin
+      Global.Parametros.pUser_ID := 0;
+    end;
+    Finalize(aParam);
+    for i := 0 to Pred(actionListMain.ActionCount) do
+    begin
+      sMenu := IntToStr(TAction(actionListMain.Actions[i]).Tag);
+      if StrToInt(sMenu) > 0 then
+      begin
+        if StrToInt(sMenu) <= 500 then
+        begin
+          SetLength(aParam, 3);
+          aParam := ['SISTEMA', StrToInt(sMenu), Global.Parametros.pUser_ID];
+        end
+        else
+        begin
+          SetLength(aParam, 3);
+          aParam := ['MENU', StrToInt(sMenu), Global.Parametros.pUser_ID];
+        end;
+        if not usuarios.Search(aParam) then
+          TAction(actionListMain.Actions[i]).Enabled := False
+        else
+        begin
+          usuarios.Usuarios.Query.Active := False;
+          usuarios.Usuarios.Query.Connection.Connected := False;
+        end;
+        Finalize(aParam);
+      end;
+    end;
+  finally
+    usuarios.Free;
+    acessos.Free;
+  end;
+end;
 
 procedure Tview_Main.actionCadastroExecute(Sender: TObject);
 begin
@@ -204,6 +264,11 @@ begin
   popupMenuServicos.Popup(splitViewMain.Width, buttonMenu.Height * 5);
 end;
 
+procedure Tview_Main.actionSistemaSenhaExecute(Sender: TObject);
+begin
+  AlterPwd;
+end;
+
 procedure Tview_Main.actionSistemaUsuariosExecute(Sender: TObject);
 begin
   if not Assigned(view_Cadastro_Usuarios) then
@@ -223,9 +288,42 @@ begin
   popupMenuTransportes.Popup(splitViewMain.Width, buttonMenu.Height * 6);
 end;
 
-procedure Tview_Main.FormActivate(Sender: TObject);
+function Tview_Main.AlterPwd: boolean;
+var
+  usuarios : TUsuariosController;
 begin
-//  if not Login() then Application.Terminate;
+  try
+    Result := False;
+    usuarios := TUsuariosController.Create;
+    if not Assigned(view_ConfirmaSenha) then
+    begin
+      view_ConfirmaSenha := Tview_ConfirmaSenha.Create(Application);
+    end;
+    view_ConfirmaSenha.dxLayoutItem5.Visible := False;
+    if view_ConfirmaSenha.ShowModal = mrCancel then
+    begin
+      Exit;
+    end
+    else
+    begin
+      sSenha := view_ConfirmaSenha.senha.Text;
+      bAcesso := view_ConfirmaSenha.primeiroAcesso.Checked;
+    end;
+
+    if not usuarios.AlterPwd(Global.Parametros.pUser_Name, sSenha, 90, False) then
+    begin
+      Application.MessageBox('Erro ao alterar a senha!', 'Erro', MB_OK + MB_ICONERROR);
+      Exit;
+    end
+    else
+    begin
+      Application.MessageBox('Senha alterada com sucesso!', 'Senha Alterada', MB_OK + MB_ICONINFORMATION);
+    end;
+    Result := True;
+  finally
+    usuarios.Free;
+    FreeAndNil(view_ConfirmaSenha);
+  end;
 end;
 
 procedure Tview_Main.FormClose(Sender: TObject; var Action: TCloseAction);
@@ -294,6 +392,7 @@ begin
       end;
       Self.Caption := Application.Title + ' - Versão ' + sVersion + ' - [' + Global.Parametros.pUser_Name + ']';
     end;
+    Acessos;
   finally
     funcUtils.Free;
   end;

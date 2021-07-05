@@ -19,7 +19,7 @@ type
 
     function  CreateUser(sPassword: string; iDaysExpire: integer; bAcesso: boolean): boolean;
     function  Privilages(sPrivileges: string): boolean;
-    function  AlterPwd(sUsuario, sSenha: string): boolean;
+    function  AlterPwd(sUsuario, sSenha: string; iDaysExpire: integer; bAcesso: boolean): boolean;
     function  LockUnLockUser(bFlag: boolean): boolean;
     function  Gravar(): boolean;
     function  Search(aParam : array of variant): boolean;
@@ -33,9 +33,9 @@ implementation
 
 { TUsuariosController }
 
-function TUsuariosController.AlterPwd(sUsuario, sSenha: string): boolean;
+function TUsuariosController.AlterPwd(sUsuario, sSenha: string; iDaysExpire: integer; bAcesso: boolean): boolean;
 begin
-  Result := Fusuarios.AlterPwd(sUsuario, sSenha);
+  Result := Fusuarios.AlterPwd(sUsuario, sSenha, iDaysExpire, bAcesso);
 end;
 
 procedure TUsuariosController.ClearSelf;

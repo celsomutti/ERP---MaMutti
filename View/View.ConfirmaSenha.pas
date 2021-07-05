@@ -102,7 +102,7 @@ begin
   end;
   if senha.Text <> confirmacao.Text then
   begin
-    Application.MessageBox('Confirmação da nova senha diferente da noca senha informada!', 'Atenção', MB_ICONWARNING + MB_OK);
+    Application.MessageBox('Confirmação da nova senha diferente da nova senha informada!', 'Atenção', MB_ICONWARNING + MB_OK);
     Exit;
   end;
   Result := True;

@@ -25,7 +25,6 @@ object view_ConfirmaSenha: Tview_ConfirmaSenha
     ParentBackground = True
     TabOrder = 0
     Transparent = True
-    ExplicitHeight = 181
     object senha: TcxButtonEdit
       Left = 12
       Top = 33

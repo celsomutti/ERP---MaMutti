@@ -14,7 +14,6 @@ object view_Main: Tview_Main
   KeyPreview = True
   OldCreateOrder = False
   ShowHint = True
-  OnActivate = FormActivate
   OnClose = FormClose
   OnCloseQuery = FormCloseQuery
   OnShow = FormShow
@@ -473,6 +472,7 @@ object view_Main: Tview_Main
       Category = 'Sistema'
       Caption = 'Senh&a'
       Hint = 'Alterar a senha'
+      OnExecute = actionSistemaSenhaExecute
     end
   end
   object popupMenuCadastrado: TPopupMenu

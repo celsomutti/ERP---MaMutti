@@ -222,7 +222,7 @@ begin
     usuarios := TUsuariosController.Create;
     if not ValidateConfirmation() then
       Exit;
-    if usuarios.AlterPwd(textEditUsuario.Text, novaSenha.Text) then
+    if usuarios.AlterPwd(textEditUsuario.Text, novaSenha.Text, 90, False) then
     begin
       textEditSenha.Text := '';
       dxLayoutGroup2.MakeVisible;

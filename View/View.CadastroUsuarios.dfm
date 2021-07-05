@@ -628,10 +628,10 @@ object view_Cadastro_Usuarios: Tview_Cadastro_Usuarios
       Style.BorderStyle = ebs3D
       Style.HotTrack = False
       TabOrder = 3
-      Width = 403
+      Width = 618
     end
     object nivelUsuario: TcxDBImageComboBox
-      Left = 520
+      Left = 735
       Top = 63
       Hint = 'N'#237'vel do usu'#225'rio'
       DataBinding.DataField = 'cod_nivel'
@@ -675,7 +675,7 @@ object view_Cadastro_Usuarios: Tview_Cadastro_Usuarios
       Style.BorderStyle = ebs3D
       Style.HotTrack = False
       Style.TextColor = clRed
-      TabOrder = 6
+      TabOrder = 5
       Transparent = True
     end
     object cxButton1: TcxButton
@@ -685,7 +685,7 @@ object view_Cadastro_Usuarios: Tview_Cadastro_Usuarios
       Height = 25
       Cursor = crHandPoint
       Action = actionNovo
-      TabOrder = 8
+      TabOrder = 7
     end
     object cxButton2: TcxButton
       Left = 106
@@ -694,7 +694,7 @@ object view_Cadastro_Usuarios: Tview_Cadastro_Usuarios
       Height = 25
       Cursor = crHandPoint
       Action = actionLocalizar
-      TabOrder = 9
+      TabOrder = 8
     end
     object cxButton3: TcxButton
       Left = 198
@@ -703,7 +703,7 @@ object view_Cadastro_Usuarios: Tview_Cadastro_Usuarios
       Height = 25
       Cursor = crHandPoint
       Action = actionEditar
-      TabOrder = 10
+      TabOrder = 9
     end
     object cxButton5: TcxButton
       Left = 290
@@ -712,7 +712,7 @@ object view_Cadastro_Usuarios: Tview_Cadastro_Usuarios
       Height = 25
       Cursor = crHandPoint
       Action = actionCancelar
-      TabOrder = 11
+      TabOrder = 10
     end
     object cxButton6: TcxButton
       Left = 386
@@ -721,15 +721,15 @@ object view_Cadastro_Usuarios: Tview_Cadastro_Usuarios
       Height = 25
       Cursor = crHandPoint
       Action = actionGravar
-      TabOrder = 12
+      TabOrder = 11
     end
     object cxButton7: TcxButton
-      Left = 903
+      Left = 482
       Top = 453
       Width = 111
       Height = 25
       Action = actionAlterarSenha
-      TabOrder = 13
+      TabOrder = 12
     end
     object gridAcessos: TcxGrid
       Left = 26
@@ -737,7 +737,7 @@ object view_Cadastro_Usuarios: Tview_Cadastro_Usuarios
       Width = 974
       Height = 304
       PopupMenu = PopupMenuGrid
-      TabOrder = 7
+      TabOrder = 6
       object gridAcessosDBTableView1: TcxGridDBTableView
         PopupMenu = PopupMenuGrid
         Navigator.Buttons.CustomButtons = <>
@@ -745,6 +745,9 @@ object view_Cadastro_Usuarios: Tview_Cadastro_Usuarios
         DataController.Summary.DefaultGroupSummaryItems = <>
         DataController.Summary.FooterSummaryItems = <>
         DataController.Summary.SummaryGroups = <>
+        OptionsData.Deleting = False
+        OptionsData.DeletingConfirmation = False
+        OptionsData.Inserting = False
         OptionsView.GroupByBox = False
         object gridAcessosDBTableView1dom_check: TcxGridDBColumn
           DataBinding.FieldName = 'dom_check'
@@ -784,22 +787,14 @@ object view_Cadastro_Usuarios: Tview_Cadastro_Usuarios
         GridView = gridAcessosDBTableView1
       end
     end
-    object primeiroAcesso: TcxDBCheckBox
-      Left = 666
-      Top = 63
-      Hint = 'Marque aqui se osu'#225'rio deve  alterar a senha no primeiro acesso'
-      Caption = 'Trocar Senha no Primeiro Acesso'
-      DataBinding.DataField = 'dom_primeiroacesso'
-      DataBinding.DataSource = dsUsuarios
-      Properties.Alignment = taRightJustify
-      Properties.NullStyle = nssUnchecked
-      Properties.ValueChecked = '1'
-      Properties.ValueUnchecked = '0'
-      Style.BorderColor = clWindowFrame
-      Style.BorderStyle = ebs3D
-      Style.HotTrack = False
-      TabOrder = 5
-      Transparent = True
+    object cxButton4: TcxButton
+      Left = 928
+      Top = 453
+      Width = 86
+      Height = 25
+      Cursor = crHandPoint
+      Action = actionFechar
+      TabOrder = 13
     end
     object dxLayoutControl1Group_Root: TdxLayoutGroup
       AlignHorz = ahClient
@@ -897,7 +892,7 @@ object view_Cadastro_Usuarios: Tview_Cadastro_Usuarios
       ControlOptions.OriginalHeight = 23
       ControlOptions.OriginalWidth = 119
       ControlOptions.ShowBorder = False
-      Index = 3
+      Index = 2
     end
     object dxLayoutGroup4: TdxLayoutGroup
       Parent = dxLayoutControl1Group_Root
@@ -964,7 +959,7 @@ object view_Cadastro_Usuarios: Tview_Cadastro_Usuarios
     end
     object dxLayoutItem13: TdxLayoutItem
       Parent = dxLayoutGroup4
-      AlignHorz = ahRight
+      AlignHorz = ahLeft
       AlignVert = avCenter
       CaptionOptions.Text = 'cxButton7'
       CaptionOptions.Visible = False
@@ -995,23 +990,20 @@ object view_Cadastro_Usuarios: Tview_Cadastro_Usuarios
       ControlOptions.ShowBorder = False
       Index = 0
     end
-    object dxLayoutItem15: TdxLayoutItem
-      Parent = dxLayoutGroup3
-      AlignVert = avClient
-      CaptionOptions.Text = 'cxDBCheckBox1'
+    object dxLayoutItem10: TdxLayoutItem
+      Parent = dxLayoutGroup4
+      AlignHorz = ahRight
+      AlignVert = avCenter
+      CaptionOptions.Text = 'cxButton4'
       CaptionOptions.Visible = False
-      Visible = False
-      Control = primeiroAcesso
-      ControlOptions.OriginalHeight = 23
-      ControlOptions.OriginalWidth = 208
+      Control = cxButton4
+      ControlOptions.OriginalHeight = 25
+      ControlOptions.OriginalWidth = 86
       ControlOptions.ShowBorder = False
-      Index = 2
+      Index = 6
     end
   end
   object memTableUsuarios: TFDMemTable
-    AfterInsert = memTableUsuariosAfterInsert
-    AfterEdit = memTableUsuariosAfterEdit
-    AfterPost = memTableUsuariosAfterPost
     AfterCancel = memTableUsuariosAfterCancel
     FetchOptions.AssignedValues = [evMode]
     FetchOptions.Mode = fmAll
@@ -1060,7 +1052,7 @@ object view_Cadastro_Usuarios: Tview_Cadastro_Usuarios
   object actionList: TActionList
     Images = dm.imageList16_16
     Left = 960
-    Top = 96
+    Top = 88
     object actionNovo: TAction
       Caption = '&Novo'
       Hint = 'Novo usu'#225'rio'
@@ -1090,7 +1082,7 @@ object view_Cadastro_Usuarios: Tview_Cadastro_Usuarios
       Caption = '&Cancelar'
       Enabled = False
       Hint = 'Cancelar opera'#231#227'o'
-      ImageIndex = 1
+      ImageIndex = 6
       OnExecute = actionCancelarExecute
     end
     object actionGravar: TAction
@@ -1121,15 +1113,23 @@ object view_Cadastro_Usuarios: Tview_Cadastro_Usuarios
     end
     object actionMarcarTodos: TAction
       Caption = 'Marcar Todos'
+      Enabled = False
       Hint = 'Marcar todos os itens de acesso'
       ImageIndex = 26
       OnExecute = actionMarcarTodosExecute
     end
     object actionDesmarcarTodos: TAction
       Caption = 'Desmarcar Todos'
+      Enabled = False
       Hint = 'Desmarcar todos os itens de acessos'
       ImageIndex = 25
       OnExecute = actionDesmarcarTodosExecute
+    end
+    object actionFechar: TAction
+      Caption = '&Fechar'
+      Hint = 'Fechar a tela'
+      ImageIndex = 1
+      OnExecute = actionFecharExecute
     end
   end
   object memTableAcessos: TFDMemTable
@@ -1166,8 +1166,8 @@ object view_Cadastro_Usuarios: Tview_Cadastro_Usuarios
     end
   end
   object dsAcessos: TDataSource
+    AutoEdit = False
     DataSet = memTableAcessos
-    OnStateChange = dsAcessosStateChange
     Left = 608
     Top = 96
   end
