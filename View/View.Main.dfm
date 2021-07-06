@@ -474,6 +474,24 @@ object view_Main: Tview_Main
       Hint = 'Alterar a senha'
       OnExecute = actionSistemaSenhaExecute
     end
+    object actionSistemaAbrangenciaExpressas: TAction
+      Tag = 702010
+      Category = 'Sistema'
+      Caption = '&Abrang'#234'ncia Expressas'
+      Hint = 'Cadastro de abrang'#234'ncia de expressas'
+      OnExecute = actionSistemaAbrangenciaExpressasExecute
+    end
+    object actionSistemaBancos: TAction
+      Category = 'Sistema'
+      Caption = '&Bancos'
+      Hint = 'Cadastro de Bancos'
+    end
+    object actionSistemaPeriodosExtratos: TAction
+      Category = 'Sistema'
+      Caption = '&Per'#237'odos'
+      Hint = 'Configura'#231#227'o dos per'#237'odos de extrato'
+      OnExecute = actionSistemaPeriodosExtratosExecute
+    end
   end
   object popupMenuCadastrado: TPopupMenu
     AutoPopup = False
@@ -1191,14 +1209,38 @@ object view_Main: Tview_Main
   object popupMenuSistema: TPopupMenu
     Left = 392
     Top = 168
-    object menuUsurios: TMenuItem
-      Action = actionSistemaUsuarios
+    object Segurana1: TMenuItem
+      Caption = '&Seguran'#231'a'
+      object Usurios1: TMenuItem
+        Action = actionSistemaUsuarios
+      end
+      object N12: TMenuItem
+        Caption = '-'
+      end
+      object Senha1: TMenuItem
+        Action = actionSistemaSenha
+      end
     end
-    object N12: TMenuItem
+    object N13: TMenuItem
       Caption = '-'
     end
-    object menuSenha: TMenuItem
-      Action = actionSistemaSenha
+    object Expressas1: TMenuItem
+      Caption = '&Expressas'
+      object AbrangnciaExpressas1: TMenuItem
+        Action = actionSistemaAbrangenciaExpressas
+      end
+    end
+    object N14: TMenuItem
+      Caption = '-'
+    end
+    object Financeiro1: TMenuItem
+      Caption = '&Financeiro'
+      object Bancos1: TMenuItem
+        Action = actionSistemaBancos
+      end
+      object Perodos1: TMenuItem
+        Action = actionSistemaPeriodosExtratos
+      end
     end
   end
 end

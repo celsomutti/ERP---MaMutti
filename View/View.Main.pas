@@ -128,8 +128,19 @@ type
     N10: TMenuItem;
     N11: TMenuItem;
     popupMenuSistema: TPopupMenu;
-    menuUsurios: TMenuItem;
-    menuSenha: TMenuItem;
+    actionSistemaAbrangenciaExpressas: TAction;
+    N13: TMenuItem;
+    Expressas1: TMenuItem;
+    N14: TMenuItem;
+    AbrangnciaExpressas1: TMenuItem;
+    Financeiro1: TMenuItem;
+    actionSistemaBancos: TAction;
+    actionSistemaPeriodosExtratos: TAction;
+    Bancos1: TMenuItem;
+    Perodos1: TMenuItem;
+    Segurana1: TMenuItem;
+    Usurios1: TMenuItem;
+    Senha1: TMenuItem;
     N12: TMenuItem;
     procedure FormShow(Sender: TObject);
     procedure actionMenuExecute(Sender: TObject);
@@ -145,6 +156,8 @@ type
     procedure actionConfiguracoesExecute(Sender: TObject);
     procedure actionSistemaUsuariosExecute(Sender: TObject);
     procedure actionSistemaSenhaExecute(Sender: TObject);
+    procedure actionSistemaAbrangenciaExpressasExecute(Sender: TObject);
+    procedure actionSistemaPeriodosExtratosExecute(Sender: TObject);
   private
     { Private declarations }
     procedure InitForm;
@@ -167,7 +180,8 @@ implementation
 
 {$R *.dfm}
 
-uses Data.Module, View.Login, Global.Parametros, Common.Utils, View.CadastroUsuarios, View.SetupConnDB, View.ConfirmaSenha;
+uses Data.Module, View.Login, Global.Parametros, Common.Utils, View.CadastroUsuarios, View.SetupConnDB, View.ConfirmaSenha,
+  View.CadastroAbrangenciaExpressas, View.ParametrosPrazosExtratos;
 
 { Tview_Main }
 
@@ -213,8 +227,8 @@ begin
           SetLength(aParam, 3);
           aParam := ['MENU', StrToInt(sMenu), Global.Parametros.pUser_ID];
         end;
-        if not usuarios.Search(aParam) then
-          TAction(actionListMain.Actions[i]).Enabled := False
+        if not acessos.Localizar(aParam) then
+          TAction(actionListMain.Actions[i]).Visible := False
         else
         begin
           usuarios.Usuarios.Query.Active := False;
@@ -262,6 +276,24 @@ end;
 procedure Tview_Main.actionServicosExecute(Sender: TObject);
 begin
   popupMenuServicos.Popup(splitViewMain.Width, buttonMenu.Height * 5);
+end;
+
+procedure Tview_Main.actionSistemaAbrangenciaExpressasExecute(Sender: TObject);
+begin
+  if not Assigned(view_CadastroAbrangenciaExpressas) then
+  begin
+    view_CadastroAbrangenciaExpressas := Tview_CadastroAbrangenciaExpressas.Create(Application);
+  end;
+  view_CadastroAbrangenciaExpressas.Show;
+end;
+
+procedure Tview_Main.actionSistemaPeriodosExtratosExecute(Sender: TObject);
+begin
+  if not Assigned(view_ParametrosPrazosExtratos) then
+  begin
+    view_ParametrosPrazosExtratos := Tview_ParametrosPrazosExtratos.Create(Application);
+  end;
+  view_ParametrosPrazosExtratos.Show;
 end;
 
 procedure Tview_Main.actionSistemaSenhaExecute(Sender: TObject);
@@ -380,7 +412,10 @@ begin
 
     sVersion := funcUtils.VersaoExe;
     if not Login() then
-      Application.Terminate
+    begin
+      Application.Terminate;
+      Exit;
+    end
     else
     begin
       with dm do

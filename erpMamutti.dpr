@@ -24,7 +24,18 @@ uses
   Model.Menus in 'Model\Model.Menus.pas',
   Controller.Menus in 'Controller\Controller.Menus.pas',
   Model.Acessos in 'Model\Model.Acessos.pas',
-  Controller.Acessos in 'Controller\Controller.Acessos.pas';
+  Controller.Acessos in 'Controller\Controller.Acessos.pas',
+  Model.AbrangenciaExpressas in 'Model\Model.AbrangenciaExpressas.pas',
+  Controller.AbrangenciaExpressas in 'Controller\Controller.AbrangenciaExpressas.pas',
+  View.CadastroAbrangenciaExpressas in 'View\View.CadastroAbrangenciaExpressas.pas' {view_CadastroAbrangenciaExpressas},
+  Controller.PlanilhaRoteirosExpressas in 'Controller\Controller.PlanilhaRoteirosExpressas.pas',
+  Model.PlanilhaRoteirosExpressas in 'Model\Model.PlanilhaRoteirosExpressas.pas',
+  Model.Bases in 'Model\Model.Bases.pas',
+  Controller.Bases in 'Controller\Controller.Bases.pas',
+  Thread.ImportaAbrangencia in 'Thread\Thread.ImportaAbrangencia.pas',
+  Model.FinanceiroPrazosExtratos in 'Model\Model.FinanceiroPrazosExtratos.pas',
+  Controller.FinanceiroPrazosExtratos in 'Controller\Controller.FinanceiroPrazosExtratos.pas',
+  View.ParametrosPrazosExtratos in 'View\View.ParametrosPrazosExtratos.pas' {view_ParametrosPrazosExtratos};
 
 {$R *.res}
 

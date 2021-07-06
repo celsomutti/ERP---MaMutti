@@ -149,6 +149,23 @@
         <DCCReference Include="Controller\Controller.Menus.pas"/>
         <DCCReference Include="Model\Model.Acessos.pas"/>
         <DCCReference Include="Controller\Controller.Acessos.pas"/>
+        <DCCReference Include="Model\Model.AbrangenciaExpressas.pas"/>
+        <DCCReference Include="Controller\Controller.AbrangenciaExpressas.pas"/>
+        <DCCReference Include="View\View.CadastroAbrangenciaExpressas.pas">
+            <Form>view_CadastroAbrangenciaExpressas</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="Controller\Controller.PlanilhaRoteirosExpressas.pas"/>
+        <DCCReference Include="Model\Model.PlanilhaRoteirosExpressas.pas"/>
+        <DCCReference Include="Model\Model.Bases.pas"/>
+        <DCCReference Include="Controller\Controller.Bases.pas"/>
+        <DCCReference Include="Thread\Thread.ImportaAbrangencia.pas"/>
+        <DCCReference Include="Model\Model.FinanceiroPrazosExtratos.pas"/>
+        <DCCReference Include="Controller\Controller.FinanceiroPrazosExtratos.pas"/>
+        <DCCReference Include="View\View.ParametrosPrazosExtratos.pas">
+            <Form>view_ParametrosPrazosExtratos</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
         <None Include="ModelSupport_erpMamutti\default.txaPackage"/>
         <None Include="ModelSupport_erpMamutti\default.txvpck"/>
         <None Include="ModelSupport_erpMamutti\erpMamutti\default.txvpck"/>
