@@ -485,6 +485,7 @@ object view_Main: Tview_Main
       Category = 'Sistema'
       Caption = '&Bancos'
       Hint = 'Cadastro de Bancos'
+      OnExecute = actionSistemaBancosExecute
     end
     object actionSistemaPeriodosExtratos: TAction
       Category = 'Sistema'

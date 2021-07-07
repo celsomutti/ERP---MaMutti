@@ -158,6 +158,7 @@ type
     procedure actionSistemaSenhaExecute(Sender: TObject);
     procedure actionSistemaAbrangenciaExpressasExecute(Sender: TObject);
     procedure actionSistemaPeriodosExtratosExecute(Sender: TObject);
+    procedure actionSistemaBancosExecute(Sender: TObject);
   private
     { Private declarations }
     procedure InitForm;
@@ -181,7 +182,7 @@ implementation
 {$R *.dfm}
 
 uses Data.Module, View.Login, Global.Parametros, Common.Utils, View.CadastroUsuarios, View.SetupConnDB, View.ConfirmaSenha,
-  View.CadastroAbrangenciaExpressas, View.ParametrosPrazosExtratos;
+  View.CadastroAbrangenciaExpressas, View.ParametrosPrazosExtratos, View.CadastroBancos;
 
 { Tview_Main }
 
@@ -285,6 +286,16 @@ begin
     view_CadastroAbrangenciaExpressas := Tview_CadastroAbrangenciaExpressas.Create(Application);
   end;
   view_CadastroAbrangenciaExpressas.Show;
+end;
+
+procedure Tview_Main.actionSistemaBancosExecute(Sender: TObject);
+begin
+  if not Assigned(view_CadastroBancos) then
+  begin
+    view_CadastroBancos := Tview_CadastroBancos.Create(Application);
+  end;
+  view_CadastroBancos.Show;
+
 end;
 
 procedure Tview_Main.actionSistemaPeriodosExtratosExecute(Sender: TObject);

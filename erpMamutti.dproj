@@ -166,6 +166,12 @@
             <Form>view_ParametrosPrazosExtratos</Form>
             <FormType>dfm</FormType>
         </DCCReference>
+        <DCCReference Include="Model\Model.Bancos.pas"/>
+        <DCCReference Include="Controller\Controller.Bancos.pas"/>
+        <DCCReference Include="View\View.CadastroBancos.pas">
+            <Form>view_CadastroBancos</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
         <None Include="ModelSupport_erpMamutti\default.txaPackage"/>
         <None Include="ModelSupport_erpMamutti\default.txvpck"/>
         <None Include="ModelSupport_erpMamutti\erpMamutti\default.txvpck"/>

@@ -35,7 +35,10 @@ uses
   Thread.ImportaAbrangencia in 'Thread\Thread.ImportaAbrangencia.pas',
   Model.FinanceiroPrazosExtratos in 'Model\Model.FinanceiroPrazosExtratos.pas',
   Controller.FinanceiroPrazosExtratos in 'Controller\Controller.FinanceiroPrazosExtratos.pas',
-  View.ParametrosPrazosExtratos in 'View\View.ParametrosPrazosExtratos.pas' {view_ParametrosPrazosExtratos};
+  View.ParametrosPrazosExtratos in 'View\View.ParametrosPrazosExtratos.pas' {view_ParametrosPrazosExtratos},
+  Model.Bancos in 'Model\Model.Bancos.pas',
+  Controller.Bancos in 'Controller\Controller.Bancos.pas',
+  View.CadastroBancos in 'View\View.CadastroBancos.pas' {view_CadastroBancos};
 
 {$R *.res}
 
