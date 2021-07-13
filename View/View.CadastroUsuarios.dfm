@@ -1,6 +1,7 @@
 object view_Cadastro_Usuarios: Tview_Cadastro_Usuarios
   Left = 0
   Top = 0
+  BorderStyle = bsNone
   Caption = 'Cadastro de Usu'#225'rios'
   ClientHeight = 490
   ClientWidth = 1026
@@ -10,6 +11,7 @@ object view_Cadastro_Usuarios: Tview_Cadastro_Usuarios
   Font.Height = -12
   Font.Name = 'Microsoft JhengHei UI'
   Font.Style = []
+  FormStyle = fsMDIChild
   Icon.Data = {
     0000010004003030000001002000A8250000460000002020000001002000A810
     0000EE2500001818000001002000880900009636000010100000010020006804
@@ -563,8 +565,10 @@ object view_Cadastro_Usuarios: Tview_Cadastro_Usuarios
   KeyPreview = True
   OldCreateOrder = False
   Position = poMainFormCenter
+  Visible = True
   OnClose = FormClose
   OnKeyPress = FormKeyPress
+  OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 15
   object dxLayoutControl1: TdxLayoutControl
@@ -578,7 +582,7 @@ object view_Cadastro_Usuarios: Tview_Cadastro_Usuarios
     Transparent = True
     object idUsuario: TcxDBMaskEdit
       Left = 72
-      Top = 33
+      Top = 63
       Hint = 'ID do usu'#225'rio'
       TabStop = False
       DataBinding.DataField = 'id_usuario'
@@ -590,24 +594,24 @@ object view_Cadastro_Usuarios: Tview_Cadastro_Usuarios
       Style.BorderColor = clWindowFrame
       Style.BorderStyle = ebs3D
       Style.HotTrack = False
-      TabOrder = 0
+      TabOrder = 1
       Width = 87
     end
     object nomeCompleto: TcxDBTextEdit
       Left = 271
-      Top = 33
+      Top = 63
       Hint = 'Nome completo do usu'#225'rio'
       DataBinding.DataField = 'nom_usuario'
       DataBinding.DataSource = dsUsuarios
       Style.BorderColor = clWindowFrame
       Style.BorderStyle = ebs3D
       Style.HotTrack = False
-      TabOrder = 1
+      TabOrder = 2
       Width = 434
     end
     object login: TcxDBTextEdit
       Left = 753
-      Top = 33
+      Top = 63
       Hint = 'Login do usu'#225'rio'
       DataBinding.DataField = 'des_login'
       DataBinding.DataSource = dsUsuarios
@@ -615,24 +619,24 @@ object view_Cadastro_Usuarios: Tview_Cadastro_Usuarios
       Style.BorderColor = clWindowFrame
       Style.BorderStyle = ebs3D
       Style.HotTrack = False
-      TabOrder = 2
+      TabOrder = 3
       Width = 247
     end
     object email: TcxDBTextEdit
       Left = 72
-      Top = 63
+      Top = 93
       Hint = 'E-Mail do usu'#225'rio'
       DataBinding.DataField = 'des_email'
       DataBinding.DataSource = dsUsuarios
       Style.BorderColor = clWindowFrame
       Style.BorderStyle = ebs3D
       Style.HotTrack = False
-      TabOrder = 3
+      TabOrder = 4
       Width = 618
     end
     object nivelUsuario: TcxDBImageComboBox
       Left = 735
-      Top = 63
+      Top = 93
       Hint = 'N'#237'vel do usu'#225'rio'
       DataBinding.DataField = 'cod_nivel'
       DataBinding.DataSource = dsUsuarios
@@ -655,12 +659,12 @@ object view_Cadastro_Usuarios: Tview_Cadastro_Usuarios
       Style.TransparentBorder = True
       Style.ButtonStyle = bts3D
       Style.PopupBorderStyle = epbsFrame3D
-      TabOrder = 4
+      TabOrder = 5
       Width = 139
     end
     object ativo: TcxDBCheckBox
       Left = 881
-      Top = 63
+      Top = 93
       Cursor = crHandPoint
       Hint = 'Usu'#225'rio ativo'
       Caption = 'Usu'#225'rio INATIVO'
@@ -675,7 +679,7 @@ object view_Cadastro_Usuarios: Tview_Cadastro_Usuarios
       Style.BorderStyle = ebs3D
       Style.HotTrack = False
       Style.TextColor = clRed
-      TabOrder = 5
+      TabOrder = 6
       Transparent = True
     end
     object cxButton1: TcxButton
@@ -685,7 +689,7 @@ object view_Cadastro_Usuarios: Tview_Cadastro_Usuarios
       Height = 25
       Cursor = crHandPoint
       Action = actionNovo
-      TabOrder = 7
+      TabOrder = 8
     end
     object cxButton2: TcxButton
       Left = 106
@@ -694,7 +698,7 @@ object view_Cadastro_Usuarios: Tview_Cadastro_Usuarios
       Height = 25
       Cursor = crHandPoint
       Action = actionLocalizar
-      TabOrder = 8
+      TabOrder = 9
     end
     object cxButton3: TcxButton
       Left = 198
@@ -703,7 +707,7 @@ object view_Cadastro_Usuarios: Tview_Cadastro_Usuarios
       Height = 25
       Cursor = crHandPoint
       Action = actionEditar
-      TabOrder = 9
+      TabOrder = 10
     end
     object cxButton5: TcxButton
       Left = 290
@@ -712,7 +716,7 @@ object view_Cadastro_Usuarios: Tview_Cadastro_Usuarios
       Height = 25
       Cursor = crHandPoint
       Action = actionCancelar
-      TabOrder = 10
+      TabOrder = 11
     end
     object cxButton6: TcxButton
       Left = 386
@@ -721,7 +725,7 @@ object view_Cadastro_Usuarios: Tview_Cadastro_Usuarios
       Height = 25
       Cursor = crHandPoint
       Action = actionGravar
-      TabOrder = 11
+      TabOrder = 12
     end
     object cxButton7: TcxButton
       Left = 482
@@ -729,15 +733,15 @@ object view_Cadastro_Usuarios: Tview_Cadastro_Usuarios
       Width = 111
       Height = 25
       Action = actionAlterarSenha
-      TabOrder = 12
+      TabOrder = 13
     end
     object gridAcessos: TcxGrid
       Left = 26
-      Top = 128
+      Top = 158
       Width = 974
-      Height = 304
+      Height = 274
       PopupMenu = PopupMenuGrid
-      TabOrder = 6
+      TabOrder = 7
       object gridAcessosDBTableView1: TcxGridDBTableView
         PopupMenu = PopupMenuGrid
         Navigator.Buttons.CustomButtons = <>
@@ -794,7 +798,21 @@ object view_Cadastro_Usuarios: Tview_Cadastro_Usuarios
       Height = 25
       Cursor = crHandPoint
       Action = actionFechar
-      TabOrder = 13
+      TabOrder = 14
+    end
+    object labelTitle: TcxLabel
+      Left = 12
+      Top = 12
+      Caption = 'labelTitle'
+      ParentFont = False
+      Style.Font.Charset = ANSI_CHARSET
+      Style.Font.Color = clWindowText
+      Style.Font.Height = -15
+      Style.Font.Name = 'Microsoft JhengHei UI'
+      Style.Font.Style = [fsBold]
+      Style.HotTrack = False
+      Style.IsFontAssigned = True
+      Transparent = True
     end
     object dxLayoutControl1Group_Root: TdxLayoutGroup
       AlignHorz = ahClient
@@ -809,7 +827,7 @@ object view_Cadastro_Usuarios: Tview_Cadastro_Usuarios
       CaptionOptions.Text = 'Usu'#225'rios'
       ButtonOptions.Buttons = <>
       ItemIndex = 1
-      Index = 0
+      Index = 1
     end
     object dxLayoutItem1: TdxLayoutItem
       Parent = dxLayoutGroup2
@@ -902,7 +920,7 @@ object view_Cadastro_Usuarios: Tview_Cadastro_Usuarios
       ButtonOptions.Buttons = <>
       LayoutDirection = ldHorizontal
       ShowBorder = False
-      Index = 2
+      Index = 3
     end
     object dxLayoutItem7: TdxLayoutItem
       Parent = dxLayoutGroup4
@@ -976,7 +994,7 @@ object view_Cadastro_Usuarios: Tview_Cadastro_Usuarios
       AlignVert = avClient
       CaptionOptions.Text = 'Acessos'
       ButtonOptions.Buttons = <>
-      Index = 1
+      Index = 2
     end
     object dxLayoutItem14: TdxLayoutItem
       Parent = dxLayoutGroup5
@@ -1001,6 +1019,18 @@ object view_Cadastro_Usuarios: Tview_Cadastro_Usuarios
       ControlOptions.OriginalWidth = 86
       ControlOptions.ShowBorder = False
       Index = 6
+    end
+    object dxLayoutItem15: TdxLayoutItem
+      Parent = dxLayoutControl1Group_Root
+      AlignHorz = ahClient
+      AlignVert = avTop
+      CaptionOptions.Text = 'cxLabel1'
+      CaptionOptions.Visible = False
+      Control = labelTitle
+      ControlOptions.OriginalHeight = 23
+      ControlOptions.OriginalWidth = 54
+      ControlOptions.ShowBorder = False
+      Index = 0
     end
   end
   object memTableUsuarios: TFDMemTable

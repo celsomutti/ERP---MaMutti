@@ -10,6 +10,7 @@ object view_CadastroBancos: Tview_CadastroBancos
   Font.Height = -12
   Font.Name = 'Microsoft JhengHei UI'
   Font.Style = []
+  FormStyle = fsMDIChild
   Icon.Data = {
     0000010004003030000001002000A8250000460000002020000001002000A810
     0000EE2500001818000001002000880900009636000010100000010020006804
@@ -564,6 +565,7 @@ object view_CadastroBancos: Tview_CadastroBancos
   OldCreateOrder = False
   Position = poMainFormCenter
   ShowHint = True
+  Visible = True
   OnClose = FormClose
   OnShow = FormShow
   PixelsPerInch = 96
@@ -577,10 +579,6 @@ object view_CadastroBancos: Tview_CadastroBancos
     ParentBackground = True
     TabOrder = 0
     Transparent = True
-    ExplicitLeft = 72
-    ExplicitTop = 72
-    ExplicitWidth = 300
-    ExplicitHeight = 250
     object labelTitle: TcxLabel
       Left = 12
       Top = 12

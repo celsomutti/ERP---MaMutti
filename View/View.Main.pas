@@ -7,7 +7,7 @@ uses
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, Vcl.WinXPanels, Vcl.WinXCtrls, Vcl.CategoryButtons, cxGraphics,
   cxLookAndFeels, cxLookAndFeelPainters, Vcl.Menus, dxSkinsCore, dxSkinsDefaultPainters, Vcl.StdCtrls, cxButtons, Vcl.ToolWin,
   Vcl.ActnMan, Vcl.ActnCtrls, System.Actions, Vcl.ActnList, Vcl.ButtonGroup, Vcl.Buttons, System.ImageList, Vcl.ImgList, cxImageList,
-  cxPC, dxBarBuiltInMenu, cxClasses, dxTabbedMDI, WinInet, Controller.Usuarios, Controller.Acessos;
+  cxPC, dxBarBuiltInMenu, cxClasses, dxTabbedMDI, WinInet, Controller.Usuarios, Controller.Acessos, cxControls, dxStatusBar;
 
 type
   Tview_Main = class(TForm)
@@ -142,6 +142,14 @@ type
     Usurios1: TMenuItem;
     Senha1: TMenuItem;
     N12: TMenuItem;
+    dxTabbedMDIManager1: TdxTabbedMDIManager;
+    dxStatusBar1: TdxStatusBar;
+    dxStatusBar1Container1: TdxStatusBarContainerControl;
+    Panel1: TPanel;
+    cxButton1: TcxButton;
+    cxButton2: TcxButton;
+    actionSistemaProximaTela: TAction;
+    actionSistemaTelaAnterior: TAction;
     procedure FormShow(Sender: TObject);
     procedure actionMenuExecute(Sender: TObject);
     procedure actionCadastroExecute(Sender: TObject);
@@ -159,12 +167,16 @@ type
     procedure actionSistemaAbrangenciaExpressasExecute(Sender: TObject);
     procedure actionSistemaPeriodosExtratosExecute(Sender: TObject);
     procedure actionSistemaBancosExecute(Sender: TObject);
+    procedure actionSistemaProximaTelaExecute(Sender: TObject);
+    procedure actionSistemaTelaAnteriorExecute(Sender: TObject);
   private
     { Private declarations }
     procedure InitForm;
     procedure ResizeMainForm;
     procedure OpenCloseMenu;
     procedure Acessos;
+    procedure PriorForm;
+    procedure NextForm;
     function  Login(): Boolean;
     function  VerificarExisteConexaoComInternet: boolean;
     function  VerifyParamsConnection(): Boolean;
@@ -307,9 +319,19 @@ begin
   view_ParametrosPrazosExtratos.Show;
 end;
 
+procedure Tview_Main.actionSistemaProximaTelaExecute(Sender: TObject);
+begin
+  NextForm;
+end;
+
 procedure Tview_Main.actionSistemaSenhaExecute(Sender: TObject);
 begin
   AlterPwd;
+end;
+
+procedure Tview_Main.actionSistemaTelaAnteriorExecute(Sender: TObject);
+begin
+  PriorForm;
 end;
 
 procedure Tview_Main.actionSistemaUsuariosExecute(Sender: TObject);
@@ -459,6 +481,15 @@ begin
   FreeAndNil(view_Login);
 end;
 
+procedure Tview_Main.NextForm;
+begin
+  if Screen.Forms[0].MDIChildCount = 0 then
+  begin
+    Exit;
+  end;
+  Screen.Forms[0].Next;
+end;
+
 procedure Tview_Main.OpenCloseMenu;
 begin
   if splitViewMain.Opened then
@@ -471,6 +502,15 @@ begin
     splitViewMain.Open;
     actionMenu.ImageIndex := 9;
   end;
+end;
+
+procedure Tview_Main.PriorForm;
+begin
+  if Screen.Forms[0].MDIChildCount = 0 then
+  begin
+    Exit;
+  end;
+  Screen.Forms[0].Previous;
 end;
 
 procedure Tview_Main.ResizeMainForm;

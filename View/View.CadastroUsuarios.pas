@@ -92,6 +92,8 @@ type
     actionFechar: TAction;
     cxButton4: TcxButton;
     dxLayoutItem10: TdxLayoutItem;
+    labelTitle: TcxLabel;
+    dxLayoutItem15: TdxLayoutItem;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure actionNovoExecute(Sender: TObject);
     procedure actionGravarExecute(Sender: TObject);
@@ -108,6 +110,7 @@ type
     procedure actionMarcarTodosExecute(Sender: TObject);
     procedure actionDesmarcarTodosExecute(Sender: TObject);
     procedure actionFecharExecute(Sender: TObject);
+    procedure FormShow(Sender: TObject);
   private
     { Private declarations }
     procedure SearchUser;
@@ -120,6 +123,7 @@ type
     procedure ChangePwd;
     procedure PopulateMenus;
     procedure MarkAllAccess(iflag: integer);
+    procedure StartForm;
   public
     { Public declarations }
   end;
@@ -356,6 +360,11 @@ begin
     Key := #0;
     Perform(Wm_NextDlgCtl, 0, 0);
   end;
+end;
+
+procedure Tview_Cadastro_Usuarios.FormShow(Sender: TObject);
+begin
+  StartForm;
 end;
 
 procedure Tview_Cadastro_Usuarios.MarkAllAccess(iflag: integer);
@@ -628,6 +637,11 @@ begin
     usuarios.Free;
   end;
   FreeAndNil(view_PesquisaPessoasUsuarios);
+end;
+
+procedure Tview_Cadastro_Usuarios.StartForm;
+begin
+  labelTitle.Caption := Self.Caption;
 end;
 
 function Tview_Cadastro_Usuarios.ValidateUser: boolean;

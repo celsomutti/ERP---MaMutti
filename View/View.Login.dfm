@@ -684,13 +684,15 @@ object view_Login: Tview_Login
       Top = 10
       Width = 84
       Height = 233
+      BevelOuter = bvNone
       Caption = 'Panel1'
+      Color = clWhite
       ParentBackground = False
       ShowCaption = False
       TabOrder = 0
       object cxImage1: TcxImage
-        Left = 1
-        Top = 1
+        Left = 0
+        Top = 0
         TabStop = False
         Align = alTop
         Picture.Data = {
@@ -762,7 +764,7 @@ object view_Login: Tview_Login
         TabOrder = 0
         Transparent = True
         Height = 80
-        Width = 82
+        Width = 84
       end
       object labelVersion: TcxLabel
         Left = 17

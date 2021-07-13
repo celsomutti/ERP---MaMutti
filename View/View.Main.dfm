@@ -22,19 +22,20 @@ object view_Main: Tview_Main
   object splitViewMain: TSplitView
     Left = 0
     Top = 0
-    Width = 40
-    Height = 461
+    Width = 35
+    Height = 432
     BevelEdges = []
     CloseStyle = svcCompact
-    CompactWidth = 40
+    CompactWidth = 35
     Opened = False
     OpenedWidth = 120
     Placement = svpLeft
     TabOrder = 0
+    ExplicitHeight = 461
     object buttonMenu: TcxButton
       Left = 0
       Top = 0
-      Width = 40
+      Width = 35
       Height = 36
       Cursor = crHandPoint
       Align = alTop
@@ -44,11 +45,12 @@ object view_Main: Tview_Main
       SpeedButtonOptions.Flat = True
       SpeedButtonOptions.Transparent = True
       TabOrder = 0
+      ExplicitWidth = 40
     end
     object buttonCadastro: TcxButton
       Left = 0
       Top = 36
-      Width = 40
+      Width = 35
       Height = 36
       Cursor = crHandPoint
       Align = alTop
@@ -58,11 +60,12 @@ object view_Main: Tview_Main
       SpeedButtonOptions.Flat = True
       SpeedButtonOptions.Transparent = True
       TabOrder = 1
+      ExplicitWidth = 40
     end
     object buttonExpressas: TcxButton
       Left = 0
       Top = 72
-      Width = 40
+      Width = 35
       Height = 36
       Cursor = crHandPoint
       Align = alTop
@@ -72,11 +75,12 @@ object view_Main: Tview_Main
       SpeedButtonOptions.Flat = True
       SpeedButtonOptions.Transparent = True
       TabOrder = 2
+      ExplicitWidth = 40
     end
     object buttonPeriodico: TcxButton
       Left = 0
       Top = 108
-      Width = 40
+      Width = 35
       Height = 36
       Cursor = crHandPoint
       Align = alTop
@@ -86,11 +90,12 @@ object view_Main: Tview_Main
       SpeedButtonOptions.Flat = True
       SpeedButtonOptions.Transparent = True
       TabOrder = 3
+      ExplicitWidth = 40
     end
     object buttonServicos: TcxButton
       Left = 0
       Top = 144
-      Width = 40
+      Width = 35
       Height = 36
       Cursor = crHandPoint
       Align = alTop
@@ -100,11 +105,12 @@ object view_Main: Tview_Main
       SpeedButtonOptions.Flat = True
       SpeedButtonOptions.Transparent = True
       TabOrder = 4
+      ExplicitWidth = 40
     end
     object buttonTransportes: TcxButton
       Left = 0
       Top = 180
-      Width = 40
+      Width = 35
       Height = 36
       Cursor = crHandPoint
       Align = alTop
@@ -114,11 +120,12 @@ object view_Main: Tview_Main
       SpeedButtonOptions.Flat = True
       SpeedButtonOptions.Transparent = True
       TabOrder = 5
+      ExplicitWidth = 40
     end
     object buttonFinanceiro: TcxButton
       Left = 0
       Top = 216
-      Width = 40
+      Width = 35
       Height = 36
       Cursor = crHandPoint
       Align = alTop
@@ -128,11 +135,12 @@ object view_Main: Tview_Main
       SpeedButtonOptions.Flat = True
       SpeedButtonOptions.Transparent = True
       TabOrder = 6
+      ExplicitWidth = 40
     end
     object buttonSistema: TcxButton
       Left = 0
       Top = 252
-      Width = 40
+      Width = 35
       Height = 36
       Cursor = crHandPoint
       Align = alTop
@@ -142,11 +150,12 @@ object view_Main: Tview_Main
       SpeedButtonOptions.Flat = True
       SpeedButtonOptions.Transparent = True
       TabOrder = 7
+      ExplicitWidth = 40
     end
     object buttonSair: TcxButton
       Left = 0
-      Top = 425
-      Width = 40
+      Top = 396
+      Width = 35
       Height = 36
       Cursor = crHandPoint
       Align = alBottom
@@ -156,6 +165,88 @@ object view_Main: Tview_Main
       SpeedButtonOptions.Flat = True
       SpeedButtonOptions.Transparent = True
       TabOrder = 8
+      ExplicitTop = 425
+      ExplicitWidth = 40
+    end
+  end
+  object dxStatusBar1: TdxStatusBar
+    Left = 0
+    Top = 432
+    Width = 757
+    Height = 29
+    Panels = <
+      item
+        PanelStyleClassName = 'TdxStatusBarTextPanelStyle'
+        Bevel = dxpbNone
+        Fixed = False
+      end
+      item
+        PanelStyleClassName = 'TdxStatusBarContainerPanelStyle'
+        PanelStyle.Container = dxStatusBar1Container1
+        Bevel = dxpbNone
+        MinWidth = 100
+        Width = 100
+      end>
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -11
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    Color = clWhite
+    object dxStatusBar1Container1: TdxStatusBarContainerControl
+      Left = 639
+      Top = 2
+      Width = 102
+      Height = 27
+      object Panel1: TPanel
+        Left = 0
+        Top = 0
+        Width = 102
+        Height = 27
+        Align = alClient
+        BevelOuter = bvNone
+        Caption = 'Panel1'
+        Color = clWhite
+        ParentBackground = False
+        ShowCaption = False
+        TabOrder = 0
+        ExplicitLeft = 16
+        ExplicitTop = 3
+        ExplicitWidth = 225
+        ExplicitHeight = 54
+        object cxButton1: TcxButton
+          Left = 69
+          Top = 0
+          Width = 33
+          Height = 27
+          Cursor = crHandPoint
+          Align = alRight
+          Action = actionSistemaProximaTela
+          OptionsImage.ImageIndex = 36
+          OptionsImage.Images = dm.imageList16_16
+          PaintStyle = bpsGlyph
+          TabOrder = 0
+          ExplicitLeft = 64
+          ExplicitTop = 1
+          ExplicitHeight = 21
+        end
+        object cxButton2: TcxButton
+          Left = 37
+          Top = 0
+          Width = 32
+          Height = 27
+          Cursor = crHandPoint
+          Align = alRight
+          Action = actionSistemaTelaAnterior
+          OptionsImage.ImageIndex = 35
+          OptionsImage.Images = dm.imageList16_16
+          PaintStyle = bpsGlyph
+          TabOrder = 1
+          ExplicitLeft = 1
+          ExplicitTop = 8
+          ExplicitHeight = 22
+        end
+      end
     end
   end
   object actionListMain: TActionList
@@ -492,6 +583,20 @@ object view_Main: Tview_Main
       Caption = '&Per'#237'odos'
       Hint = 'Configura'#231#227'o dos per'#237'odos de extrato'
       OnExecute = actionSistemaPeriodosExtratosExecute
+    end
+    object actionSistemaProximaTela: TAction
+      Category = 'Sistema'
+      Caption = 'Pr'#243'xima'
+      Hint = 'Pr'#243'xima tela'
+      ShortCut = 16505
+      OnExecute = actionSistemaProximaTelaExecute
+    end
+    object actionSistemaTelaAnterior: TAction
+      Category = 'Sistema'
+      Caption = 'Anterior'
+      Hint = 'Tela anterior'
+      ShortCut = 16504
+      OnExecute = actionSistemaTelaAnteriorExecute
     end
   end
   object popupMenuCadastrado: TPopupMenu
@@ -1243,5 +1348,15 @@ object view_Main: Tview_Main
         Action = actionSistemaPeriodosExtratos
       end
     end
+  end
+  object dxTabbedMDIManager1: TdxTabbedMDIManager
+    Active = True
+    FormCaptionMask = ' [MainFormCaption]'
+    TabProperties.CustomButtons.Buttons = <>
+    TabProperties.CustomButtons.Mode = cbmActiveTab
+    TabProperties.Style = 8
+    Left = 624
+    Top = 192
+    PixelsPerInch = 96
   end
 end

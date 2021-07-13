@@ -1,6 +1,7 @@
 object view_CadastroAbrangenciaExpressas: Tview_CadastroAbrangenciaExpressas
   Left = 0
   Top = 0
+  BorderStyle = bsNone
   Caption = 'Cadastro de Abrang'#234'ncia de Expressas'
   ClientHeight = 458
   ClientWidth = 1101
@@ -10,6 +11,7 @@ object view_CadastroAbrangenciaExpressas: Tview_CadastroAbrangenciaExpressas
   Font.Height = -12
   Font.Name = 'Microsoft JhengHei UI'
   Font.Style = []
+  FormStyle = fsMDIChild
   Icon.Data = {
     0000010004003030000001002000A8250000460000002020000001002000A810
     0000EE2500001818000001002000880900009636000010100000010020006804
@@ -564,6 +566,7 @@ object view_CadastroAbrangenciaExpressas: Tview_CadastroAbrangenciaExpressas
   OldCreateOrder = False
   Position = poMainFormCenter
   ShowHint = True
+  Visible = True
   OnClose = FormClose
   OnCloseQuery = FormCloseQuery
   OnShow = FormShow
@@ -578,8 +581,6 @@ object view_CadastroAbrangenciaExpressas: Tview_CadastroAbrangenciaExpressas
     ParentBackground = True
     TabOrder = 0
     Transparent = True
-    ExplicitWidth = 1173
-    ExplicitHeight = 491
     object labelTitle: TcxLabel
       Left = 12
       Top = 12
