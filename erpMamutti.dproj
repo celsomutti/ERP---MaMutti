@@ -172,6 +172,10 @@
             <Form>view_CadastroBancos</Form>
             <FormType>dfm</FormType>
         </DCCReference>
+        <DCCReference Include="Model\Model.TiposConta.pas"/>
+        <DCCReference Include="Controller\Controller.TiposContas.pas"/>
+        <DCCReference Include="Model\Model.FormasCreditos.pas"/>
+        <DCCReference Include="Controller\Controller.FormasCreditos.pas"/>
         <None Include="ModelSupport_erpMamutti\default.txaPackage"/>
         <None Include="ModelSupport_erpMamutti\default.txvpck"/>
         <None Include="ModelSupport_erpMamutti\erpMamutti\default.txvpck"/>

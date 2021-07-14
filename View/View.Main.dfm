@@ -31,7 +31,6 @@ object view_Main: Tview_Main
     OpenedWidth = 120
     Placement = svpLeft
     TabOrder = 0
-    ExplicitHeight = 461
     object buttonMenu: TcxButton
       Left = 0
       Top = 0
@@ -45,7 +44,6 @@ object view_Main: Tview_Main
       SpeedButtonOptions.Flat = True
       SpeedButtonOptions.Transparent = True
       TabOrder = 0
-      ExplicitWidth = 40
     end
     object buttonCadastro: TcxButton
       Left = 0
@@ -60,7 +58,6 @@ object view_Main: Tview_Main
       SpeedButtonOptions.Flat = True
       SpeedButtonOptions.Transparent = True
       TabOrder = 1
-      ExplicitWidth = 40
     end
     object buttonExpressas: TcxButton
       Left = 0
@@ -75,7 +72,6 @@ object view_Main: Tview_Main
       SpeedButtonOptions.Flat = True
       SpeedButtonOptions.Transparent = True
       TabOrder = 2
-      ExplicitWidth = 40
     end
     object buttonPeriodico: TcxButton
       Left = 0
@@ -90,7 +86,6 @@ object view_Main: Tview_Main
       SpeedButtonOptions.Flat = True
       SpeedButtonOptions.Transparent = True
       TabOrder = 3
-      ExplicitWidth = 40
     end
     object buttonServicos: TcxButton
       Left = 0
@@ -105,7 +100,6 @@ object view_Main: Tview_Main
       SpeedButtonOptions.Flat = True
       SpeedButtonOptions.Transparent = True
       TabOrder = 4
-      ExplicitWidth = 40
     end
     object buttonTransportes: TcxButton
       Left = 0
@@ -120,7 +114,6 @@ object view_Main: Tview_Main
       SpeedButtonOptions.Flat = True
       SpeedButtonOptions.Transparent = True
       TabOrder = 5
-      ExplicitWidth = 40
     end
     object buttonFinanceiro: TcxButton
       Left = 0
@@ -135,7 +128,6 @@ object view_Main: Tview_Main
       SpeedButtonOptions.Flat = True
       SpeedButtonOptions.Transparent = True
       TabOrder = 6
-      ExplicitWidth = 40
     end
     object buttonSistema: TcxButton
       Left = 0
@@ -150,7 +142,6 @@ object view_Main: Tview_Main
       SpeedButtonOptions.Flat = True
       SpeedButtonOptions.Transparent = True
       TabOrder = 7
-      ExplicitWidth = 40
     end
     object buttonSair: TcxButton
       Left = 0
@@ -165,8 +156,6 @@ object view_Main: Tview_Main
       SpeedButtonOptions.Flat = True
       SpeedButtonOptions.Transparent = True
       TabOrder = 8
-      ExplicitTop = 425
-      ExplicitWidth = 40
     end
   end
   object dxStatusBar1: TdxStatusBar
@@ -210,10 +199,6 @@ object view_Main: Tview_Main
         ParentBackground = False
         ShowCaption = False
         TabOrder = 0
-        ExplicitLeft = 16
-        ExplicitTop = 3
-        ExplicitWidth = 225
-        ExplicitHeight = 54
         object cxButton1: TcxButton
           Left = 69
           Top = 0
@@ -226,9 +211,6 @@ object view_Main: Tview_Main
           OptionsImage.Images = dm.imageList16_16
           PaintStyle = bpsGlyph
           TabOrder = 0
-          ExplicitLeft = 64
-          ExplicitTop = 1
-          ExplicitHeight = 21
         end
         object cxButton2: TcxButton
           Left = 37
@@ -242,9 +224,6 @@ object view_Main: Tview_Main
           OptionsImage.Images = dm.imageList16_16
           PaintStyle = bpsGlyph
           TabOrder = 1
-          ExplicitLeft = 1
-          ExplicitTop = 8
-          ExplicitHeight = 22
         end
       end
     end

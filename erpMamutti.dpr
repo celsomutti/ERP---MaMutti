@@ -38,7 +38,11 @@ uses
   View.ParametrosPrazosExtratos in 'View\View.ParametrosPrazosExtratos.pas' {view_ParametrosPrazosExtratos},
   Model.Bancos in 'Model\Model.Bancos.pas',
   Controller.Bancos in 'Controller\Controller.Bancos.pas',
-  View.CadastroBancos in 'View\View.CadastroBancos.pas' {view_CadastroBancos};
+  View.CadastroBancos in 'View\View.CadastroBancos.pas' {view_CadastroBancos},
+  Model.TiposConta in 'Model\Model.TiposConta.pas',
+  Controller.TiposContas in 'Controller\Controller.TiposContas.pas',
+  Model.FormasCreditos in 'Model\Model.FormasCreditos.pas',
+  Controller.FormasCreditos in 'Controller\Controller.FormasCreditos.pas';
 
 {$R *.res}
 

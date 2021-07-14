@@ -82,12 +82,13 @@ begin
   try
     Result := False;
     FDQuery := FConexao.ReturnQuery();
-    FDQuery.ExecSQL(SQLDELETE, [Codigo]);
+    FDQuery.ExecSQL(SQLDELETE, [FCodigo]);
     Result := True;
   finally
     FDQuery.Connection.Close;
     FDquery.Free;
-  end;end;
+  end;
+end;
 
 function TBancos.GetField(sField, sKey, sKeyValue: String): String;
 var
