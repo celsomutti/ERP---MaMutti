@@ -9,7 +9,7 @@ object view_Login: Tview_Login
   Color = clWhite
   Font.Charset = ANSI_CHARSET
   Font.Color = clWindowText
-  Font.Height = -11
+  Font.Height = -12
   Font.Name = 'Microsoft JhengHei UI'
   Font.Style = []
   Icon.Data = {
@@ -569,7 +569,7 @@ object view_Login: Tview_Login
   OnKeyPress = FormKeyPress
   OnShow = FormShow
   PixelsPerInch = 96
-  TextHeight = 14
+  TextHeight = 15
   object layoutControlLogin: TdxLayoutControl
     Left = 0
     Top = 0
@@ -580,28 +580,28 @@ object view_Login: Tview_Login
     TabOrder = 0
     Transparent = True
     object textEditUsuario: TcxTextEdit
-      Left = 144
-      Top = 53
+      Left = 149
+      Top = 59
       Properties.CharCase = ecLowerCase
       Style.BorderColor = clWindowFrame
       Style.BorderStyle = ebs3D
       Style.HotTrack = False
       TabOrder = 1
-      Width = 324
+      Width = 315
     end
     object textEditSenha: TcxTextEdit
-      Left = 144
-      Top = 120
+      Left = 149
+      Top = 130
       Properties.EchoMode = eemPassword
       Style.BorderColor = clWindowFrame
       Style.BorderStyle = ebs3D
       Style.HotTrack = False
       TabOrder = 2
-      Width = 324
+      Width = 315
     end
     object buttonLogar: TcxButton
-      Left = 144
-      Top = 204
+      Left = 149
+      Top = 200
       Width = 81
       Height = 25
       Cursor = crHandPoint
@@ -609,8 +609,8 @@ object view_Login: Tview_Login
       TabOrder = 3
     end
     object buttonCancelar: TcxButton
-      Left = 388
-      Top = 204
+      Left = 384
+      Top = 200
       Width = 80
       Height = 25
       Cursor = crHandPoint
@@ -680,13 +680,12 @@ object view_Login: Tview_Login
       Visible = False
     end
     object Panel1: TPanel
-      Left = 10
-      Top = 10
+      Left = 12
+      Top = 12
       Width = 84
-      Height = 233
+      Height = 229
       BevelOuter = bvNone
       Caption = 'Panel1'
-      Color = clWhite
       ParentBackground = False
       ShowCaption = False
       TabOrder = 0
@@ -803,7 +802,7 @@ object view_Login: Tview_Login
       Padding.Top = 10
       Padding.AssignedValues = [lpavBottom, lpavLeft, lpavRight, lpavTop]
       Control = textEditUsuario
-      ControlOptions.OriginalHeight = 22
+      ControlOptions.OriginalHeight = 23
       ControlOptions.OriginalWidth = 121
       ControlOptions.ShowBorder = False
       Index = 0
@@ -818,7 +817,7 @@ object view_Login: Tview_Login
       Padding.Top = 10
       Padding.AssignedValues = [lpavBottom, lpavLeft, lpavRight, lpavTop]
       Control = textEditSenha
-      ControlOptions.OriginalHeight = 22
+      ControlOptions.OriginalHeight = 23
       ControlOptions.OriginalWidth = 121
       ControlOptions.ShowBorder = False
       Index = 1

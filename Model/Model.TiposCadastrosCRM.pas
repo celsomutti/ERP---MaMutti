@@ -1,11 +1,11 @@
-unit Model.TiposConta;
+unit Model.TiposCadastrosCRM;
 
 interface
 
 uses Common.ENum, FireDAC.Comp.Client, DAO.Conexao, System.SysUtils, System.Variants;
 
 type
-  TTiposConta = class
+  TTiposCadastrosCRM = class
   private
     FDescricao              : string;
     FCodigo                 : integer;
@@ -33,21 +33,21 @@ type
   end;
 
   const
-    TABLENAME = 'sistema_financeiro_tipos_conta';
-    SQLSELECT = 'select cod_tipo_conta, des_tipo_conta from ' +
+    TABLENAME = 'sistema_cadastro_tipos_cadastro';
+    SQLSELECT = 'select cod_tipo_cadastro, des_tipo_cadastro from ' +
                 TABLENAME;
-    SQLINSERT = 'insert into ' + TABLENAME + ' (cod_tipo_conta, des_tipo_conta) ' +
-                'values (:cod_tipo_conta, :des_tipo_conta);';
-    SQLUPDATE = 'update ' + TABLENAME + ' set des_tipo_conta = :des_tipo_conta ' +
-                'where cod_tipo_conta = :cod_tipo_conta';
+    SQLINSERT = 'insert into ' + TABLENAME + ' (cod_tipo_cadastro, des_tipo_cadastro) ' +
+                'values (:cod_tipo_cadastro, :des_tipo_cadastro);';
+    SQLUPDATE = 'update ' + TABLENAME + ' set des_tipo_cadastro = :des_tipo_cadastro ' +
+                'where cod_tipo_cadastro = :cod_tipo_cadastro';
     SQLDELETE = 'delete from ' + TABLENAME +
-                'where cod_tipo_conta = :cod_tipo_conta';
+                'where cod_tipo_cadastro = :cod_tipo_cadastro';
 
 implementation
 
-{ TTiposConta }
+{ TTiposCadastrosCRM }
 
-function TTiposConta.Alterar: Boolean;
+function TTiposCadastrosCRM.Alterar: Boolean;
 var
   FDQuery: TFDQuery;
 begin
@@ -62,12 +62,12 @@ begin
   end;
 end;
 
-constructor TTiposConta.Create;
+constructor TTiposCadastrosCRM.Create;
 begin
   FConexao := TConexao.Create;
 end;
 
-function TTiposConta.Excluir: Boolean;
+function TTiposCadastrosCRM.Excluir: Boolean;
 var
   FDQuery: TFDQuery;
 begin
@@ -82,7 +82,7 @@ begin
   end;
 end;
 
-function TTiposConta.GetField(sField, sKey, sKeyValue: String): String;
+function TTiposCadastrosCRM.GetField(sField, sKey, sKeyValue: String): String;
 var
   FDQuery: TFDQuery;
 begin
@@ -97,7 +97,7 @@ begin
   end;
 end;
 
-function TTiposConta.Gravar: Boolean;
+function TTiposCadastrosCRM.Gravar: Boolean;
 begin
   Result := False;
   case FAcao of
@@ -107,7 +107,7 @@ begin
   end;
 end;
 
-function TTiposConta.Inserir: Boolean;
+function TTiposCadastrosCRM.Inserir: Boolean;
 var
   FDQuery: TFDQuery;
 begin
@@ -122,7 +122,7 @@ begin
   end;
 end;
 
-function TTiposConta.Localizar(aParam: array of variant): Boolean;
+function TTiposCadastrosCRM.Localizar(aParam: array of variant): Boolean;
 begin
   Result := False;
   FQuery := FConexao.ReturnQuery();
@@ -132,13 +132,13 @@ begin
   FQuery.SQL.Add('select * from ' + TABLENAME);
   if aParam[0] = 'CODIGO' then
   begin
-    FQuery.SQL.Add('where cod_tipo_conta = :cod_tipo_conta');
-    FQuery.ParamByName('cod_tipo_conta').AsInteger := aParam[1];
+    FQuery.SQL.Add('where cod_tipo_cadastro = :cod_tipo_cadastro');
+    FQuery.ParamByName('cod_tipo_cadastro').AsInteger := aParam[1];
   end
   else if aParam[0] = 'DESCRICAO' then
   begin
-    FQuery.SQL.Add('where des_tipo_conta like :des_tipo_conta');
-    FQuery.ParamByName('des_tipo_conta').AsString := aParam[1];
+    FQuery.SQL.Add('where des_tipo_cadastro like :des_tipo_cadastro');
+    FQuery.ParamByName('des_tipo_cadastro').AsString := aParam[1];
   end
   else if aParam[0] = 'FILTRO' then
   begin
@@ -159,10 +159,10 @@ begin
   Result := True;
 end;
 
-function TTiposConta.SetupModel(FDQuery: TFDQuery): Boolean;
+function TTiposCadastrosCRM.SetupModel(FDQuery: TFDQuery): Boolean;
 begin
-  FCodigo                 :=  FDQuery.FieldByName('cod_tipo_conta').AsInteger;
-  FDescricao              :=  FDQuery.FieldByName('des_tipo_conta').AsString;
+  FCodigo                 :=  FDQuery.FieldByName('cod_tipo_cadastro').AsInteger;
+  FDescricao              :=  FDQuery.FieldByName('des_tipo_cadastro').AsString;
 end;
 
 end.

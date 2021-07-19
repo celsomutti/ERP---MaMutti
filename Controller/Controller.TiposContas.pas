@@ -2,16 +2,16 @@ unit Controller.TiposContas;
 
 interface
 
-uses System.SysUtils, FireDAC.Comp.Client, Forms, Windows, Common.ENum, Common.Utils, Model.FormasCreditos;
+uses System.SysUtils, FireDAC.Comp.Client, Forms, Windows, Common.ENum, Common.Utils, Model.TiposConta;
 
 type
   TTiposContaController = class
   private
-    FTipos : TFormasCreditos;
+    FTipos : TTiposConta;
   public
     constructor Create();
     destructor Destroy(); override;
-    property Formas: TFormasCreditos read FTipos write FTipos;
+    property Tipos: TTiposConta read FTipos write FTipos;
     function Localizar(aParam: array of variant): boolean;
     function Gravar(): Boolean;
     function SetupModal(FDQuery: TFDQuery): Boolean;
@@ -24,7 +24,7 @@ implementation
 
 constructor TTiposContaController.Create;
 begin
-  FTipos := TFormasCreditos.Create;
+  FTipos := TTiposConta.Create;
 end;
 
 destructor TTiposContaController.Destroy;

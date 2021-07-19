@@ -577,6 +577,23 @@ object view_Main: Tview_Main
       ShortCut = 16504
       OnExecute = actionSistemaTelaAnteriorExecute
     end
+    object actionFormasCredito: TAction
+      Category = 'Sistema'
+      Caption = '&Formas de Cr'#233'dito'
+      Hint = 'Cadastro de formas de cr'#233'dito'
+    end
+    object actionTiposContas: TAction
+      Category = 'Sistema'
+      Caption = 'T&ipos de Contas'
+      Hint = 'Tipos de Contas Banc'#225'rias'
+      OnExecute = actionTiposContasExecute
+    end
+    object actionTiposCadastros: TAction
+      Category = 'Sistema'
+      Caption = 'Tip&os de Cadastros'
+      Hint = 'Tipos de Cadastros CRM'
+      OnExecute = actionTiposCadastrosExecute
+    end
   end
   object popupMenuCadastrado: TPopupMenu
     AutoPopup = False
@@ -1325,6 +1342,21 @@ object view_Main: Tview_Main
       end
       object Perodos1: TMenuItem
         Action = actionSistemaPeriodosExtratos
+      end
+      object FormasdeCrdito1: TMenuItem
+        Action = actionFormasCredito
+      end
+      object iposdeContas1: TMenuItem
+        Action = actionTiposContas
+      end
+    end
+    object N15: TMenuItem
+      Caption = '-'
+    end
+    object Cadastros1: TMenuItem
+      Caption = 'C&adastros'
+      object iposdeCadastros1: TMenuItem
+        Action = actionTiposCadastros
       end
     end
   end

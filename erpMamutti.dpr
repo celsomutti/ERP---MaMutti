@@ -39,10 +39,14 @@ uses
   Model.Bancos in 'Model\Model.Bancos.pas',
   Controller.Bancos in 'Controller\Controller.Bancos.pas',
   View.CadastroBancos in 'View\View.CadastroBancos.pas' {view_CadastroBancos},
-  Model.TiposConta in 'Model\Model.TiposConta.pas',
-  Controller.TiposContas in 'Controller\Controller.TiposContas.pas',
+  Model.TiposCadastrosCRM in 'Model\Model.TiposCadastrosCRM.pas',
+  Controller.TiposCadastrosCRM in 'Controller\Controller.TiposCadastrosCRM.pas',
   Model.FormasCreditos in 'Model\Model.FormasCreditos.pas',
-  Controller.FormasCreditos in 'Controller\Controller.FormasCreditos.pas';
+  Controller.FormasCreditos in 'Controller\Controller.FormasCreditos.pas',
+  View.TiposCadastroPessoa in 'View\View.TiposCadastroPessoa.pas' {view_TiposCadastroPessoa},
+  View.TiposContaBancaria in 'View\View.TiposContaBancaria.pas' {view_TiposConta},
+  Model.TiposConta in 'Model\Model.TiposConta.pas',
+  Controller.TiposContas in 'Controller\Controller.TiposContas.pas';
 
 {$R *.res}
 

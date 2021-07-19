@@ -150,6 +150,14 @@ type
     cxButton2: TcxButton;
     actionSistemaProximaTela: TAction;
     actionSistemaTelaAnterior: TAction;
+    actionFormasCredito: TAction;
+    N15: TMenuItem;
+    FormasdeCrdito1: TMenuItem;
+    actionTiposContas: TAction;
+    iposdeContas1: TMenuItem;
+    actionTiposCadastros: TAction;
+    Cadastros1: TMenuItem;
+    iposdeCadastros1: TMenuItem;
     procedure FormShow(Sender: TObject);
     procedure actionMenuExecute(Sender: TObject);
     procedure actionCadastroExecute(Sender: TObject);
@@ -169,6 +177,8 @@ type
     procedure actionSistemaBancosExecute(Sender: TObject);
     procedure actionSistemaProximaTelaExecute(Sender: TObject);
     procedure actionSistemaTelaAnteriorExecute(Sender: TObject);
+    procedure actionTiposContasExecute(Sender: TObject);
+    procedure actionTiposCadastrosExecute(Sender: TObject);
   private
     { Private declarations }
     procedure InitForm;
@@ -194,7 +204,8 @@ implementation
 {$R *.dfm}
 
 uses Data.Module, View.Login, Global.Parametros, Common.Utils, View.CadastroUsuarios, View.SetupConnDB, View.ConfirmaSenha,
-  View.CadastroAbrangenciaExpressas, View.ParametrosPrazosExtratos, View.CadastroBancos;
+  View.CadastroAbrangenciaExpressas, View.ParametrosPrazosExtratos, View.CadastroBancos, View.TiposContaBancaria,
+  View.TiposCadastroPessoa;
 
 { Tview_Main }
 
@@ -346,6 +357,24 @@ end;
 procedure Tview_Main.actionConfiguracoesExecute(Sender: TObject);
 begin
   popupMenuSistema.Popup(splitViewMain.Width, buttonMenu.Height * 8);
+end;
+
+procedure Tview_Main.actionTiposCadastrosExecute(Sender: TObject);
+begin
+  if not Assigned(view_TiposCadastroPessoa) then
+  begin
+    view_TiposCadastroPessoa := Tview_TiposCadastroPessoa.Create(Application);
+  end;
+  view_TiposCadastroPessoa.Show;
+end;
+
+procedure Tview_Main.actionTiposContasExecute(Sender: TObject);
+begin
+  if not Assigned(view_TiposConta) then
+  begin
+    view_TiposConta := Tview_TiposConta.Create(Application);
+  end;
+  view_TiposConta.Show;
 end;
 
 procedure Tview_Main.actionTransporteExecute(Sender: TObject);

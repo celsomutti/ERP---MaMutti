@@ -7,7 +7,8 @@ uses
   FireDAC.VCLUI.Error, FireDAC.Stan.Error, FireDAC.VCLUI.Wait, FireDAC.VCLUI.Login, FireDAC.Comp.UI, FireDAC.Stan.Intf,
   FireDAC.Stan.Option, FireDAC.Phys.Intf, FireDAC.Stan.Def, FireDAC.Stan.Pool, FireDAC.Stan.Async, FireDAC.Phys, FireDAC.Phys.MySQL,
   FireDAC.Phys.MySQLDef, Data.DB, FireDAC.Comp.Client, Dialogs, FireDAC.FMXUI.Error, FireDAC.Stan.Param, FireDAC.DatS,
-  FireDAC.DApt.Intf, FireDAC.Comp.DataSet, dxSkinsCore, dxSkinsDefaultPainters, cxClasses, cxLookAndFeels, dxSkinsForm;
+  FireDAC.DApt.Intf, FireDAC.Comp.DataSet, dxSkinsCore, dxSkinsDefaultPainters, cxClasses, cxLookAndFeels, dxSkinsForm,
+  cxLookAndFeelPainters, dxAlertWindow;
 
 type
   Tdm = class(TDataModule)
@@ -37,6 +38,7 @@ type
     mtbRoteirosExpressascod_pesado: TIntegerField;
     mtbRoteirosExpressasdom_check: TSmallintField;
     cxLookAndFeelController: TcxLookAndFeelController;
+    AlertWindowManager: TdxAlertWindowManager;
     procedure FDConnectionMySQLAfterConnect(Sender: TObject);
   private
     { Private declarations }
