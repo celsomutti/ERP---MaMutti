@@ -99,6 +99,8 @@ procedure Tview_ParametrosPrazosExtratos.FormShow(Sender: TObject);
 begin
   labelTitle.Caption := Self.Caption;
   FPrazos := TFinanceiroPrazosExtratosController.Create;
+  if Self.FormStyle = fsMDIChild then
+    sELF.BorderStyle := bsNone;
   PopulateData;
 end;
 
@@ -131,7 +133,10 @@ begin
       Abort;
   end
   else
-    Application.MessageBox('Alteração gravada.', 'Gravar', MB_OK + MB_ICONINFORMATION);
+  begin
+    dm.AlertWindowManager.OptionsBehavior.DisplayTime := 3000;
+    dm.AlertWindowManager.Show('Gravando', 'Dados salvos com sucesso!',37);
+  end;
 end;
 
 procedure Tview_ParametrosPrazosExtratos.memTableParametrosBeforeDelete(DataSet: TDataSet);

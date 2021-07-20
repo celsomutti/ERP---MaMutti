@@ -326,11 +326,11 @@ object view_Main: Tview_Main
       Caption = '&Fornecedores'
       Hint = 'Cadastro de Fornecedores'
     end
-    object actionCadastroPessoas: TAction
+    object actionCadastroTerceiros: TAction
       Tag = 101030
       Category = 'Cadastro'
-      Caption = '&Pessoas'
-      Hint = 'Cadastro de pessoas'
+      Caption = '&Terceiros'
+      Hint = 'Cadastro de pessoas terceirizadas'
     end
     object actionCadastroCandidatos: TAction
       Tag = 101060
@@ -611,7 +611,7 @@ object view_Main: Tview_Main
       Action = actionCadastroFornecedores
     end
     object menuCadastroContratados: TMenuItem
-      Action = actionCadastroPessoas
+      Action = actionCadastroTerceiros
     end
     object N1: TMenuItem
       Caption = '-'

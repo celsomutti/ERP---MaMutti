@@ -186,6 +186,10 @@
         </DCCReference>
         <DCCReference Include="Model\Model.TiposConta.pas"/>
         <DCCReference Include="Controller\Controller.TiposContas.pas"/>
+        <DCCReference Include="View\View.CadastroPessoasTerceiros.pas">
+            <Form>view_CadastroPessoasTerceiros</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
         <None Include="ModelSupport_erpMamutti\default.txaPackage"/>
         <None Include="ModelSupport_erpMamutti\default.txvpck"/>
         <None Include="ModelSupport_erpMamutti\erpMamutti\default.txvpck"/>

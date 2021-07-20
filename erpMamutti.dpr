@@ -46,7 +46,8 @@ uses
   View.TiposCadastroPessoa in 'View\View.TiposCadastroPessoa.pas' {view_TiposCadastroPessoa},
   View.TiposContaBancaria in 'View\View.TiposContaBancaria.pas' {view_TiposConta},
   Model.TiposConta in 'Model\Model.TiposConta.pas',
-  Controller.TiposContas in 'Controller\Controller.TiposContas.pas';
+  Controller.TiposContas in 'Controller\Controller.TiposContas.pas',
+  View.CadastroPessoasTerceiros in 'View\View.CadastroPessoasTerceiros.pas' {view_CadastroPessoasTerceiros};
 
 {$R *.res}
 

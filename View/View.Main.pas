@@ -40,7 +40,7 @@ type
     imageListMain32_32: TcxImageList;
     actionCadastroClientes: TAction;
     actionCadastroFornecedores: TAction;
-    actionCadastroPessoas: TAction;
+    actionCadastroTerceiros: TAction;
     actionCadastroCandidatos: TAction;
     actionCadastroFuncionarios: TAction;
     actionCadastroEmbarcadores: TAction;

@@ -134,6 +134,9 @@ begin
   if memtableBancos.Tag = -1 then
     Exit;
   SaveData;
+  dm.AlertWindowManager.OptionsBehavior.DisplayTime := 3000;
+  dm.AlertWindowManager.Show('Gravando', 'Dados salvos com sucesso!',37);
+
 end;
 
 procedure Tview_CadastroBancos.PopulateData;
@@ -182,7 +185,8 @@ begin
     end
     else
     begin
-      Application.MessageBox('Dados gravados com sucesso.', 'Gravar', MB_OK + MB_ICONINFORMATION);
+      dm.AlertWindowManager.OptionsBehavior.DisplayTime := 3000;
+      dm.AlertWindowManager.Show('Gravando', 'Dados salvos com sucesso!',37);
     end;
     FAcao := tacIndefinido;
   finally
@@ -193,6 +197,8 @@ end;
 procedure Tview_CadastroBancos.StartForm;
 begin
   labelTitle.Caption := Self.Caption;
+  if Self.FormStyle = fsMDIChild then
+    Self.BorderStyle := bsNone;
   PopulateData;
 end;
 

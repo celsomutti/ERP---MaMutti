@@ -648,9 +648,11 @@ begin
       if not memTableAbrangencia.Eof then
         memTableAbrangencia.Next;
     end;
-    Application.MessageBox('Registros gravados!', 'Atenção', MB_OK + MB_ICONINFORMATION);
+    dm.AlertWindowManager.OptionsBehavior.DisplayTime := 3000;
+    dm.AlertWindowManager.Show('Gravando', 'Dados salvos com sucesso!',37);
     actionGravar.Enabled := False;
     actionRestaurar.Enabled := False;
+
   finally
     Screen.Cursor := crDefault;
     FAbrangencia.Free;
@@ -661,6 +663,8 @@ procedure Tview_CadastroAbrangenciaExpressas.StartForm;
 begin
   labelTitle.Caption := Self.Caption;
   memTableAbrangencia.Active := True;
+  if Self.FormStyle = fsMDIChild then
+    Self.BorderStyle := bsNone;
   ProcessaClientes;
 end;
 

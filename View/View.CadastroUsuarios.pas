@@ -181,7 +181,6 @@ begin
   Exit;
   if Saveuser() then
   begin
-    Application.MessageBox('Usuário gravado com sucesso.', 'Gravar', MB_OK + MB_ICONINFORMATION);
     Cancelar;
   end
   else
@@ -597,7 +596,8 @@ begin
       Application.MessageBox('Erro ao gravar os acessos do usuário!', 'Erro', MB_OK + MB_ICONERROR);
       Exit;
     end;
-
+    dm.AlertWindowManager.OptionsBehavior.DisplayTime := 3000;
+    dm.AlertWindowManager.Show('Gravando', 'Dados salvos com sucesso!',37);
     Result := True;
   finally
     usuarios.Free;
@@ -642,6 +642,8 @@ end;
 procedure Tview_Cadastro_Usuarios.StartForm;
 begin
   labelTitle.Caption := Self.Caption;
+  if Self.FormStyle = fsMDIChild then
+    Self.BorderStyle := bsNone;
 end;
 
 function Tview_Cadastro_Usuarios.ValidateUser: boolean;
