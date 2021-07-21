@@ -1647,14 +1647,6 @@ object dm: Tdm
       FieldName = 'dom_check'
     end
   end
-  object cxLookAndFeelController: TcxLookAndFeelController
-    Kind = lfOffice11
-    NativeStyle = False
-    SkinName = 'UserSkin'
-    TouchMode = True
-    Left = 568
-    Top = 152
-  end
   object AlertWindowManager: TdxAlertWindowManager
     OptionsButtons.Buttons = <>
     OptionsMessage.Caption.Font.Charset = DEFAULT_CHARSET

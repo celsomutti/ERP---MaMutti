@@ -37,7 +37,6 @@ type
     mtbRoteirosExpressascod_leve: TIntegerField;
     mtbRoteirosExpressascod_pesado: TIntegerField;
     mtbRoteirosExpressasdom_check: TSmallintField;
-    cxLookAndFeelController: TcxLookAndFeelController;
     AlertWindowManager: TdxAlertWindowManager;
     procedure FDConnectionMySQLAfterConnect(Sender: TObject);
   private

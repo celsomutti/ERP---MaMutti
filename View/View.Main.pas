@@ -7,7 +7,8 @@ uses
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, Vcl.WinXPanels, Vcl.WinXCtrls, Vcl.CategoryButtons, cxGraphics,
   cxLookAndFeels, cxLookAndFeelPainters, Vcl.Menus, dxSkinsCore, dxSkinsDefaultPainters, Vcl.StdCtrls, cxButtons, Vcl.ToolWin,
   Vcl.ActnMan, Vcl.ActnCtrls, System.Actions, Vcl.ActnList, Vcl.ButtonGroup, Vcl.Buttons, System.ImageList, Vcl.ImgList, cxImageList,
-  cxPC, dxBarBuiltInMenu, cxClasses, dxTabbedMDI, WinInet, Controller.Usuarios, Controller.Acessos, cxControls, dxStatusBar;
+  cxPC, dxBarBuiltInMenu, cxClasses, dxTabbedMDI, WinInet, Controller.Usuarios, Controller.Acessos, cxControls, dxStatusBar,
+  cxContainer, cxEdit, cxLabel;
 
 type
   Tview_Main = class(TForm)
@@ -36,7 +37,6 @@ type
     buttonTransportes: TcxButton;
     buttonFinanceiro: TcxButton;
     buttonSistema: TcxButton;
-    buttonSair: TcxButton;
     imageListMain32_32: TcxImageList;
     actionCadastroClientes: TAction;
     actionCadastroFornecedores: TAction;
@@ -158,6 +158,12 @@ type
     actionTiposCadastros: TAction;
     Cadastros1: TMenuItem;
     iposdeCadastros1: TMenuItem;
+    dxStatusBar1Container2: TdxStatusBarContainerControl;
+    cxButton3: TcxButton;
+    dxStatusBar1Container3: TdxStatusBarContainerControl;
+    labelUsuario: TcxLabel;
+    labelDateTime: TcxLabel;
+    Timer: TTimer;
     procedure FormShow(Sender: TObject);
     procedure actionMenuExecute(Sender: TObject);
     procedure actionCadastroExecute(Sender: TObject);
@@ -179,6 +185,8 @@ type
     procedure actionSistemaTelaAnteriorExecute(Sender: TObject);
     procedure actionTiposContasExecute(Sender: TObject);
     procedure actionTiposCadastrosExecute(Sender: TObject);
+    procedure actionCadastroTerceirosExecute(Sender: TObject);
+    procedure TimerTimer(Sender: TObject);
   private
     { Private declarations }
     procedure InitForm;
@@ -205,7 +213,7 @@ implementation
 
 uses Data.Module, View.Login, Global.Parametros, Common.Utils, View.CadastroUsuarios, View.SetupConnDB, View.ConfirmaSenha,
   View.CadastroAbrangenciaExpressas, View.ParametrosPrazosExtratos, View.CadastroBancos, View.TiposContaBancaria,
-  View.TiposCadastroPessoa;
+  View.TiposCadastroPessoa, View.CadastroPessoasTerceiros;
 
 { Tview_Main }
 
@@ -270,6 +278,15 @@ end;
 procedure Tview_Main.actionCadastroExecute(Sender: TObject);
 begin
   popupMenuCadastrado.Popup(splitViewMain.Width, buttonMenu.Height * 2);
+end;
+
+procedure Tview_Main.actionCadastroTerceirosExecute(Sender: TObject);
+begin
+if not Assigned(view_CadastroPessoasTerceiros) then
+  begin
+    view_CadastroPessoasTerceiros := Tview_CadastroPessoasTerceiros.Create(Application);
+  end;
+  view_CadastroPessoasTerceiros.Show;
 end;
 
 procedure Tview_Main.actionExpressasExecute(Sender: TObject);
@@ -487,7 +504,8 @@ begin
         FDConnectionMySQL.Params.UserName := Global.Parametros.pUser_Name;
         FDConnectionMySQL.ParamS.Password := Global.Parametros.pPassword;
       end;
-      Self.Caption := Application.Title + ' - Versão ' + sVersion + ' - [' + Global.Parametros.pUser_Name + ']';
+      Self.Caption := Application.Title + ' - Versão ' + sVersion;
+      labelUsuario.Caption := 'Usuário: ' + Global.Parametros.pUser_Name;
     end;
     Acessos;
   finally
@@ -550,6 +568,11 @@ begin
   Self.Height := Screen.WorkAreaHeight;
 end;
 
+
+procedure Tview_Main.TimerTimer(Sender: TObject);
+begin
+  labelDateTime.Caption := FormatDateTime('ddd dd/mm/yyyy hh:mm:ss', Now);
+end;
 
 function Tview_Main.VerificarExisteConexaoComInternet: boolean;
 var

@@ -2,35 +2,74 @@ object view_CadastroPessoasTerceiros: Tview_CadastroPessoasTerceiros
   Left = 0
   Top = 0
   Caption = 'Cadastro de Terceiros'
-  ClientHeight = 514
+  ClientHeight = 579
   ClientWidth = 919
   Color = clWhite
   Font.Charset = ANSI_CHARSET
   Font.Color = clWindowText
-  Font.Height = -12
+  Font.Height = -11
   Font.Name = 'Microsoft JhengHei UI'
   Font.Style = []
   FormStyle = fsMDIChild
+  Icon.Data = {
+    0000010001001010000001002000680400001600000028000000100000002000
+    000001002000000000004004000000000000000000000000000000000000FFFF
+    FF0000000004000000150000002B000000330000003300000034000000350000
+    0035000000360000003600000036000000300000001800000005FFFFFF00FFFF
+    FF00000000146453459B947C67FF8F7763FF89715FFF826C59FF7A6553FF735E
+    4CFF6A5544FF624E3DFF5A4636FF533F2FFF2F2219A400000018FFFFFF00FFFF
+    FF0000000024967E6AF8F4F3F1FFCEB1A4FFC7A694FFD0CAC1FFBD9885FFB88E
+    78FFB8B0A4FFB0856FFFAE7D64FF9F9686FF4E3B2CFA0000002DFFFFFF00FFFF
+    FF0000000024977F6AF8F5F3F2FFD3B9ABFFCAAB9CFFD6D0C9FFC09E8BFFBC95
+    81FFBFB7ACFFB38A74FFB0836DFFA49C8CFF523F31FB00000031FFFFFF00FFFF
+    FF000000001C8C7662E0E7E0DBFFE9DFDAFFDBCDC5FFDCD7D1FFCFC0B5FFC8B8
+    ACFFC6C0B4FFBCA899FFB5A190FF9E9384FF503E31E900000027FFFFFF00FFFF
+    FF000000000F776453A3CABDB1FFFBFAF9FFEEEAE7FFC3BCB4FF8D8176FF7D6F
+    62FFA3998EFFC5BEB4FFBEB6AAFF988C7FFF43362CB400000017FFFFFF00FFFF
+    FF0000000004342B243198826FECDBD1CBFFFBFBFAFFA0988EFF8DB2C7FF6184
+    A7FF716154FFDED9D4FFC4BCB5FF6E5E50F21915114300000006FFFFFF00FFFF
+    FF00000000000000000726201B2D836F5BC6AB9787FF687487FF335990FF2B4E
+    87FF44495DFF99887CFF645448D115110F3F0000000B00000001FFFFFF00FFFF
+    FF00FFFFFF00A1876F00000000040000001E41526CA76484AFFF7FA3C6FF4B83
+    B4FF234B88FF1D2947B50000002B0000000774625400FFFFFF00FFFFFF00FFFF
+    FF00FFFFFF00FFFFFF00FFFFFF0000000011355789CCB0C1D8FF96CCECFF70AF
+    D6FF4377AAFF0C265CCD0000001BFFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+    FF00FFFFFF00FFFFFF00FFFFFF00020A251E1B3571F9E8EDF4FFA7DDF6FF84C2
+    E5FF6099C3FF113271F1010E2233FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+    FF00FFFFFF00FFFFFF00FFFFFF00041A5B800B2162FEE4E9F1FFCAEBFBFF96D3
+    F1FF689FC6FF153875F1031C45A1FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+    FF00FFFFFF00FFFFFF00FFFFFF00051D63AE486C9EFF203570FF69789FFF97B9
+    D4FF7298BEFF0C2859EB051F4AB4FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+    FF00FFFFFF00FFFFFF00FFFFFF00051F6792446699FF5A82B0FF355990FF152D
+    68FF2E497BFE072352FF06214D88FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+    FF00FFFFFF00FFFFFF00FFFFFF0006206A28183477F7597EACFF648DB8FF4E76
+    A5FF0B205AFC08224F81051E460EFFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+    FF00FFFFFF00FFFFFF00FFFFFF00062371000521694F051D64C1041B5FF30318
+    5AD90314505800000001FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+    0000C0030000C0030000C0030000C0030000C0030000E0070000F00F0000F81F
+    0000F81F0000F81F0000F00F0000F00F0000F00F0000F81F0000FC3F0000}
   KeyPreview = True
   OldCreateOrder = False
   ShowHint = True
   Visible = True
+  OnClose = FormClose
+  OnShow = FormShow
   PixelsPerInch = 96
-  TextHeight = 15
+  TextHeight = 14
   object dxLayoutControl1: TdxLayoutControl
     Left = 0
-    Top = 38
+    Top = 40
     Width = 919
-    Height = 476
+    Height = 539
     Align = alClient
     ParentBackground = True
     TabOrder = 0
     Transparent = True
     ExplicitTop = 0
-    ExplicitHeight = 514
+    ExplicitHeight = 470
     object labelTitle: TcxLabel
-      Left = 12
-      Top = 12
+      Left = 10
+      Top = 10
       Caption = 'labelTitle'
       ParentFont = False
       Style.Font.Charset = ANSI_CHARSET
@@ -43,8 +82,8 @@ object view_CadastroPessoasTerceiros: Tview_CadastroPessoasTerceiros
       Transparent = True
     end
     object id: TcxDBMaskEdit
-      Left = 12
-      Top = 63
+      Left = 10
+      Top = 59
       Hint = 'ID do casdastro'
       Properties.Alignment.Horz = taRightJustify
       Properties.IgnoreMaskBlank = True
@@ -58,8 +97,8 @@ object view_CadastroPessoasTerceiros: Tview_CadastroPessoasTerceiros
       Width = 64
     end
     object tipoPessoa: TcxDBImageComboBox
-      Left = 83
-      Top = 63
+      Left = 80
+      Top = 58
       Hint = 'Tipo de pessoa'
       Properties.Alignment.Horz = taRightJustify
       Properties.Images = dm.imageList16_16
@@ -74,6 +113,7 @@ object view_CadastroPessoasTerceiros: Tview_CadastroPessoasTerceiros
           ImageIndex = 38
           Value = 2
         end>
+      Properties.OnChange = tipoPessoaPropertiesChange
       Style.BorderColor = clWindowFrame
       Style.BorderStyle = ebs3D
       Style.HotTrack = False
@@ -83,18 +123,18 @@ object view_CadastroPessoasTerceiros: Tview_CadastroPessoasTerceiros
       Width = 84
     end
     object nome: TcxDBTextEdit
-      Left = 320
-      Top = 63
+      Left = 315
+      Top = 59
       Hint = 'Nome ou Raz'#227'o Social'
       Style.BorderColor = clWindowFrame
       Style.BorderStyle = ebs3D
       Style.HotTrack = False
       TabOrder = 4
-      Width = 290
+      Width = 294
     end
     object cpfCnpj: TcxDBButtonEdit
-      Left = 174
-      Top = 63
+      Left = 170
+      Top = 58
       Hint = 'CPF ou CNPJ'
       Properties.Buttons = <
         item
@@ -113,37 +153,37 @@ object view_CadastroPessoasTerceiros: Tview_CadastroPessoasTerceiros
       Width = 139
     end
     object aliasFantasia: TcxDBTextEdit
-      Left = 617
-      Top = 63
+      Left = 615
+      Top = 59
       Style.BorderColor = clWindowFrame
       Style.BorderStyle = ebs3D
       Style.HotTrack = False
       TabOrder = 5
-      Width = 290
+      Width = 294
     end
     object rg: TcxDBTextEdit
-      Left = 54
-      Top = 139
+      Left = 47
+      Top = 123
       Hint = 'N'#250'mero do RG'
       Style.BorderColor = clWindowFrame
       Style.BorderStyle = ebs3D
       Style.HotTrack = False
       TabOrder = 6
-      Width = 104
+      Width = 111
     end
     object expedidor: TcxDBTextEdit
-      Left = 233
-      Top = 139
+      Left = 224
+      Top = 123
       Hint = 'Expedidor RG'
       Style.BorderColor = clWindowFrame
       Style.BorderStyle = ebs3D
       Style.HotTrack = False
       TabOrder = 7
-      Width = 129
+      Width = 138
     end
     object emissaoRG: TcxDBDateEdit
-      Left = 444
-      Top = 139
+      Left = 436
+      Top = 123
       Hint = 'Data de emiss'#227'o do RG'
       Style.BorderColor = clWindowFrame
       Style.BorderStyle = ebs3D
@@ -151,11 +191,11 @@ object view_CadastroPessoasTerceiros: Tview_CadastroPessoasTerceiros
       Style.ButtonStyle = bts3D
       Style.PopupBorderStyle = epbsFrame3D
       TabOrder = 8
-      Width = 109
+      Width = 118
     end
     object ufRg: TcxDBComboBox
-      Left = 604
-      Top = 139
+      Left = 600
+      Top = 123
       Hint = 'UF da emiss'#227'o do RG'
       Style.BorderColor = clWindowFrame
       Style.BorderStyle = ebs3D
@@ -163,11 +203,11 @@ object view_CadastroPessoasTerceiros: Tview_CadastroPessoasTerceiros
       Style.ButtonStyle = bts3D
       Style.PopupBorderStyle = epbsFrame3D
       TabOrder = 9
-      Width = 74
+      Width = 80
     end
     object nascimento: TcxDBDateEdit
-      Left = 762
-      Top = 139
+      Left = 756
+      Top = 123
       Hint = 'Data de nascimento'
       Style.BorderColor = clWindowFrame
       Style.BorderStyle = ebs3D
@@ -175,49 +215,49 @@ object view_CadastroPessoasTerceiros: Tview_CadastroPessoasTerceiros
       Style.ButtonStyle = bts3D
       Style.PopupBorderStyle = epbsFrame3D
       TabOrder = 10
-      Width = 129
+      Width = 139
     end
     object nomePai: TcxDBTextEdit
-      Left = 54
-      Top = 169
+      Left = 48
+      Top = 151
       Hint = 'Nome do pai'
       Style.BorderColor = clWindowFrame
       Style.BorderStyle = ebs3D
       Style.HotTrack = False
       TabOrder = 11
-      Width = 391
+      Width = 400
     end
     object nomeMae: TcxDBTextEdit
-      Left = 487
-      Top = 169
+      Left = 485
+      Top = 151
       Style.BorderColor = clWindowFrame
       Style.BorderStyle = ebs3D
       Style.HotTrack = False
       TabOrder = 12
-      Width = 404
+      Width = 410
     end
     object nacionalidade: TcxDBTextEdit
-      Left = 121
-      Top = 199
+      Left = 107
+      Top = 179
       Style.BorderColor = clWindowFrame
       Style.BorderStyle = ebs3D
       Style.HotTrack = False
       TabOrder = 13
-      Width = 260
+      Width = 278
     end
     object naturalidade: TcxDBTextEdit
-      Left = 472
-      Top = 199
+      Left = 467
+      Top = 179
       Hint = 'Cidade de naturalidade'
       Style.BorderColor = clWindowFrame
       Style.BorderStyle = ebs3D
       Style.HotTrack = False
       TabOrder = 14
-      Width = 254
+      Width = 273
     end
     object ufNaturalidade: TcxDBComboBox
-      Left = 835
-      Top = 199
+      Left = 839
+      Top = 179
       Hint = 'Sigla do estado de naturalidade'
       Style.BorderColor = clWindowFrame
       Style.BorderStyle = ebs3D
@@ -228,38 +268,38 @@ object view_CadastroPessoasTerceiros: Tview_CadastroPessoasTerceiros
       Width = 56
     end
     object segurancaCnh: TcxDBTextEdit
-      Left = 127
-      Top = 229
+      Left = 113
+      Top = 207
       Hint = 'C'#243'digo de seguran'#231'a da CNH'
       Style.BorderColor = clWindowFrame
       Style.BorderStyle = ebs3D
       Style.HotTrack = False
       TabOrder = 16
-      Width = 162
+      Width = 177
     end
     object numeroCNH: TcxDBTextEdit
-      Left = 354
-      Top = 229
+      Left = 348
+      Top = 207
       Hint = 'N'#250'mero da CNH'
       Style.BorderColor = clWindowFrame
       Style.BorderStyle = ebs3D
       Style.HotTrack = False
       TabOrder = 17
-      Width = 154
+      Width = 166
     end
     object registroCnh: TcxDBTextEdit
-      Left = 601
-      Top = 229
+      Left = 598
+      Top = 207
       Hint = 'N'#250'mero do registro da CNH'
       Style.BorderColor = clWindowFrame
       Style.BorderStyle = ebs3D
       Style.HotTrack = False
       TabOrder = 18
-      Width = 159
+      Width = 174
     end
     object categoriaCNH: TcxDBTextEdit
-      Left = 832
-      Top = 229
+      Left = 836
+      Top = 207
       Hint = 'Categoria da CNH'
       Style.BorderColor = clWindowFrame
       Style.BorderStyle = ebs3D
@@ -268,8 +308,8 @@ object view_CadastroPessoasTerceiros: Tview_CadastroPessoasTerceiros
       Width = 59
     end
     object validadeCnh: TcxDBDateEdit
-      Left = 88
-      Top = 259
+      Left = 77
+      Top = 235
       Hint = 'Data da validade da CNH'
       Style.BorderColor = clWindowFrame
       Style.BorderStyle = ebs3D
@@ -277,11 +317,11 @@ object view_CadastroPessoasTerceiros: Tview_CadastroPessoasTerceiros
       Style.ButtonStyle = bts3D
       Style.PopupBorderStyle = epbsFrame3D
       TabOrder = 20
-      Width = 171
+      Width = 182
     end
     object emissaoCnh: TcxDBDateEdit
-      Left = 351
-      Top = 259
+      Left = 342
+      Top = 235
       Hint = 'Data da Emiss'#227'o da CNH'
       Style.BorderColor = clWindowFrame
       Style.BorderStyle = ebs3D
@@ -289,11 +329,11 @@ object view_CadastroPessoasTerceiros: Tview_CadastroPessoasTerceiros
       Style.ButtonStyle = bts3D
       Style.PopupBorderStyle = epbsFrame3D
       TabOrder = 21
-      Width = 184
+      Width = 197
     end
     object primeiraCnh: TcxDBDateEdit
-      Left = 593
-      Top = 259
+      Left = 591
+      Top = 235
       Hint = 'Data da emiss'#227'o da primeira CNH'
       Style.BorderColor = clWindowFrame
       Style.BorderStyle = ebs3D
@@ -301,11 +341,11 @@ object view_CadastroPessoasTerceiros: Tview_CadastroPessoasTerceiros
       Style.ButtonStyle = bts3D
       Style.PopupBorderStyle = epbsFrame3D
       TabOrder = 22
-      Width = 166
+      Width = 178
     end
     object ufCnh: TcxDBComboBox
-      Left = 820
-      Top = 259
+      Left = 824
+      Top = 235
       Hint = 'Sigla do estado de emiss'#227'o da CNH'
       Style.BorderColor = clWindowFrame
       Style.BorderStyle = ebs3D
@@ -339,7 +379,7 @@ object view_CadastroPessoasTerceiros: Tview_CadastroPessoasTerceiros
       Style.PopupBorderStyle = epbsFrame3D
       TabOrder = 24
       Visible = False
-      Width = 480
+      Width = 491
     end
     object cnae: TcxDBTextEdit
       Left = 10000
@@ -350,14 +390,162 @@ object view_CadastroPessoasTerceiros: Tview_CadastroPessoasTerceiros
       Style.HotTrack = False
       TabOrder = 25
       Visible = False
-      Width = 302
+      Width = 308
+    end
+    object tipoEndereco: TcxDBComboBox
+      Left = 55
+      Top = 312
+      Style.BorderColor = clWindowFrame
+      Style.BorderStyle = ebs3D
+      Style.HotTrack = False
+      Style.ButtonStyle = bts3D
+      Style.PopupBorderStyle = epbsFrame3D
+      TabOrder = 26
+      Width = 115
+    end
+    object cepEndereco: TcxDBMaskEdit
+      Left = 507
+      Top = 312
+      Hint = 'CEP do endere'#231'o'
+      Properties.EditMask = '00000\-999;1; '
+      Style.BorderColor = clWindowFrame
+      Style.BorderStyle = ebs3D
+      Style.HotTrack = False
+      TabOrder = 27
+      Width = 85
+    end
+    object gridContatos: TcxGrid
+      Left = 598
+      Top = 331
+      Width = 297
+      Height = 120
+      TabOrder = 37
+      object gridContatosDBTableView1: TcxGridDBTableView
+        Navigator.Buttons.CustomButtons = <>
+        Navigator.Buttons.PriorPage.Visible = False
+        Navigator.Buttons.NextPage.Visible = False
+        Navigator.Buttons.Refresh.Visible = False
+        Navigator.Buttons.SaveBookmark.Visible = False
+        Navigator.Buttons.GotoBookmark.Visible = False
+        Navigator.Buttons.Filter.Visible = False
+        Navigator.Visible = True
+        DataController.DataSource = dsContatos
+        DataController.Summary.DefaultGroupSummaryItems = <>
+        DataController.Summary.FooterSummaryItems = <>
+        DataController.Summary.SummaryGroups = <>
+        OptionsView.GroupByBox = False
+        object gridContatosDBTableView1des_contato: TcxGridDBColumn
+          DataBinding.FieldName = 'des_contato'
+          Width = 85
+        end
+        object gridContatosDBTableView1des_telefone: TcxGridDBColumn
+          DataBinding.FieldName = 'des_telefone'
+          Width = 74
+        end
+        object gridContatosDBTableView1des_email: TcxGridDBColumn
+          DataBinding.FieldName = 'des_email'
+          Width = 136
+        end
+      end
+      object gridContatosLevel1: TcxGridLevel
+        GridView = gridContatosDBTableView1
+      end
+    end
+    object endereco: TcxDBTextEdit
+      Left = 80
+      Top = 340
+      Hint = 'Logradouro do endereco'
+      Style.BorderColor = clWindowFrame
+      Style.BorderStyle = ebs3D
+      Style.HotTrack = False
+      TabOrder = 28
+      Width = 360
+    end
+    object numeroEndereco: TcxDBTextEdit
+      Left = 468
+      Top = 340
+      Hint = 'Numero do endere'#231'o'
+      Style.BorderColor = clWindowFrame
+      Style.BorderStyle = ebs3D
+      Style.HotTrack = False
+      TabOrder = 29
+      Width = 124
+    end
+    object complementoEndereco: TcxDBTextEdit
+      Left = 106
+      Top = 368
+      Hint = 'Complemento do endere'#231'o'
+      Style.BorderColor = clWindowFrame
+      Style.BorderStyle = ebs3D
+      Style.HotTrack = False
+      TabOrder = 30
+      Width = 232
+    end
+    object bairroEndereco: TcxDBTextEdit
+      Left = 383
+      Top = 368
+      Hint = 'Bairro do endere'#231'o'
+      Style.BorderColor = clWindowFrame
+      Style.BorderStyle = ebs3D
+      Style.HotTrack = False
+      TabOrder = 31
+      Width = 209
+    end
+    object cidadeEndereco: TcxDBTextEdit
+      Left = 68
+      Top = 396
+      Style.BorderColor = clWindowFrame
+      Style.BorderStyle = ebs3D
+      Style.HotTrack = False
+      TabOrder = 32
+      Width = 444
+    end
+    object ufEndereco: TcxDBComboBox
+      Left = 540
+      Top = 396
+      Style.BorderColor = clWindowFrame
+      Style.BorderStyle = ebs3D
+      Style.HotTrack = False
+      Style.ButtonStyle = bts3D
+      Style.PopupBorderStyle = epbsFrame3D
+      TabOrder = 33
+      Width = 52
+    end
+    object numIE: TcxDBTextEdit
+      Left = 97
+      Top = 424
+      Style.BorderColor = clWindowFrame
+      Style.BorderStyle = ebs3D
+      Style.HotTrack = False
+      TabOrder = 34
+      Width = 113
+    end
+    object numIM: TcxDBTextEdit
+      Left = 297
+      Top = 424
+      Hint = 'Inscri'#231#227'o Municipal'
+      Style.BorderColor = clWindowFrame
+      Style.BorderStyle = ebs3D
+      Style.HotTrack = False
+      TabOrder = 35
+      Width = 101
+    end
+    object numIEST: TcxDBTextEdit
+      Left = 466
+      Top = 424
+      Hint = 'Inscri'#231#227'o Estadual com Substirui'#231#227'o Tribut'#225'ria'
+      Style.BorderColor = clWindowFrame
+      Style.BorderStyle = ebs3D
+      Style.HotTrack = False
+      TabOrder = 36
+      Width = 126
     end
     object dxLayoutControl1Group_Root: TdxLayoutGroup
       AlignHorz = ahClient
       AlignVert = avClient
       ButtonOptions.Buttons = <>
       Hidden = True
-      ItemIndex = 2
+      ItemIndex = 3
       ShowBorder = False
       Index = -1
     end
@@ -388,7 +576,7 @@ object view_CadastroPessoasTerceiros: Tview_CadastroPessoasTerceiros
       CaptionOptions.Text = 'ID:'
       CaptionOptions.Layout = clTop
       Control = id
-      ControlOptions.OriginalHeight = 23
+      ControlOptions.OriginalHeight = 22
       ControlOptions.OriginalWidth = 64
       ControlOptions.ShowBorder = False
       Index = 0
@@ -398,7 +586,7 @@ object view_CadastroPessoasTerceiros: Tview_CadastroPessoasTerceiros
       CaptionOptions.Text = 'Tipo:'
       CaptionOptions.Layout = clTop
       Control = tipoPessoa
-      ControlOptions.OriginalHeight = 23
+      ControlOptions.OriginalHeight = 22
       ControlOptions.OriginalWidth = 84
       ControlOptions.ShowBorder = False
       Index = 1
@@ -410,7 +598,7 @@ object view_CadastroPessoasTerceiros: Tview_CadastroPessoasTerceiros
       CaptionOptions.Text = 'Nome:'
       CaptionOptions.Layout = clTop
       Control = nome
-      ControlOptions.OriginalHeight = 23
+      ControlOptions.OriginalHeight = 22
       ControlOptions.OriginalWidth = 201
       ControlOptions.ShowBorder = False
       Index = 3
@@ -432,7 +620,7 @@ object view_CadastroPessoasTerceiros: Tview_CadastroPessoasTerceiros
       CaptionOptions.Text = 'Alias:'
       CaptionOptions.Layout = clTop
       Control = aliasFantasia
-      ControlOptions.OriginalHeight = 23
+      ControlOptions.OriginalHeight = 22
       ControlOptions.OriginalWidth = 201
       ControlOptions.ShowBorder = False
       Index = 4
@@ -450,7 +638,7 @@ object view_CadastroPessoasTerceiros: Tview_CadastroPessoasTerceiros
       CaptionOptions.Text = 'Pessoa Fisica'
       ButtonOptions.Buttons = <>
       ItemControlAreaAlignment = catNone
-      ItemIndex = 4
+      ItemIndex = 3
       Index = 0
     end
     object dxLayoutGroup4: TdxLayoutGroup
@@ -473,7 +661,7 @@ object view_CadastroPessoasTerceiros: Tview_CadastroPessoasTerceiros
       AlignVert = avCenter
       CaptionOptions.Text = 'RG:'
       Control = rg
-      ControlOptions.OriginalHeight = 23
+      ControlOptions.OriginalHeight = 22
       ControlOptions.OriginalWidth = 99
       ControlOptions.ShowBorder = False
       Index = 0
@@ -484,7 +672,7 @@ object view_CadastroPessoasTerceiros: Tview_CadastroPessoasTerceiros
       AlignVert = avCenter
       CaptionOptions.Text = 'Expedidor:'
       Control = expedidor
-      ControlOptions.OriginalHeight = 23
+      ControlOptions.OriginalHeight = 22
       ControlOptions.OriginalWidth = 121
       ControlOptions.ShowBorder = False
       Index = 1
@@ -495,7 +683,7 @@ object view_CadastroPessoasTerceiros: Tview_CadastroPessoasTerceiros
       AlignVert = avCenter
       CaptionOptions.Text = 'Emiss'#227'o RG:'
       Control = emissaoRG
-      ControlOptions.OriginalHeight = 23
+      ControlOptions.OriginalHeight = 22
       ControlOptions.OriginalWidth = 102
       ControlOptions.ShowBorder = False
       Index = 2
@@ -506,7 +694,7 @@ object view_CadastroPessoasTerceiros: Tview_CadastroPessoasTerceiros
       AlignVert = avCenter
       CaptionOptions.Text = 'UF RG:'
       Control = ufRg
-      ControlOptions.OriginalHeight = 23
+      ControlOptions.OriginalHeight = 22
       ControlOptions.OriginalWidth = 69
       ControlOptions.ShowBorder = False
       Index = 3
@@ -517,7 +705,7 @@ object view_CadastroPessoasTerceiros: Tview_CadastroPessoasTerceiros
       AlignVert = avCenter
       CaptionOptions.Text = 'Nascimento:'
       Control = nascimento
-      ControlOptions.OriginalHeight = 23
+      ControlOptions.OriginalHeight = 22
       ControlOptions.OriginalWidth = 121
       ControlOptions.ShowBorder = False
       Index = 4
@@ -539,7 +727,7 @@ object view_CadastroPessoasTerceiros: Tview_CadastroPessoasTerceiros
       AlignVert = avCenter
       CaptionOptions.Text = 'Pai:'
       Control = nomePai
-      ControlOptions.OriginalHeight = 23
+      ControlOptions.OriginalHeight = 22
       ControlOptions.OriginalWidth = 150
       ControlOptions.ShowBorder = False
       Index = 0
@@ -550,7 +738,7 @@ object view_CadastroPessoasTerceiros: Tview_CadastroPessoasTerceiros
       AlignVert = avCenter
       CaptionOptions.Text = 'M'#227'e:'
       Control = nomeMae
-      ControlOptions.OriginalHeight = 23
+      ControlOptions.OriginalHeight = 22
       ControlOptions.OriginalWidth = 150
       ControlOptions.ShowBorder = False
       Index = 1
@@ -561,7 +749,7 @@ object view_CadastroPessoasTerceiros: Tview_CadastroPessoasTerceiros
       AlignVert = avCenter
       CaptionOptions.Text = 'Nacionalidade:'
       Control = nacionalidade
-      ControlOptions.OriginalHeight = 23
+      ControlOptions.OriginalHeight = 22
       ControlOptions.OriginalWidth = 121
       ControlOptions.ShowBorder = False
       Index = 0
@@ -572,7 +760,7 @@ object view_CadastroPessoasTerceiros: Tview_CadastroPessoasTerceiros
       AlignVert = avCenter
       CaptionOptions.Text = 'Naturalidade:'
       Control = naturalidade
-      ControlOptions.OriginalHeight = 23
+      ControlOptions.OriginalHeight = 22
       ControlOptions.OriginalWidth = 121
       ControlOptions.ShowBorder = False
       Index = 1
@@ -592,7 +780,7 @@ object view_CadastroPessoasTerceiros: Tview_CadastroPessoasTerceiros
       AlignVert = avCenter
       CaptionOptions.Text = 'UF Naturalidade:'
       Control = ufNaturalidade
-      ControlOptions.OriginalHeight = 23
+      ControlOptions.OriginalHeight = 22
       ControlOptions.OriginalWidth = 56
       ControlOptions.ShowBorder = False
       Index = 2
@@ -611,7 +799,7 @@ object view_CadastroPessoasTerceiros: Tview_CadastroPessoasTerceiros
       AlignVert = avCenter
       CaptionOptions.Text = 'Seguran'#231'a CNH:'
       Control = segurancaCnh
-      ControlOptions.OriginalHeight = 23
+      ControlOptions.OriginalHeight = 22
       ControlOptions.OriginalWidth = 121
       ControlOptions.ShowBorder = False
       Index = 0
@@ -622,7 +810,7 @@ object view_CadastroPessoasTerceiros: Tview_CadastroPessoasTerceiros
       AlignVert = avCenter
       CaptionOptions.Text = 'N'#186'. CNH:'
       Control = numeroCNH
-      ControlOptions.OriginalHeight = 23
+      ControlOptions.OriginalHeight = 22
       ControlOptions.OriginalWidth = 121
       ControlOptions.ShowBorder = False
       Index = 1
@@ -633,7 +821,7 @@ object view_CadastroPessoasTerceiros: Tview_CadastroPessoasTerceiros
       AlignVert = avCenter
       CaptionOptions.Text = 'Registro CNH:'
       Control = registroCnh
-      ControlOptions.OriginalHeight = 23
+      ControlOptions.OriginalHeight = 22
       ControlOptions.OriginalWidth = 121
       ControlOptions.ShowBorder = False
       Index = 2
@@ -644,7 +832,7 @@ object view_CadastroPessoasTerceiros: Tview_CadastroPessoasTerceiros
       AlignVert = avCenter
       CaptionOptions.Text = 'Categoria:'
       Control = categoriaCNH
-      ControlOptions.OriginalHeight = 23
+      ControlOptions.OriginalHeight = 22
       ControlOptions.OriginalWidth = 59
       ControlOptions.ShowBorder = False
       Index = 3
@@ -663,7 +851,7 @@ object view_CadastroPessoasTerceiros: Tview_CadastroPessoasTerceiros
       AlignVert = avCenter
       CaptionOptions.Text = 'Validade:'
       Control = validadeCnh
-      ControlOptions.OriginalHeight = 23
+      ControlOptions.OriginalHeight = 22
       ControlOptions.OriginalWidth = 91
       ControlOptions.ShowBorder = False
       Index = 0
@@ -674,7 +862,7 @@ object view_CadastroPessoasTerceiros: Tview_CadastroPessoasTerceiros
       AlignVert = avCenter
       CaptionOptions.Text = 'Emiss'#227'o CNH:'
       Control = emissaoCnh
-      ControlOptions.OriginalHeight = 23
+      ControlOptions.OriginalHeight = 22
       ControlOptions.OriginalWidth = 91
       ControlOptions.ShowBorder = False
       Index = 1
@@ -685,7 +873,7 @@ object view_CadastroPessoasTerceiros: Tview_CadastroPessoasTerceiros
       AlignVert = avCenter
       CaptionOptions.Text = '1'#170' CNH:'
       Control = primeiraCnh
-      ControlOptions.OriginalHeight = 23
+      ControlOptions.OriginalHeight = 22
       ControlOptions.OriginalWidth = 91
       ControlOptions.ShowBorder = False
       Index = 2
@@ -696,16 +884,19 @@ object view_CadastroPessoasTerceiros: Tview_CadastroPessoasTerceiros
       AlignVert = avCenter
       CaptionOptions.Text = 'UF CNH:'
       Control = ufCnh
-      ControlOptions.OriginalHeight = 23
+      ControlOptions.OriginalHeight = 22
       ControlOptions.OriginalWidth = 71
       ControlOptions.ShowBorder = False
       Index = 3
     end
     object dxLayoutGroup10: TdxLayoutGroup
       Parent = dxLayoutControl1Group_Root
+      AlignHorz = ahClient
+      AlignVert = avTop
       CaptionOptions.Text = 'New Group'
       ButtonOptions.Buttons = <>
       LayoutDirection = ldTabbed
+      ShowBorder = False
       Index = 3
     end
     object dxLayoutGroup11: TdxLayoutGroup
@@ -722,7 +913,7 @@ object view_CadastroPessoasTerceiros: Tview_CadastroPessoasTerceiros
       AlignVert = avCenter
       CaptionOptions.Text = 'CRT:'
       Control = crt
-      ControlOptions.OriginalHeight = 23
+      ControlOptions.OriginalHeight = 22
       ControlOptions.OriginalWidth = 279
       ControlOptions.ShowBorder = False
       Index = 0
@@ -732,24 +923,249 @@ object view_CadastroPessoasTerceiros: Tview_CadastroPessoasTerceiros
       AlignHorz = ahClient
       CaptionOptions.Text = 'CNAE:'
       Control = cnae
-      ControlOptions.OriginalHeight = 23
+      ControlOptions.OriginalHeight = 22
       ControlOptions.OriginalWidth = 167
       ControlOptions.ShowBorder = False
       Index = 1
     end
+    object dxLayoutGroup12: TdxLayoutGroup
+      Parent = dxLayoutGroup10
+      AlignHorz = ahClient
+      AlignVert = avTop
+      CaptionOptions.Text = 'Endere'#231'os e Contatos'
+      ButtonOptions.Buttons = <>
+      LayoutDirection = ldHorizontal
+      Index = 0
+    end
+    object dxLayoutGroup13: TdxLayoutGroup
+      Parent = dxLayoutGroup12
+      AlignHorz = ahClient
+      AlignVert = avClient
+      CaptionOptions.Text = 'Endere'#231'o'
+      ButtonOptions.Buttons = <>
+      ItemControlAreaAlignment = catNone
+      ItemIndex = 4
+      ShowBorder = False
+      Index = 0
+    end
+    object dxLayoutGroup14: TdxLayoutGroup
+      Parent = dxLayoutGroup12
+      AlignHorz = ahClient
+      AlignVert = avClient
+      CaptionOptions.Text = 'Contatos'
+      ButtonOptions.Buttons = <>
+      ItemControlAreaAlignment = catNone
+      ShowBorder = False
+      Index = 1
+    end
+    object dxLayoutGroup15: TdxLayoutGroup
+      Parent = dxLayoutGroup13
+      AlignHorz = ahClient
+      AlignVert = avTop
+      CaptionOptions.Text = 'New Group'
+      ButtonOptions.Buttons = <>
+      ItemControlAreaAlignment = catNone
+      LayoutDirection = ldHorizontal
+      ShowBorder = False
+      Index = 0
+    end
+    object dxLayoutItem27: TdxLayoutItem
+      Parent = dxLayoutGroup15
+      AlignHorz = ahLeft
+      AlignVert = avTop
+      CaptionOptions.Text = 'Tipo:'
+      Control = tipoEndereco
+      ControlOptions.OriginalHeight = 22
+      ControlOptions.OriginalWidth = 115
+      ControlOptions.ShowBorder = False
+      Index = 0
+    end
+    object dxLayoutItem28: TdxLayoutItem
+      Parent = dxLayoutGroup15
+      AlignHorz = ahRight
+      AlignVert = avTop
+      CaptionOptions.Text = 'CEP:'
+      Control = cepEndereco
+      ControlOptions.OriginalHeight = 22
+      ControlOptions.OriginalWidth = 85
+      ControlOptions.ShowBorder = False
+      Index = 1
+    end
+    object dxLayoutGroup16: TdxLayoutGroup
+      Parent = dxLayoutGroup13
+      AlignHorz = ahClient
+      AlignVert = avTop
+      CaptionOptions.Text = 'New Group'
+      ButtonOptions.Buttons = <>
+      LayoutDirection = ldHorizontal
+      ShowBorder = False
+      Index = 1
+    end
+    object dxLayoutItem29: TdxLayoutItem
+      Parent = dxLayoutGroup14
+      AlignHorz = ahClient
+      AlignVert = avClient
+      CaptionOptions.Text = 'Contatos'
+      CaptionOptions.Layout = clTop
+      Control = gridContatos
+      ControlOptions.OriginalHeight = 120
+      ControlOptions.OriginalWidth = 289
+      ControlOptions.ShowBorder = False
+      Index = 0
+    end
+    object dxLayoutItem30: TdxLayoutItem
+      Parent = dxLayoutGroup16
+      AlignHorz = ahClient
+      AlignVert = avCenter
+      CaptionOptions.Text = 'Endere'#231'o:'
+      Control = endereco
+      ControlOptions.OriginalHeight = 22
+      ControlOptions.OriginalWidth = 270
+      ControlOptions.ShowBorder = False
+      Index = 0
+    end
+    object dxLayoutItem31: TdxLayoutItem
+      Parent = dxLayoutGroup16
+      AlignHorz = ahClient
+      AlignVert = avCenter
+      CaptionOptions.Text = 'N'#186'.'
+      Control = numeroEndereco
+      ControlOptions.OriginalHeight = 22
+      ControlOptions.OriginalWidth = 92
+      ControlOptions.ShowBorder = False
+      Index = 1
+    end
+    object dxLayoutGroup17: TdxLayoutGroup
+      Parent = dxLayoutGroup13
+      AlignHorz = ahClient
+      AlignVert = avTop
+      CaptionOptions.Text = 'New Group'
+      ButtonOptions.Buttons = <>
+      LayoutDirection = ldHorizontal
+      ShowBorder = False
+      Index = 2
+    end
+    object dxLayoutItem32: TdxLayoutItem
+      Parent = dxLayoutGroup17
+      AlignHorz = ahClient
+      AlignVert = avCenter
+      CaptionOptions.Text = 'Complemento:'
+      Control = complementoEndereco
+      ControlOptions.OriginalHeight = 22
+      ControlOptions.OriginalWidth = 121
+      ControlOptions.ShowBorder = False
+      Index = 0
+    end
+    object dxLayoutItem33: TdxLayoutItem
+      Parent = dxLayoutGroup17
+      AlignHorz = ahClient
+      AlignVert = avCenter
+      CaptionOptions.Text = 'Bairro:'
+      Control = bairroEndereco
+      ControlOptions.OriginalHeight = 22
+      ControlOptions.OriginalWidth = 121
+      ControlOptions.ShowBorder = False
+      Index = 1
+    end
+    object dxLayoutGroup18: TdxLayoutGroup
+      Parent = dxLayoutGroup10
+      CaptionOptions.Text = 'New Group'
+      ButtonOptions.Buttons = <>
+      Index = 1
+    end
+    object dxLayoutGroup19: TdxLayoutGroup
+      Parent = dxLayoutGroup13
+      CaptionOptions.Text = 'New Group'
+      ButtonOptions.Buttons = <>
+      LayoutDirection = ldHorizontal
+      ShowBorder = False
+      Index = 3
+    end
+    object dxLayoutItem34: TdxLayoutItem
+      Parent = dxLayoutGroup19
+      AlignHorz = ahClient
+      AlignVert = avCenter
+      CaptionOptions.Text = 'Cidade:'
+      Control = cidadeEndereco
+      ControlOptions.OriginalHeight = 22
+      ControlOptions.OriginalWidth = 305
+      ControlOptions.ShowBorder = False
+      Index = 0
+    end
+    object dxLayoutItem35: TdxLayoutItem
+      Parent = dxLayoutGroup19
+      AlignHorz = ahRight
+      AlignVert = avCenter
+      CaptionOptions.Text = 'UF:'
+      Control = ufEndereco
+      ControlOptions.OriginalHeight = 22
+      ControlOptions.OriginalWidth = 52
+      ControlOptions.ShowBorder = False
+      Index = 1
+    end
+    object dxLayoutGroup20: TdxLayoutGroup
+      Parent = dxLayoutGroup13
+      AlignHorz = ahClient
+      AlignVert = avTop
+      CaptionOptions.Text = 'New Group'
+      Visible = False
+      ButtonOptions.Buttons = <>
+      LayoutDirection = ldHorizontal
+      ShowBorder = False
+      Index = 4
+    end
+    object dxLayoutItem36: TdxLayoutItem
+      Parent = dxLayoutGroup20
+      AlignHorz = ahClient
+      AlignVert = avCenter
+      CaptionOptions.Text = 'Ins. Estadual:'
+      Control = numIE
+      ControlOptions.OriginalHeight = 22
+      ControlOptions.OriginalWidth = 108
+      ControlOptions.ShowBorder = False
+      Index = 0
+    end
+    object dxLayoutItem37: TdxLayoutItem
+      Parent = dxLayoutGroup20
+      AlignHorz = ahClient
+      AlignVert = avCenter
+      CaptionOptions.Text = 'Ins. Municipal:'
+      Control = numIM
+      ControlOptions.OriginalHeight = 22
+      ControlOptions.OriginalWidth = 97
+      ControlOptions.ShowBorder = False
+      Index = 1
+    end
+    object dxLayoutItem38: TdxLayoutItem
+      Parent = dxLayoutGroup20
+      AlignHorz = ahClient
+      AlignVert = avCenter
+      CaptionOptions.Text = 'Ins. Est. ST:'
+      Control = numIEST
+      ControlOptions.OriginalHeight = 22
+      ControlOptions.OriginalWidth = 121
+      ControlOptions.ShowBorder = False
+      Index = 2
+    end
   end
   object actionListCadastro: TActionList
     Images = dm.imageList16_16
-    Left = 640
+    Left = 552
+    Top = 56
     object actionFechar: TAction
       Caption = '&Fechar'
       Hint = 'Fechar a tela'
       ImageIndex = 1
+      OnExecute = actionFecharExecute
     end
     object actionPesquisaCNPJ: TAction
       Caption = 'Pesquisa CNPJ'
       Hint = 'Pesquisar situa'#231#227'o do CNPJ'
       ImageIndex = 40
+    end
+    object actionLocalizar: TAction
+      Caption = '&Localizar'
+      Hint = 'Localizar cadastro'
     end
   end
   object dxBarManager1: TdxBarManager
@@ -773,14 +1189,15 @@ object view_CadastroPessoasTerceiros: Tview_CadastroPessoasTerceiros
     ImageOptions.UseLargeImagesForLargeIcons = True
     ImageOptions.UseLeftBottomPixelAsTransparent = False
     PopupMenuLinks = <>
+    Style = bmsXP
     UseSystemFont = True
-    Left = 144
-    Top = 328
+    Left = 448
+    Top = 48
     PixelsPerInch = 96
     DockControlHeights = (
       0
       0
-      38
+      40
       0)
     object dxBarManager1Bar1: TdxBar
       AllowClose = False
@@ -795,12 +1212,16 @@ object view_CadastroPessoasTerceiros: Tview_CadastroPessoasTerceiros
       DockingStyle = dsTop
       FloatLeft = 947
       FloatTop = 2
-      FloatClientWidth = 0
-      FloatClientHeight = 0
+      FloatClientWidth = 90
+      FloatClientHeight = 250
       ItemLinks = <
         item
           Visible = True
           ItemName = 'dxBarDBNavInsert1'
+        end
+        item
+          Visible = True
+          ItemName = 'dxBarButton3'
         end
         item
           Visible = True
@@ -821,15 +1242,20 @@ object view_CadastroPessoasTerceiros: Tview_CadastroPessoasTerceiros
           ItemName = 'dxBarDBNavPost1'
         end
         item
+          BeginGroup = True
           Visible = True
           ItemName = 'dxBarButton2'
         end>
       OneOnRow = True
+      RotateWhenVertical = False
       Row = 0
+      ShowMark = False
+      SizeGrip = False
       UseOwnFont = False
+      UseRecentItems = False
       UseRestSpace = True
       Visible = True
-      WholeRow = False
+      WholeRow = True
     end
     object dxBarDBNavDelete1: TdxBarDBNavButton
       Category = 0
@@ -1182,6 +1608,8 @@ object view_CadastroPessoasTerceiros: Tview_CadastroPessoasTerceiros
       PaintStyle = psCaptionGlyph
       BarDBNavigator = dxBarDBNavigator1
       NavButton = dxbnPost
+      CaptionEx = '&Gravar'
+      HintEx = 'Gravar o  cadastro'
     end
     object dxBarDBNavCancel1: TdxBarDBNavButton
       Category = 0
@@ -1310,7 +1738,7 @@ object view_CadastroPessoasTerceiros: Tview_CadastroPessoasTerceiros
       BarDBNavigator = dxBarDBNavigator1
       NavButton = dxbnCancel
       CaptionEx = '&Cancelar'
-      HintEx = 'Cancelar'
+      HintEx = 'Cancelar a opera'#231#227'o atual'
     end
     object dxBarLargeButton1: TdxBarLargeButton
       Caption = 'New Button'
@@ -1488,6 +1916,219 @@ object view_CadastroPessoasTerceiros: Tview_CadastroPessoasTerceiros
         426082}
       PaintStyle = psCaptionGlyph
     end
+    object dxBarContainerItem1: TdxBarContainerItem
+      Caption = 'New Item'
+      Category = 1
+      Visible = ivAlways
+      ItemLinks = <>
+    end
+    object cxBarEditItem1: TcxBarEditItem
+      Align = iaRight
+      Caption = 'New Item'
+      Category = 1
+      Hint = 'New Item'
+      Visible = ivAlways
+      ShowCaption = True
+      PropertiesClassName = 'TcxLabelProperties'
+      Properties.Alignment.Horz = taRightJustify
+      Properties.Alignment.Vert = taVCenter
+    end
+    object dxBarLargeButton4: TdxBarLargeButton
+      Action = actionLocalizar
+      Category = 1
+      LargeGlyph.SourceDPI = 96
+      LargeGlyph.Data = {
+        89504E470D0A1A0A0000000D4948445200000020000000200806000000737A7A
+        F400000026744558745469746C650046696E643B426172733B526962626F6E3B
+        5374616E646172643B536561726368BB659C080000091449444154785EED9769
+        6C54D7D9C77FF7DC3B33F6CC803DF6D81E8FC160C2BE39EC84B00493D0900082
+        AC4D42DA34A14A1AA52255525A2444521AB510B56F5E3590405AB54DDBF7059A
+        D20022511262C0D040CA6AC050CA6E636CBCCD78B6BBCCDC3BB757C853228844
+        A57CC8971EE9D1E81C3D3F3DFF799EBFEED1916CDBE6EB5C82AF7929394092A4
+        5B0112F0C5767DA5FC5CE7955B17CDC575361737E7DEFC7B73FEAD479083C5D6
+        4F0FCEDC567B74EB5F3E3AD8F4A7AD9F35BDB371E796D56F6FAE016440DC2874
+        FD861D337FFB5EDDD65F6FDA7579FDFFD736ADF9C3275B56BF7563FEAD054880
+        F4E1AEFA6581C2DEB5D5C3FACE9D75C7F0F0F409C3C243ABCAE7961417EDF8D9
+        9B9B97E544E4F27FB369E7B27059B076D69411736B268F0C8783BEF0F081E1B9
+        7DFA94EF58BD6E6B2E5FFA8F046CD8B677A6CBADACEC5B1EA4B8C08F696589C4
+        93747444280BE4535A1278F599977F39A38717BFFADDF6E905BDFD2BA78C1948
+        65B8988C6972B1F10AE7CE5F62CC88FE941417BCBA64C5DA9A2F13211CF3E1B4
+        8AB38D6DE45A8FA4AC94254B58A6899005AAAA138B695CEDE8A4ADA39BAAFE21
+        E1C9F7BD0A28802CBB3C2B43C10291540D00849070B9F2387BEE12ADED510654
+        8684903DAFE604EC39F84F9E5DB606A73602C0486750B53480B46ACDA66AD3B2
+        264B424116024721AA91211A8991482491858240C24CA747E74690CE64AA53BA
+        46366B03E05264DC2E1799B44E67348695B5B02D73E2A3DF5D7E3B20A64F1822
+        195A8F5800CD30A81EDA57028470791699195DC8B28CC72D639A26B1B84A3CA9
+        924A254116685A9A4824EA0664408E75C73CC9A441C6CC00A0C8021B093B0B17
+        2F34924869F42EF40B77BEFF094001244DD7AF0B507503401A32629C5B37328F
+        9A19036F9E0B974BC1D9D39D48918CC74926356C01274F9DA6ABB3DD337AD282
+        69772FFCDEB48693A73D5D9108E9B409802C0B10324832972F35E3748B926031
+        59A48783A1BE7980F8F3FAE5524E003F7FF9710910B3E67D6B563A9D2ECFCBF3
+        A308D911E176D4EB44A249DA3BA3A89AE618317ACD5C99B489D757F881DF5FF4
+        51D6B689C51268FA750F085920141791EE285DB114592B8BB0AD50CDBC6FCFFA
+        A21915809E8D6C096571C650491B3A4D97AF60A6539CBDD0CAE9732D5C6D6DC1
+        D0359A9BAFD01D8D3902D2B83D5EF27C3E0C87D1540D5D37B0B2593ABB224E87
+        3A5053D73AC7C963FFA0A0A890406180EEB8F234F0096001B6C839FFFEC75EA8
+        926CE619BACAE0AA10778C1FCED8EA613CBC60268B1E9AC9843143496A3A2DCD
+        ADC4E209321923F74D25EB144D693A9168CC19CF591459E29179D358F3FA4B6C
+        FEBF3778F6A9B98C1E5A8910809D9D33B87AC66D392F488000DCCFFCF07FF778
+        95EC841F2F7912BFDF4F524DA319696CC0E352F07B3D7447A32C5DFE066D6D5D
+        C452297AF72A265C5981AE25292F2D627CF5101E7B7036665622A91968FA75DE
+        E775A32553BCB2EA1D1A2FB71CA9DDF2560D90128098FDE0B303F2DCAE094BBF
+        BF08D356A8FBFB2556AFDDCBD2D76A59BEAA8E35BF3FCCBEC34D58B879FDA73F
+        C03433642D8B50284845791156D6261E4F306FCE743ABA7576EE3FC34FFEE703
+        5E58BE89175FD9CCEBEB3E65F7E7E748A661C5D2C594854AC7560D9D34105004
+        2087C2FD17F5091591C90ADEDBDEE0009FD3AC07F0F61B85A7CF089AB502DEDD
+        7C8E1D7B1BD12DC1430B6753102864F4A8814C183D883C8F9B9AA9634968261B
+        B61DE0B5B53B38AB1543BF49D87DC7734E2D62FDC6836CAF3D495CB3A82C2FA1
+        A272F0E3805B008ACFE77B7C4ECD648E9EBCCAF6BA8BDC3B7F06AB9F1BC3CB0F
+        5432A8D24FAF6090B26143D9DF10E1F48508F7CFA9A1A8B8882DEF7FB8FFDD8D
+        DBF779BDF94C9C388643279A787FD7696AE6DFC75B4BEE64E5638319525588B7
+        AC9CA25193A8AB6FE1C499ABDC336BAA63CAE023804B01644950E1C9CF675BED
+        614A070CE4F93915D83664B1993CD8CF07F571672F11AEAA60DFD1766EEBDB0B
+        BFD7CF91BF6D7A18B016BFF48B56C595C75F3FA9A7F78061FC687ED535DEB26D
+        EE1A5EC8C6435D600BCA06DDC6EE831758FCC0385CB23B941B81645BB6924819
+        B4455402E541E27A96886A114959C4F42CF9F912794E0443013A9306D1988624
+        097237A12C64A2718D96AE1805A152BA758B8E94497B2A439766E2F54A789C08
+        F629A53D96A43BAE635AA602C8022093CE24545545762B4E21C1F6866E5AE319
+        DA55938BDDE96B6785050A6E0FD802543D4DC6CCA4E9599669A60DC3405164A7
+        9060C3F10E9AE2062D6A863331837C9F4CA0D08DCB23C8CA9048A93840124000
+        B6AAABCDD1688250B91F434FD0A69BEC6D4A703A6A8047C2E797290EB81D304E
+        51A187AEAE28BAAA3602169075EE884B9D5DDD94870A30D5182D5A868F1B631C
+        8B6AD80EEFEFA5102A76A326BA2809F88844BA3134B505B0046025E2B1DA0B8D
+        5798561D26DAD682371FF2BC8AD37A9982024179A91BC595E562532B23AB7C5C
+        BCD44C2A11DB096470229188D55E6ABAC2F4B1B791B8721E5F3E787D0A3EAF42
+        51814CDF320F2E254BE3D9F38C1D54C6F9F3174925E375404600E6D986036FD7
+        D79FD28ABC32D5FD7A517FF038A61E23D0CBC697076D5D11EAF69D6060D085DF
+        6573ECD849FD4CC3FEF5800E18A78FEF5F77FCF829ADB4573EE3FA0769A8DB8B
+        9DE8A4C407BD3D36EDAD6DECF9780F434B7DCE5EE1F0A1A37AE3F97A87C79000
+        05C89F71DF77168D1C75FB5B774C194FCA923975354124950120E8F730B8D44B
+        5ED660DF67073876E4E08B07F6BCF747200100F8A6CE5EB46864F5B837274E1C
+        4B3C9DE558531B9D711549489414F8185111C46B67D9BDAB8EE3473E7FE9D4D1
+        1DEF020909900017E09B7CD72373CBC255ABAAAB8787C3152182C1626CDBA6BD
+        A393E6CBADD41F3971B5ADF5C28A23FBB66E01E24006A087F78F9FBA70414959
+        BFD746578F0C85FB943B7CF01ADFD6DECEE5C666E79F1FBADA76E5C28A332776
+        6F036240CEC848801BE85D161E3878FABD4FAF9D35FFF986D90F2CB1EF59B8C4
+        9E39F7B99353EE7EF2EDE2B27EC38100E001440F07207ACE02C5A595C327DDF5
+        CD7577DEF3D4A969DF586CDF39FB697BD25D4F9CBA7DF282770A02E5A3806220
+        EF061E807F8FA3A748195001F401423DA00F70DD0C93BBD45C80B727370CF403
+        FA031540F0CB78E9CB1F22881B8AD84016276E7C64DC8217D779AC9BF99B05DC
+        E2FCE6C25F95FFEFEBF85FD0430BB08C3063360000000049454E44AE426082}
+      PaintStyle = psCaptionInMenu
+    end
+    object dxBarButton3: TdxBarButton
+      Action = actionLocalizar
+      Category = 1
+      LargeGlyph.SourceDPI = 96
+      LargeGlyph.Data = {
+        89504E470D0A1A0A0000000D4948445200000020000000200806000000737A7A
+        F400000026744558745469746C650046696E643B426172733B526962626F6E3B
+        5374616E646172643B536561726368BB659C080000091449444154785EED9769
+        6C54D7D9C77FF7DC3B33F6CC803DF6D81E8FC160C2BE39EC84B00493D0900082
+        AC4D42DA34A14A1AA52255525A2444521AB510B56F5E3590405AB54DDBF7059A
+        D20022511262C0D040CA6AC050CA6E636CBCCD78B6BBCCDC3BB757C853228844
+        A57CC8971EE9D1E81C3D3F3DFF799EBFEED1916CDBE6EB5C82AF7929394092A4
+        5B0112F0C5767DA5FC5CE7955B17CDC575361737E7DEFC7B73FEAD479083C5D6
+        4F0FCEDC567B74EB5F3E3AD8F4A7AD9F35BDB371E796D56F6FAE016440DC2874
+        FD861D337FFB5EDDD65F6FDA7579FDFFD736ADF9C3275B56BF7563FEAD054880
+        F4E1AEFA6581C2DEB5D5C3FACE9D75C7F0F0F409C3C243ABCAE7961417EDF8D9
+        9B9B97E544E4F27FB369E7B27059B076D69411736B268F0C8783BEF0F081E1B9
+        7DFA94EF58BD6E6B2E5FFA8F046CD8B677A6CBADACEC5B1EA4B8C08F696589C4
+        93747444280BE4535A1278F599977F39A38717BFFADDF6E905BDFD2BA78C1948
+        65B8988C6972B1F10AE7CE5F62CC88FE941417BCBA64C5DA9A2F13211CF3E1B4
+        8AB38D6DE45A8FA4AC94254B58A6899005AAAA138B695CEDE8A4ADA39BAAFE21
+        E1C9F7BD0A28802CBB3C2B43C10291540D00849070B9F2387BEE12ADED510654
+        8684903DAFE604EC39F84F9E5DB606A73602C0486750B53480B46ACDA66AD3B2
+        264B424116024721AA91211A8991482491858240C24CA747E74690CE64AA53BA
+        46366B03E05264DC2E1799B44E67348695B5B02D73E2A3DF5D7E3B20A64F1822
+        195A8F5800CD30A81EDA57028470791699195DC8B28CC72D639A26B1B84A3CA9
+        924A254116685A9A4824EA0664408E75C73CC9A441C6CC00A0C8021B093B0B17
+        2F34924869F42EF40B77BEFF094001244DD7AF0B507503401A32629C5B37328F
+        9A19036F9E0B974BC1D9D39D48918CC74926356C01274F9DA6ABB3DD337AD282
+        69772FFCDEB48693A73D5D9108E9B409802C0B10324832972F35E3748B926031
+        59A48783A1BE7980F8F3FAE5524E003F7FF9710910B3E67D6B563A9D2ECFCBF3
+        A308D911E176D4EB44A249DA3BA3A89AE618317ACD5C99B489D757F881DF5FF4
+        51D6B689C51268FA750F085920141791EE285DB114592B8BB0AD50CDBC6FCFFA
+        A21915809E8D6C096571C650491B3A4D97AF60A6539CBDD0CAE9732D5C6D6DC1
+        D0359A9BAFD01D8D3902D2B83D5EF27C3E0C87D1540D5D37B0B2593ABB224E87
+        3A5053D73AC7C963FFA0A0A890406180EEB8F234F0096001B6C839FFFEC75EA8
+        926CE619BACAE0AA10778C1FCED8EA613CBC60268B1E9AC9843143496A3A2DCD
+        ADC4E209321923F74D25EB144D693A9168CC19CF591459E29179D358F3FA4B6C
+        FEBF3778F6A9B98C1E5A8910809D9D33B87AC66D392F488000DCCFFCF07FF778
+        95EC841F2F7912BFDF4F524DA319696CC0E352F07B3D7447A32C5DFE066D6D5D
+        C452297AF72A265C5981AE25292F2D627CF5101E7B7036665622A91968FA75DE
+        E775A32553BCB2EA1D1A2FB71CA9DDF2560D90128098FDE0B303F2DCAE094BBF
+        BF08D356A8FBFB2556AFDDCBD2D76A59BEAA8E35BF3FCCBEC34D58B879FDA73F
+        C03433642D8B50284845791156D6261E4F306FCE743ABA7576EE3FC34FFEE703
+        5E58BE89175FD9CCEBEB3E65F7E7E748A661C5D2C594854AC7560D9D34105004
+        2087C2FD17F5091591C90ADEDBDEE0009FD3AC07F0F61B85A7CF089AB502DEDD
+        7C8E1D7B1BD12DC1430B6753102864F4A8814C183D883C8F9B9AA9634968261B
+        B61DE0B5B53B38AB1543BF49D87DC7734E2D62FDC6836CAF3D495CB3A82C2FA1
+        A272F0E3805B008ACFE77B7C4ECD648E9EBCCAF6BA8BDC3B7F06AB9F1BC3CB0F
+        5432A8D24FAF6090B26143D9DF10E1F48508F7CFA9A1A8B8882DEF7FB8FFDD8D
+        DBF779BDF94C9C388643279A787FD7696AE6DFC75B4BEE64E5638319525588B7
+        AC9CA25193A8AB6FE1C499ABDC336BAA63CAE023804B01644950E1C9CF675BED
+        614A070CE4F93915D83664B1993CD8CF07F571672F11AEAA60DFD1766EEBDB0B
+        BFD7CF91BF6D7A18B016BFF48B56C595C75F3FA9A7F78061FC687ED535DEB26D
+        EE1A5EC8C6435D600BCA06DDC6EE831758FCC0385CB23B941B81645BB6924819
+        B4455402E541E27A96886A114959C4F42CF9F912794E0443013A9306D1988624
+        097237A12C64A2718D96AE1805A152BA758B8E94497B2A439766E2F54A789C08
+        F629A53D96A43BAE635AA602C8022093CE24545545762B4E21C1F6866E5AE319
+        DA55938BDDE96B6785050A6E0FD802543D4DC6CCA4E9599669A60DC3405164A7
+        9060C3F10E9AE2062D6A863331837C9F4CA0D08DCB23C8CA9048A93840124000
+        B6AAABCDD1688250B91F434FD0A69BEC6D4A703A6A8047C2E797290EB81D304E
+        51A187AEAE28BAAA3602169075EE884B9D5DDD94870A30D5182D5A868F1B631C
+        8B6AD80EEFEFA5102A76A326BA2809F88844BA3134B505B0046025E2B1DA0B8D
+        5798561D26DAD682371FF2BC8AD37A9982024179A91BC595E562532B23AB7C5C
+        BCD44C2A11DB096470229188D55E6ABAC2F4B1B791B8721E5F3E787D0A3EAF42
+        51814CDF320F2E254BE3D9F38C1D54C6F9F3174925E375404600E6D986036FD7
+        D79FD28ABC32D5FD7A517FF038A61E23D0CBC697076D5D11EAF69D6060D085DF
+        6573ECD849FD4CC3FEF5800E18A78FEF5F77FCF829ADB4573EE3FA0769A8DB8B
+        9DE8A4C407BD3D36EDAD6DECF9780F434B7DCE5EE1F0A1A37AE3F97A87C79000
+        05C89F71DF77168D1C75FB5B774C194FCA923975354124950120E8F730B8D44B
+        5ED660DF67073876E4E08B07F6BCF747200100F8A6CE5EB46864F5B837274E1C
+        4B3C9DE558531B9D711549489414F8185111C46B67D9BDAB8EE3473E7FE9D4D1
+        1DEF020909900017E09B7CD72373CBC255ABAAAB8787C3152182C1626CDBA6BD
+        A393E6CBADD41F3971B5ADF5C28A23FBB66E01E24006A087F78F9FBA70414959
+        BFD746578F0C85FB943B7CF01ADFD6DECEE5C666E79F1FBADA76E5C28A332776
+        6F036240CEC848801BE85D161E3878FABD4FAF9D35FFF986D90F2CB1EF59B8C4
+        9E39F7B99353EE7EF2EDE2B27EC38100E001440F07207ACE02C5A595C327DDF5
+        CD7577DEF3D4A969DF586CDF39FB697BD25D4F9CBA7DF282770A02E5A3806220
+        EF061E807F8FA3A748195001F401423DA00F70DD0C93BBD45C80B727370CF403
+        FA031540F0CB78E9CB1F22881B8AD84016276E7C64DC8217D779AC9BF99B05DC
+        E2FCE6C25F95FFEFEBF85FD0430BB08C3063360000000049454E44AE426082}
+      PaintStyle = psCaptionGlyph
+    end
+    object cxBarEditItem2: TcxBarEditItem
+      Caption = 'New Item'
+      Category = 1
+      Hint = 'New Item'
+      Visible = ivAlways
+      PropertiesClassName = 'TcxTrackBarProperties'
+    end
+    object cxBarEditItem3: TcxBarEditItem
+      Caption = 'New Item'
+      Category = 1
+      Hint = 'New Item'
+      Visible = ivAlways
+      PropertiesClassName = 'TcxTrackBarProperties'
+    end
+    object cxBarEditItem4: TcxBarEditItem
+      Caption = 'New Item'
+      Category = 1
+      Hint = 'New Item'
+      Visible = ivAlways
+      PropertiesClassName = 'TcxLabelProperties'
+    end
+    object cxBarEditItem5: TcxBarEditItem
+      Caption = 'New Item'
+      Category = 1
+      Hint = 'New Item'
+      Visible = ivAlways
+      ShowCaption = True
+      PropertiesClassName = 'TcxLabelProperties'
+      Properties.Alignment.Horz = taRightJustify
+    end
   end
   object dxBarDBNavigator1: TdxBarDBNavigator
     BarManager = dxBarManager1
@@ -1495,7 +2136,48 @@ object view_CadastroPessoasTerceiros: Tview_CadastroPessoasTerceiros
     ConfirmDelete = False
     DBCheckLinks = <>
     VisibleButtons = [dxbnInsert, dxbnDelete, dxbnEdit, dxbnPost, dxbnCancel]
-    Left = 232
-    Top = 323
+    Left = 504
+    Top = 59
+  end
+  object memTableContatos: TFDMemTable
+    FetchOptions.AssignedValues = [evMode]
+    FetchOptions.Mode = fmAll
+    ResourceOptions.AssignedValues = [rvSilentMode]
+    ResourceOptions.SilentMode = True
+    UpdateOptions.AssignedValues = [uvCheckRequired, uvAutoCommitUpdates]
+    UpdateOptions.CheckRequired = False
+    UpdateOptions.AutoCommitUpdates = True
+    Left = 672
+    object memTableContatosid_cadastro: TIntegerField
+      DisplayLabel = 'ID Cadastro'
+      FieldName = 'id_cadastro'
+    end
+    object memTableContatoscod_tipo_cadastro: TIntegerField
+      DisplayLabel = 'Tipo'
+      FieldName = 'cod_tipo_cadastro'
+    end
+    object memTableContatosseq_contato: TIntegerField
+      DisplayLabel = 'Sequ'#234'ncia'
+      FieldName = 'seq_contato'
+    end
+    object memTableContatosdes_contato: TStringField
+      DisplayLabel = 'Descri'#231#227'o'
+      FieldName = 'des_contato'
+      Size = 70
+    end
+    object memTableContatosdes_telefone: TStringField
+      DisplayLabel = 'Telefone'
+      FieldName = 'des_telefone'
+      Size = 30
+    end
+    object memTableContatosdes_email: TStringField
+      DisplayLabel = 'E-Mail'
+      FieldName = 'des_email'
+      Size = 100
+    end
+  end
+  object dsContatos: TDataSource
+    DataSet = memTableContatos
+    Left = 704
   end
 end

@@ -55,7 +55,7 @@ begin
   Application.Initialize;
   Application.MainFormOnTaskbar := True;
   TStyleManager.TrySetStyle('Light');
-  Application.Title := 'ERP - MaMutti';
+  Application.Title := 'ERP MaMutti';
   Application.CreateForm(Tview_Main, view_Main);
   Application.CreateForm(Tdm, dm);
   Application.Run;
